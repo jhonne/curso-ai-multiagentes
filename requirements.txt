@@ -1,0 +1,19 @@
+# Dependências para o exemplo Hello CrewAI
+# Baseado no curso de CrewAI
+
+# Framework principal
+crewai>=0.95.0
+
+# Cliente OpenAI
+openai>=1.12.0
+
+# Gerenciamento de variáveis de ambiente
+python-dotenv>=1.0.0
+
+# Dependências opcionais para projetos futuros
+streamlit>=1.28.0  # Para interface web
+requests>=2.31.0   # Para ferramentas de busca
+pydantic>=2.5.0    # Para validação de dados
+
+# Para desenvolvimento e depuração
+rich>=13.0.0       # Para saída colorida no terminal
