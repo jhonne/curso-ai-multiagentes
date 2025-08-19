@@ -1,19 +1,48 @@
-# Hello CrewAI - Exemplo Básico
+# 🚀 Curso de CrewAI - Desenvolvendo Chatbots com Múltiplos Agentes
 
-Este é um exemplo introdutório baseado no **Módulo 1, Aula 1** do curso "Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI".
+**Curso Básico de 20 Horas:** Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI
 
-## 🎯 O que este exemplo demonstra
+Este repositório contém exemplos práticos, exercícios e projetos do curso completo de CrewAI, desde conceitos básicos até a implementação de chatbots avançados com múltiplos agentes de IA.
 
-- Como criar seu primeiro agente CrewAI
-- Como definir uma tarefa simples
-- Como executar um crew com um único agente
-- Configuração básica do ambiente
+## 📚 Sobre o Curso
+
+**Nível:** Iniciante  
+**Carga Horária:** 20 horas  
+**Framework Principal:** CrewAI + OpenAI  
+**Linguagem:** Python 3.11
+
+### 🎯 Objetivos do Curso
+
+- Compreender o paradigma de sistemas multi-agente
+- Dominar o framework CrewAI para orquestração de agentes
+- Construir chatbots inteligentes e colaborativos
+- Integrar modelos de linguagem da OpenAI
+- Desenvolver soluções práticas com IA conversacional
+
+## 🗂️ Estrutura do Projeto
+
+```text
+curso_crewai/
+├── 📁 aula1/              # Módulo 1: Fundamentos
+│   └── main.py            # Primeiro agente CrewAI
+├── 📁 aula2/              # Módulo 1: Agentes e Tarefas
+│   ├── main.py            # Crew com múltiplos agentes
+│   └── README.md          # Documentação da aula
+├── 📁 material_de_apoio/  # PDFs e documentação
+├── 📁 podcasts/           # Conteúdo em áudio
+├── hello_crewai.py        # Exemplo principal do curso
+├── hello_simples.py       # Exemplo simplificado
+├── teste_api.py           # Verificação de conexão OpenAI
+├── configurar.py          # Script de configuração automática
+└── verificar_openai.py    # Validação de ambiente
+```
 
 ## 📋 Pré-requisitos
 
-1. **Python 3.8+** instalado
+1. **Python 3.10+** instalado
 2. **Chave de API da OpenAI** (obtenha em: <https://platform.openai.com/api-keys>)
-3. **pip** para instalação de pacotes
+3. **UV** (gerenciador de pacotes - recomendado) ou **pip**
+4. **Git** para clonagem do repositório
 
 ## 🚀 Como executar
 
@@ -47,7 +76,7 @@ pip install -r requirements.txt
 
 2. Edite o arquivo `.env` e adicione sua chave da OpenAI:
 
-   ```
+   ```text
    OPENAI_API_KEY=sua_chave_real_aqui
    ```
 
@@ -64,22 +93,55 @@ python hello_crewai.py
 uv run python -m curso_crewai.hello_crewai
 ```
 
-## 📖 O que acontece quando executar
+## � Conteúdo do Curso
 
-1. O programa verifica se a chave da OpenAI está configurada
-2. Cria um agente "Assistente Amigável" com papel e objetivo definidos
-3. Define uma tarefa para o agente criar uma mensagem de boas-vindas
-4. Executa o crew e exibe o resultado
+### 📚 Módulo 1: Fundamentos do CrewAI (6 horas)
 
-## 🔍 Exemplo de saída esperada
+- **Aula 1:** Introdução à IA de Agentes e ao CrewAI (2h)
+  - 📁 `aula1/main.py` - Primeiro agente CrewAI
+  - 📄 Configuração de ambiente e conceitos básicos
+  
+- **Aula 2:** Construindo seu Primeiro Crew (2h)
+  - 📁 `aula2/main.py` - Crew com múltiplos agentes
+  - 📄 Agentes, tarefas e colaboração
+  
+- **Aula 3:** Ferramentas e Processos (2h)
+  - 🔧 Integrando ferramentas externas
+  - ⚙️ Processos sequenciais e hierárquicos
 
-```
+### 🤖 Módulo 2: Chatbot Multi-Agente (10 horas)
+
+- **Aula 4:** Arquitetura de Chatbot (2h)
+- **Aula 5:** Implementação com OpenAI (3h)
+- **Aula 6:** Fluxo de Conversa (3h)
+- **Aula 7:** Interface de Chat (2h)
+
+### 🚀 Módulo 3: Tópicos Avançados (4 horas)
+
+- **Aula 8:** Memória e Ferramentas Personalizadas (2h)
+- **Aula 9:** Debugging e Próximos Passos (2h)
+
+## �📖 O que acontece quando executar
+
+Quando você executa `uv run hello-crewai`, o sistema:
+
+1. ✅ Verifica se a chave da OpenAI está configurada
+2. 🤖 Cria um agente "Assistente Amigável em Português"
+3. 📝 Define uma tarefa para criar mensagem de boas-vindas
+4. ⚡ Executa o crew e processa a resposta
+5. 📤 Exibe o resultado final
+
+## 🔍 Exemplo de Saída Esperada
+
+```console
 🚀 Iniciando Hello CrewAI...
 
 🤖 Executando o crew...
 ==================================================
 
-[Aqui você verá o processo de pensamento do agente]
+> Entering new CrewAgentExecutor chain...
+
+[Aqui você verá o processo de pensamento do agente em português]
 
 ==================================================
 ✅ Resultado final:
@@ -99,55 +161,196 @@ construir sistemas de IA verdadeiramente poderosos! 🚀
 🎉 Hello CrewAI executado com sucesso!
 ```
 
-## 🎓 Próximos passos
+## 🎓 Próximos Passos
 
-Este é apenas o primeiro exemplo do curso! Continue com:
+Após configurar o ambiente e executar os primeiros exemplos:
 
-- **Aula 2**: Construindo seu Primeiro Crew com múltiplos agentes
-- **Aula 3**: Adicionando ferramentas e processos  
-- **Módulo 2**: Construindo um chatbot completo
+1. **📚 Estude o material de apoio:**
+   - 📄 `material_de_apoio/` - PDFs com conceitos fundamentais
+   - 🎧 `podcasts/` - Conteúdo em áudio sobre CrewAI
 
-## 🔧 Comandos UV úteis
+2. **🔍 Explore os exemplos:**
+   - `hello_simples.py` - Versão simplificada
+   - `aula1/main.py` - Primeiro agente
+   - `aula2/main.py` - Múltiplos agentes
+
+3. **🚀 Continue o curso:**
+   - **Módulo 2:** Construindo chatbot completo
+   - **Módulo 3:** Funcionalidades avançadas
+
+## 🔧 Comandos UV Úteis
+
+### Execução de Exemplos
 
 ```bash
-# Testar configuração
+# Testar configuração da API
 uv run teste-api
 
-# Executar exemplo simples
-uv run python src/curso_crewai/hello_simples.py
+# Verificar ambiente OpenAI
+uv run python verificar_openai.py
+
+# Executar configuração automática
+uv run configurar-crewai
+
+# Executar exemplos das aulas
+uv run python aula1/main.py
+uv run python aula2/main.py
+```
+
+### Gerenciamento do Projeto
+
+```bash
+# Ver dependências instaladas
+uv tree
 
 # Adicionar nova dependência
 uv add <package>
 
-# Ver dependências instaladas
-uv tree
+# Atualizar dependências
+uv sync
+
+# Executar em ambiente limpo
+uv run --isolated python hello_crewai.py
+
+# Ver informações do projeto
+uv show
 ```
 
-## 📚 Recursos adicionais
+### Desenvolvimento
 
-- [Documentação oficial do CrewAI](https://docs.crewai.com/)
-- [Documentação da OpenAI](https://platform.openai.com/docs)
-- [Repositório do curso completo](link_do_repositorio)
+```bash
+# Instalar dependências de desenvolvimento
+uv sync --group dev
 
-## ❓ Problemas comuns
+# Executar testes (quando disponíveis)
+uv run pytest
 
-### "OPENAI_API_KEY não encontrada!"
+# Formatar código
+uv run black .
 
-- Verifique se você criou o arquivo `.env`
-- Confirme se a chave está correta e sem espaços extras
+# Verificar tipos
+uv run mypy .
+```
 
-### Erro de instalação do CrewAI
+## 📚 Recursos Adicionais
 
-- Atualize o pip: `pip install --upgrade pip`
-- Use um ambiente virtual: `python -m venv venv` e ative-o
+### Documentação Oficial
 
-### Timeout ou erro de conexão
+- 📖 [CrewAI Documentation](https://docs.crewai.com/)
+- 🤖 [OpenAI API Documentation](https://platform.openai.com/docs)
+- ⚡ [UV Package Manager](https://docs.astral.sh/uv/)
+- 🐍 [Python 3.11+ Documentation](https://docs.python.org/3/)
 
-- Verifique sua conexão com a internet
-- Confirme se sua chave da OpenAI está ativa e com créditos
+### Material do Curso
+
+- 📁 `material_de_apoio/` - PDFs com conceitos fundamentais
+- 🎧 `podcasts/` - Conteúdo em áudio sobre CrewAI
+- 📄 `CURSO.md` - Cronograma completo do curso
+- ⚙️ `CONFIGURACAO_AMBIENTE.md` - Guia detalhado de configuração
+
+### Repositórios e Comunidade
+
+- 🌟 [Repositório Original](https://github.com/jhonne/curso-ai-multiagentes)
+- 🤝 [CrewAI Community](https://github.com/joaomdmoura/crewAI)
+- 💬 [OpenAI Community](https://community.openai.com/)
+
+## ❓ Solução de Problemas Comuns
+
+### 🔑 "OPENAI_API_KEY não encontrada!"
+
+```bash
+# Verificar se o arquivo .env existe
+ls -la .env  # Linux/Mac
+dir .env     # Windows
+
+# Verificar conteúdo do arquivo
+cat .env     # Linux/Mac
+type .env    # Windows
+
+# Testar a chave manualmente
+uv run python -c "import os; print('Chave:', os.getenv('OPENAI_API_KEY', 'NÃO ENCONTRADA'))"
+```
+
+**Soluções:**
+
+- ✅ Verifique se criou o arquivo `.env` na raiz do projeto
+- ✅ Confirme se a chave está correta (inicia com `sk-`)
+- ✅ Remova espaços extras antes/depois da chave
+- ✅ Reinicie o terminal após editar o `.env`
+
+### 📦 Erro de Instalação de Dependências
+
+```bash
+# Limpar cache e reinstalar
+uv cache clean
+rm -rf .venv uv.lock  # Linux/Mac
+Remove-Item -Recurse -Force .venv, uv.lock  # Windows
+uv sync
+
+# Alternativa com pip
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 🌐 Timeout ou Erro de Conexão
+
+```bash
+# Testar conectividade
+ping api.openai.com
+
+# Verificar status da conta OpenAI
+uv run teste-api
+
+# Verificar saldo/créditos em: https://platform.openai.com/usage
+```
+
+### 🐍 Python não Encontrado
+
+```powershell
+# Windows - Adicionar ao PATH
+$env:PATH += ";C:\Python311;C:\Python311\Scripts"
+
+# Verificar instalação
+python --version
+which python  # Linux/Mac
+where python  # Windows
+```
+
+### 🔧 Problemas de Permissão (Linux)
+
+```bash
+# Instalar UV no usuário local
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.bashrc
+
+# Ou usar sudo para instalação global
+sudo python3.11 -m pip install uv
+```
+
+## 📊 Estimativa de Custos OpenAI
+
+| Modelo | Custo por 1K tokens | Uso estimado/exemplo | Custo por execução |
+|--------|-------------------|---------------------|-------------------|
+| GPT-3.5-turbo | $0.0015/$0.002 | ~2K tokens | ~$0.007 |
+| GPT-4 | $0.03/$0.06 | ~1K tokens | ~$0.09 |
+| GPT-4-turbo | $0.01/$0.03 | ~1K tokens | ~$0.04 |
+
+> 💡 **Dica:** Use GPT-3.5-turbo para desenvolvimento e testes para economizar custos.
+
+## 🚀 Status do Projeto
+
+- ✅ **Módulo 1:** Fundamentos implementados
+- 🔄 **Módulo 2:** Em desenvolvimento
+- 📋 **Módulo 3:** Planejado
+- 🎯 **Versão atual:** 0.1.0
 
 ---
 
-**Curso:** Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI  
-**Módulo:** 1 - Fundamentos do CrewAI  
-**Aula:** 1 - Introdução à IA de Agentes e ao CrewAI
+**📚 Curso:** Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI  
+**🎯 Repositório:** [curso-ai-multiagentes](https://github.com/jhonne/curso-ai-multiagentes)  
+**👨‍💻 Autor:** [@jhonne](https://github.com/jhonne)  
+**📅 Última atualização:** Agosto 2025
+
+---
+
+> 💡 **Dica:** Para uma experiência completa de configuração, consulte sempre o arquivo **[CONFIGURACAO_AMBIENTE.md](CONFIGURACAO_AMBIENTE.md)** antes de começar!
