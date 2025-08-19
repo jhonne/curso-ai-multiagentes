@@ -3,6 +3,7 @@
 ## Comandos básicos
 
 ### Instalação inicial
+
 ```bash
 # Instalar UV (se ainda não tiver)
 # Windows
@@ -13,6 +14,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ### Configuração do projeto
+
 ```bash
 # Inicializar ambiente virtual e instalar dependências
 uv sync
@@ -22,6 +24,7 @@ uv run configurar-crewai
 ```
 
 ### Executar exemplos
+
 ```bash
 # Teste da API
 uv run teste-api
@@ -34,6 +37,7 @@ uv run python src/curso_crewai/hello_simples.py
 ```
 
 ### Gerenciar dependências
+
 ```bash
 # Adicionar nova dependência
 uv add <package>
@@ -49,6 +53,7 @@ uv sync --upgrade
 ```
 
 ### Scripts personalizados
+
 ```bash
 # Definidos em pyproject.toml [project.scripts]
 uv run hello-crewai

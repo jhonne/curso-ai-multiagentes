@@ -12,6 +12,7 @@ uv run configurar-crewai
 ```
 
 Este script irá:
+
 - ✅ Verificar se UV está instalado
 - ✅ Verificar sua versão do Python
 - ✅ Inicializar projeto com pyproject.toml
@@ -22,11 +23,13 @@ Este script irá:
 ## 🔧 Configuração Manual
 
 ### 1. Instalar dependências
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 2. Configurar chave API
+
 ```bash
 # Copiar arquivo de exemplo
 copy .env.example .env
@@ -39,17 +42,21 @@ OPENAI_MODEL_NAME=gpt-3.5-turbo
 ## 🧪 Scripts de Teste
 
 ### Teste Rápido
+
 ```bash
 python teste_api.py
 ```
+
 - Verifica se a chave API está funcionando
 - Faz um teste básico de chat
 - Mostra uso de tokens
 
 ### Teste Completo
+
 ```bash
 python verificar_openai.py
 ```
+
 - Análise completa da configuração
 - Lista modelos disponíveis
 - Informações detalhadas da conta
@@ -57,11 +64,13 @@ python verificar_openai.py
 ## 📚 Exemplos CrewAI
 
 ### Exemplo Simples
+
 ```bash
 python hello_simples.py
 ```
 
 ### Exemplo Completo
+
 ```bash
 python hello_crewai.py
 ```
@@ -69,20 +78,24 @@ python hello_crewai.py
 ## ❓ Problemas Comuns
 
 ### "OPENAI_API_KEY não encontrada"
+
 - Verifique se o arquivo `.env` existe
 - Confirme se a chave está no formato correto: `sk-...`
 
-### "Erro 401: Unauthorized" 
+### "Erro 401: Unauthorized"
+
 - Chave API inválida ou expirada
-- Verifique em: https://platform.openai.com/api-keys
+- Verifique em: <https://platform.openai.com/api-keys>
 
 ### "Erro 429: Rate limit"
+
 - Muitas requisições - aguarde alguns minutos
 - Para contas gratuitas, há limites mais baixos
 
 ### "Erro de quota"
+
 - Saldo esgotado na conta OpenAI
-- Verifique em: https://platform.openai.com/usage
+- Verifique em: <https://platform.openai.com/usage>
 
 ## 💰 Custos Estimados
 

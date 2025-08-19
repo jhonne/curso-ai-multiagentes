@@ -12,7 +12,7 @@ Este é um exemplo introdutório baseado no **Módulo 1, Aula 1** do curso "Dese
 ## 📋 Pré-requisitos
 
 1. **Python 3.8+** instalado
-2. **Chave de API da OpenAI** (obtenha em: https://platform.openai.com/api-keys)
+2. **Chave de API da OpenAI** (obtenha em: <https://platform.openai.com/api-keys>)
 3. **pip** para instalação de pacotes
 
 ## 🚀 Como executar
@@ -40,11 +40,13 @@ pip install -r requirements.txt
 ### 2. Configurar variáveis de ambiente
 
 1. Copie o arquivo de exemplo:
+
    ```bash
    copy .env.example .env
    ```
 
 2. Edite o arquivo `.env` e adicione sua chave da OpenAI:
+
    ```
    OPENAI_API_KEY=sua_chave_real_aqui
    ```
@@ -130,14 +132,17 @@ uv tree
 ## ❓ Problemas comuns
 
 ### "OPENAI_API_KEY não encontrada!"
+
 - Verifique se você criou o arquivo `.env`
 - Confirme se a chave está correta e sem espaços extras
 
 ### Erro de instalação do CrewAI
+
 - Atualize o pip: `pip install --upgrade pip`
 - Use um ambiente virtual: `python -m venv venv` e ative-o
 
 ### Timeout ou erro de conexão
+
 - Verifique sua conexão com a internet
 - Confirme se sua chave da OpenAI está ativa e com créditos
 

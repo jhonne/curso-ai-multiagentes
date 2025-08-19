@@ -6,15 +6,16 @@ Este projeto agora suporta UV (ferramenta moderna de gerenciamento Python) além
 
 - ⚡ **Muito mais rápido** que pip (instalações em segundos)
 - 🔒 **Lock files automáticos** para reproduzibilidade
-- 🏗️ **Ambientes virtuais automáticos** 
+- 🏗️ **Ambientes virtuais automáticos**
 - 📦 **Gerenciamento de dependências melhorado**
 - 🚀 **Execução de scripts simplificada**
 
 ## 🔄 Como migrar
 
-### Se você já tem o projeto configurado com pip:
+### Se você já tem o projeto configurado com pip
 
 1. **Instalar UV:**
+
    ```bash
    # Windows
    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
@@ -24,6 +25,7 @@ Este projeto agora suporta UV (ferramenta moderna de gerenciamento Python) além
    ```
 
 2. **Migrar para UV:**
+
    ```bash
    # Criar pyproject.toml (se não existir)
    uv init --no-readme
@@ -33,11 +35,12 @@ Este projeto agora suporta UV (ferramenta moderna de gerenciamento Python) além
    ```
 
 3. **Testar:**
+
    ```bash
    uv run teste-api
    ```
 
-### Se você está começando do zero:
+### Se você está começando do zero
 
 ```bash
 # Clonar e configurar automaticamente
@@ -90,16 +93,19 @@ uv run teste-api
 ## 🆘 Troubleshooting
 
 ### "uv: command not found"
+
 - UV não está instalado ou não está no PATH
 - Reinicie o terminal após instalação
 
 ### "No pyproject.toml found"
+
 ```bash
 uv init --no-readme
 uv sync
 ```
 
 ### Dependências não encontradas
+
 ```bash
 # Reinstalar todas as dependências
 uv sync --reinstall
@@ -108,6 +114,7 @@ uv sync --reinstall
 ## 🤝 Compatibilidade
 
 O projeto mantém compatibilidade com pip:
+
 - `requirements.txt` ainda funciona
 - Scripts Python podem ser executados tradicionalmente
 - `.env` funciona da mesma forma

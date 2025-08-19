@@ -1,12 +1,13 @@
 # ✅ Status da Compatibilidade com UV
 
-## 🎯 Projeto Totalmente Compatível com UV!
+## 🎯 Projeto Totalmente Compatível com UV
 
 O projeto **Curso CrewAI** foi analisado e atualizado para ser **100% compatível com UV**, mantendo também compatibilidade com pip tradicional.
 
 ## 📋 Alterações Realizadas
 
 ### ✅ Estrutura do Projeto
+
 - ✅ **pyproject.toml** criado com configuração completa
 - ✅ **Estrutura src/** implementada (`src/curso_crewai/`)
 - ✅ **Scripts de linha de comando** configurados
@@ -14,6 +15,7 @@ O projeto **Curso CrewAI** foi analisado e atualizado para ser **100% compatíve
 - ✅ **Metadados do projeto** completos
 
 ### ✅ Configurações de Compatibilidade
+
 - ✅ **Python 3.10+** como requisito (necessário para CrewAI atual)
 - ✅ **CrewAI>=0.95.0** atualizado (versão mais recente)
 - ✅ **Dependências locked** com UV
@@ -21,21 +23,24 @@ O projeto **Curso CrewAI** foi analisado e atualizado para ser **100% compatíve
 
 ### ✅ Arquivos Criados/Atualizados
 
-#### Novos Arquivos UV:
+#### Novos Arquivos UV
+
 - `pyproject.toml` - Configuração principal do projeto
 - `UV_GUIDE.md` - Guia de uso do UV
 - `MIGRACAO_UV.md` - Como migrar de pip para UV  
 - `LICENSE` - Licença MIT
 - `.gitignore` - Arquivos a ignorar (incluindo `uv.lock`)
 
-#### Estrutura src/:
+#### Estrutura src/
+
 - `src/curso_crewai/__init__.py` - Pacote Python
 - `src/curso_crewai/hello_crewai.py` - Exemplo principal
 - `src/curso_crewai/hello_simples.py` - Exemplo básico
 - `src/curso_crewai/teste_api.py` - Teste da API
 - `src/curso_crewai/configurar.py` - Configurador com UV
 
-#### Atualizados:
+#### Atualizados
+
 - `requirements.txt` - CrewAI 0.95.0+
 - `README.md` - Instruções UV
 - `INICIO_RAPIDO.md` - Comandos UV
@@ -43,7 +48,8 @@ O projeto **Curso CrewAI** foi analisado e atualizado para ser **100% compatíve
 
 ## 🚀 Comandos UV Funcionais
 
-### ✅ Testados e Funcionando:
+### ✅ Testados e Funcionando
+
 ```bash
 # Instalação e configuração
 uv sync                    # ✅ Funciona
@@ -58,7 +64,8 @@ uv run python src/curso_crewai/hello_simples.py  # ✅ Funciona
 uv run python -m curso_crewai.teste_api          # ✅ Funciona
 ```
 
-### 📦 Gerenciamento de Dependências:
+### 📦 Gerenciamento de Dependências
+
 ```bash
 uv add <package>          # Adicionar dependência
 uv remove <package>       # Remover dependência  
@@ -86,14 +93,16 @@ O projeto mantém **compatibilidade total** com ambas as abordagens:
 
 ## 🎯 Próximos Passos para Usuários
 
-### Usuários Novos:
+### Usuários Novos
+
 ```bash
 git clone <repo>
 cd curso-crewai
 uv run configurar-crewai  # Configura tudo automaticamente
 ```
 
-### Usuários Existentes:
+### Usuários Existentes
+
 ```bash
 # Migrar para UV (opcional)
 uv sync

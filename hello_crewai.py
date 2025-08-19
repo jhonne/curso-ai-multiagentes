@@ -19,13 +19,13 @@ load_dotenv()
 def main():
     """Função principal do exemplo Hello CrewAI"""
     print("🚀 Iniciando Hello CrewAI...")
-    
+
     # Verificar se a chave da OpenAI está configurada
     if not os.getenv("OPENAI_API_KEY"):
         print("❌ Erro: OPENAI_API_KEY não encontrada!")
         print("Por favor, configure sua chave de API da OpenAI no arquivo .env")
         return
-    
+
     # Criando nosso primeiro agente
     hello_agent = Agent(
         role="Assistente Amigável em Português",
@@ -38,9 +38,9 @@ def main():
         calorosa e acessível para iniciantes em programação.
         """,
         verbose=True,  # Para ver o processo de pensamento do agente
-        allow_delegation=False
+        allow_delegation=False,
     )
-    
+
     # Criando nossa primeira tarefa
     hello_task = Task(
         description="""
@@ -60,27 +60,27 @@ def main():
         simples e acessível. A resposta deve ser calorosa e usar linguagem
         brasileira natural.
         """,
-        agent=hello_agent
+        agent=hello_agent,
     )
-    
+
     # Criando nosso primeiro crew
     hello_crew = Crew(
         agents=[hello_agent],
         tasks=[hello_task],
-        verbose=True  # Para ver todo o processo
+        verbose=True,  # Para ver todo o processo
     )
-    
+
     print("\n🤖 Executando o crew...")
     print("=" * 50)
-    
+
     # Executando o crew
     result = hello_crew.kickoff()
-    
+
     print("\n" + "=" * 50)
     print("✅ Resultado final:")
     print("=" * 50)
     print(result)
-    
+
     print("\n🎉 Hello CrewAI executado com sucesso!")
 
 
