@@ -5,6 +5,11 @@ Exemplo mais básico para entender os conceitos fundamentais
 
 import os
 from crewai import Agent, Task, Crew
+from dotenv import load_dotenv
+
+# Carrega variáveis de ambiente
+load_dotenv()
+
 
 def hello_crewai_simples():
     """
@@ -37,13 +42,24 @@ def hello_crewai_simples():
     
     return resultado
 
-if __name__ == "__main__":
+
+def main():
+    """Função principal para uso como script"""
     print("=== HELLO CREWAI SIMPLES ===")
     
     # Verificar se tem a chave da OpenAI
     if not os.getenv("OPENAI_API_KEY"):
         print("⚠️  Configure OPENAI_API_KEY antes de executar!")
-        print("Exemplo: set OPENAI_API_KEY=sua_chave")
-    else:
+        print("💡 Execute: uv run configurar-crewai")
+        return
+    
+    try:
         resultado = hello_crewai_simples()
         print(f"\n🎉 Resultado: {resultado}")
+    except Exception as e:
+        print(f"\n❌ Erro: {e}")
+        print("💡 Verifique sua configuração com: uv run teste-api")
+
+
+if __name__ == "__main__":
+    main()

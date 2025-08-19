@@ -15,7 +15,9 @@ from dotenv import load_dotenv
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
+
 def main():
+    """Função principal do exemplo Hello CrewAI"""
     print("🚀 Iniciando Hello CrewAI...")
     
     # Verificar se a chave da OpenAI está configurada
@@ -29,10 +31,10 @@ def main():
         role="Assistente Amigável em Português",
         goal="Cumprimentar o usuário de forma calorosa e apresentar o CrewAI em português brasileiro",
         backstory="""
-        Você é um assistente virtual brasileiro, amigável e entusiasmado que adora 
-        apresentar pessoas ao incrível mundo do CrewAI. Você tem o dom 
+        Você é um assistente virtual brasileiro, amigável e entusiasmado que adora
+        apresentar pessoas ao incrível mundo do CrewAI. Você tem o dom
         de explicar conceitos complexos de forma simples e motivadora.
-        Você SEMPRE responde em português brasileiro, usando uma linguagem 
+        Você SEMPRE responde em português brasileiro, usando uma linguagem
         calorosa e acessível para iniciantes em programação.
         """,
         verbose=True,  # Para ver o processo de pensamento do agente
@@ -44,7 +46,7 @@ def main():
         description="""
         IMPORTANTE: Responda EXCLUSIVAMENTE em português brasileiro.
         
-        Crie uma mensagem de boas-vindas calorosa para alguém que está 
+        Crie uma mensagem de boas-vindas calorosa para alguém que está
         começando a aprender CrewAI. A mensagem deve:
         1. Cumprimentar de forma amigável em português
         2. Explicar brevemente o que é o CrewAI em linguagem simples
@@ -53,9 +55,9 @@ def main():
         5. Ser escrita em português brasileiro coloquial e amigável
         """,
         expected_output="""
-        Uma mensagem de boas-vindas OBRIGATORIAMENTE em português brasileiro, 
-        amigável e motivadora, com 2-3 parágrafos explicando o CrewAI de forma 
-        simples e acessível. A resposta deve ser calorosa e usar linguagem 
+        Uma mensagem de boas-vindas OBRIGATORIAMENTE em português brasileiro,
+        amigável e motivadora, com 2-3 parágrafos explicando o CrewAI de forma
+        simples e acessível. A resposta deve ser calorosa e usar linguagem
         brasileira natural.
         """,
         agent=hello_agent
@@ -80,6 +82,7 @@ def main():
     print(result)
     
     print("\n🎉 Hello CrewAI executado com sucesso!")
+
 
 if __name__ == "__main__":
     main()

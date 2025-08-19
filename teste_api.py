@@ -6,6 +6,7 @@ Script simples para verificar se tudo está funcionando
 import os
 from dotenv import load_dotenv
 
+
 def teste_rapido_openai():
     """Teste rápido e direto da API OpenAI"""
     
@@ -31,7 +32,7 @@ def teste_rapido_openai():
         print("✅ Biblioteca openai importada")
     except ImportError:
         print("❌ Biblioteca openai não encontrada!")
-        print("💡 Execute: pip install openai")
+        print("💡 Execute: uv add openai")
         return False
     
     # 3. Inicializar cliente
@@ -49,7 +50,10 @@ def teste_rapido_openai():
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "user", "content": "Diga apenas: Olá! Teste bem-sucedido!"}
+                {
+                    "role": "user", 
+                    "content": "Diga apenas: Olá! Teste bem-sucedido!"
+                }
             ],
             max_tokens=50
         )
@@ -71,18 +75,24 @@ def teste_rapido_openai():
         if "401" in erro_str or "unauthorized" in erro_str:
             print("💡 Chave API inválida ou expirada")
         elif "429" in erro_str or "rate limit" in erro_str:
-            print("💡 Limite de requisições excedido - tente novamente em alguns minutos")
+            print("💡 Limite de requisições excedido")
         elif "insufficient" in erro_str or "quota" in erro_str:
-            print("💡 Cota esgotada - verifique seu saldo em platform.openai.com")
+            print("💡 Cota esgotada - verifique seu saldo")
         
         return False
 
-if __name__ == "__main__":
+
+def main():
+    """Função principal para uso como script"""
     sucesso = teste_rapido_openai()
     
     if sucesso:
         print("\n🚀 Tudo pronto! Você pode executar:")
-        print("   python hello_crewai.py")
-        print("   python hello_simples.py")
+        print("   uv run hello-crewai")
+        print("   python -m curso_crewai.hello_crewai")
     else:
         print("\n🔧 Resolva os problemas acima antes de continuar")
+
+
+if __name__ == "__main__":
+    main()

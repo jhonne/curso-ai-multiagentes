@@ -1,17 +1,44 @@
 """
-Configurador Automático para CrewAI + OpenAI
-Este script ajuda a configurar o ambiente automaticamente
+Configurador Automático para CrewAI + OpenAI com UV
+Este script ajuda a configurar o ambiente automaticamente usando UV
 """
 
 import os
 import sys
 import subprocess
+import shutil
 from pathlib import Path
+
+
+def verificar_uv():
+    """Verifica se UV está instalado"""
+    print("🔍 Verificando UV...")
+    
+    if not shutil.which("uv"):
+        print("❌ UV não encontrado!")
+        print("💡 Instale o UV primeiro:")
+        print("   Windows: powershell -c \"irm https://astral.sh/uv/install.ps1 | iex\"")
+        print("   Linux/Mac: curl -LsSf https://astral.sh/uv/install.sh | sh")
+        return False
+    
+    try:
+        result = subprocess.run(
+            ["uv", "--version"], 
+            capture_output=True, 
+            text=True, 
+            check=True
+        )
+        version = result.stdout.strip()
+        print(f"✅ UV {version}")
+        return True
+    except subprocess.CalledProcessError:
+        print("❌ Erro ao verificar versão do UV")
+        return False
 
 
 def verificar_python():
     """Verifica a versão do Python"""
-    print("🐍 Verificando Python...")
+    print("\n🐍 Verificando Python...")
     version = sys.version_info
     
     if version.major < 3 or (version.major == 3 and version.minor < 10):
@@ -23,9 +50,31 @@ def verificar_python():
     return True
 
 
+def inicializar_projeto():
+    """Inicializa o projeto com UV"""
+    print("\n📦 Inicializando projeto com UV...")
+    
+    # Verificar se já existe pyproject.toml
+    if Path("pyproject.toml").exists():
+        print("ℹ️  Projeto já inicializado (pyproject.toml encontrado)")
+        return True
+    
+    try:
+        subprocess.run(
+            ["uv", "init", "--no-readme"], 
+            check=True,
+            capture_output=True
+        )
+        print("✅ Projeto inicializado com UV")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Erro ao inicializar projeto: {e}")
+        return False
+
+
 def instalar_dependencias():
-    """Instala as dependências necessárias"""
-    print("\n📦 Instalando dependências...")
+    """Instala as dependências necessárias com UV"""
+    print("\n📦 Instalando dependências com UV...")
     
     packages = [
         "crewai>=0.95.0",
@@ -35,9 +84,9 @@ def instalar_dependencias():
     
     for package in packages:
         try:
-            print(f"   Instalando {package}...")
+            print(f"   Adicionando {package}...")
             subprocess.run([
-                sys.executable, "-m", "pip", "install", package
+                "uv", "add", package
             ], check=True, capture_output=True, text=True)
             print(f"   ✅ {package}")
         except subprocess.CalledProcessError as e:
@@ -74,7 +123,7 @@ def configurar_env():
             continue
             
         if not api_key.startswith("sk-"):
-            print("⚠️  Chave deve começar com 'sk-'. Continuar mesmo assim? (s/N)")
+            print("⚠️  Chave deve começar com 'sk-'. Continuar? (s/N)")
             if input().lower() not in ['s', 'sim', 'y', 'yes']:
                 continue
         
@@ -117,47 +166,57 @@ OPENAI_TEMPERATURE=0.7
 
 
 def testar_configuracao():
-    """Testa se tudo está funcionando"""
-    print("\n🧪 Testando configuração...")
+    """Testa se tudo está funcionando com UV"""
+    print("\n🧪 Testando configuração com UV...")
     
     try:
-        # Importar e testar
-        from dotenv import load_dotenv
-        from openai import OpenAI
+        # Testar com UV run
+        result = subprocess.run([
+            "uv", "run", "python", "-c", 
+            """
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+api_key = os.getenv('OPENAI_API_KEY')
+if not api_key:
+    raise ValueError('OPENAI_API_KEY não encontrada')
+
+client = OpenAI(api_key=api_key)
+response = client.chat.completions.create(
+    model=os.getenv('OPENAI_MODEL_NAME', 'gpt-3.5-turbo'),
+    messages=[{'role': 'user', 'content': 'Diga: Configuração UV OK!'}],
+    max_tokens=20
+)
+print(f'Resposta: {response.choices[0].message.content}')
+            """
+        ], capture_output=True, text=True, check=True)
         
-        load_dotenv()
-        
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            print("❌ OPENAI_API_KEY não encontrada no .env")
-            return False
-        
-        client = OpenAI(api_key=api_key)
-        
-        # Teste básico
-        response = client.chat.completions.create(
-            model=os.getenv("OPENAI_MODEL_NAME", "gpt-3.5-turbo"),
-            messages=[{"role": "user", "content": "Diga: Configuração OK!"}],
-            max_tokens=20
-        )
-        
-        resposta = response.choices[0].message.content
-        print(f"✅ Teste bem-sucedido: {resposta}")
+        print(f"✅ Teste bem-sucedido: {result.stdout.strip()}")
         return True
         
-    except Exception as e:
+    except subprocess.CalledProcessError as e:
         print(f"❌ Erro no teste: {e}")
+        if e.stderr:
+            print(f"Detalhes: {e.stderr}")
         return False
 
 
 def main():
     """Função principal do configurador"""
-    print("=" * 50)
-    print("🚀 CONFIGURADOR AUTOMÁTICO CREWAI + OPENAI")
-    print("=" * 50)
+    print("=" * 60)
+    print("🚀 CONFIGURADOR AUTOMÁTICO CREWAI + OPENAI + UV")
+    print("=" * 60)
     
     # Verificações e configurações sequenciais
+    if not verificar_uv():
+        return False
+    
     if not verificar_python():
+        return False
+    
+    if not inicializar_projeto():
         return False
     
     if not instalar_dependencias():
@@ -170,15 +229,19 @@ def main():
         return False
     
     # Sucesso!
-    print("\n" + "=" * 50)
+    print("\n" + "=" * 60)
     print("🎉 CONFIGURAÇÃO CONCLUÍDA COM SUCESSO!")
-    print("=" * 50)
-    print("\n📝 Próximos passos:")
-    print("   1. python teste_api.py      # Teste rápido")
-    print("   2. python hello_simples.py  # Primeiro exemplo")
-    print("   3. python hello_crewai.py   # Exemplo completo")
+    print("=" * 60)
+    print("\n📝 Comandos disponíveis com UV:")
+    print("   uv run teste-api           # Teste rápido")
+    print("   uv run hello-crewai        # Primeiro exemplo")
+    print("   uv run python hello_simples.py  # Exemplo simples")
+    print("\n📝 Comandos alternativos:")
+    print("   uv run python -m curso_crewai.teste_api")
+    print("   uv run python -m curso_crewai.hello_crewai")
     print("\n🔗 Recursos úteis:")
-    print("   • Documentação: https://docs.crewai.com/")
+    print("   • Documentação UV: https://docs.astral.sh/uv/")
+    print("   • CrewAI Docs: https://docs.crewai.com/")
     print("   • OpenAI Usage: https://platform.openai.com/usage")
     
     return True
