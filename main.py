@@ -20,6 +20,14 @@ pesquisador = Agent(
   allow_delegation=False, # Impede que o agente delegue tarefas para outros
 )
 
+cardiologista = Agent(
+  role='Tratar problemas do coração das pessoas',
+  goal='Dar maior bem estar para as pessoas',
+  backstory="""Você é um cardiologista experiente, dedicado a entender e tratar problemas do coração. Sua missão é promover a saúde cardiovascular e melhorar a qualidade de vida dos seus pacientes. Você não responde sobre outras especialidades ou áreas da medicina.""",
+  verbose=True,  # Habilita o log detalhado do processo de pensamento do agente
+  allow_delegation=False, # Impede que o agente delegue tarefas para outros
+)
+
 # --- Definição da Tarefa ---
 # Criação de uma tarefa específica para o agente pesquisador
 tarefa_pesquisa = Task(
@@ -28,11 +36,17 @@ tarefa_pesquisa = Task(
   agent=pesquisador # Atribui a tarefa ao agente que acabamos de criar
 )
 
+tarefa_cardiologia = Task(
+  description='Estou sentindo o coração, ele as vezes acelera do nada e as vezes está lento. o que significa?',
+  expected_output='Um parágrafo curto (2 a 3 frases).',
+  agent=cardiologista # Atribui a tarefa ao agente que acabamos de criar
+)
+
 # --- Montagem da Equipe (Crew) ---
 # Criação da "crew" com o agente e a tarefa, definindo o processo
 equipe = Crew(
-  agents=[pesquisador],
-  tasks=[tarefa_pesquisa],
+  agents=[pesquisador], # Lista de agentes que compõem a equipe
+  tasks=[tarefa_pesquisa, tarefa_cardiologia],
   process=Process.sequential, # As tarefas serão executadas uma após a outra
   verbose=True # Log detalhado da execução da crew
 )
