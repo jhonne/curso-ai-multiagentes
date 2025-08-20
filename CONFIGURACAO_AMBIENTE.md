@@ -70,6 +70,14 @@ uv --version
 
    💡 **O UV faz tudo automaticamente:** cria ambiente virtual + instala pacotes
 
+3. **Ativar o ambiente virtual (opcional):**
+
+   ```powershell
+   .\.venv\Scripts\Activate.ps1
+   ```
+
+   💡 **Dica:** Com UV você pode usar `uv run` sem ativar o ambiente, mas se preferir trabalhar com o ambiente ativado, use o comando acima.
+
 ---
 
 ## 🐧 Linux
@@ -115,7 +123,12 @@ cd curso-ai-multiagentes
 
 # Instalar dependências
 uv sync
+
+# Ativar ambiente virtual (opcional)
+source .venv/bin/activate
 ```
+
+💡 **Dica:** Com UV você pode usar `uv run` sem ativar o ambiente, mas se preferir trabalhar com o ambiente ativado, use o comando acima.
 
 ---
 
@@ -222,6 +235,22 @@ python -m pip install uv
 
 - Muitas requisições - aguarde alguns minutos
 - Para contas gratuitas há limites menores
+
+### ❌ "Ambiente virtual não ativado"
+
+**Windows:**
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+**Linux:**
+
+```bash
+source .venv/bin/activate
+```
+
+💡 **Lembre-se:** Com UV você pode usar `uv run comando` sem ativar o ambiente!
 
 ---
 
