@@ -27,7 +27,18 @@ curso_crewai/
 │   └── main.py            # Primeiro agente CrewAI
 ├── 📁 aula2/              # Módulo 1: Agentes e Tarefas
 │   ├── main.py            # Crew com múltiplos agentes
-│   └── README.md          # Documentação da aula
+│   ├── README.md          # Documentação da aula
+│   ├── README_SOLUCOES.md # Guia das soluções
+│   ├── exercicio1_agencia_marketing.md
+│   ├── exercicio1_solucao.py  # Solução: Equipe de conteúdo
+│   ├── exercicio2_atendimento_cliente.md
+│   ├── exercicio2_solucao.py  # Solução: Atendimento ao cliente
+│   ├── exercicio3_desenvolvimento_produto.md
+│   └── exercicio3_solucao.py  # Solução: Desenvolvimento de produto
+├── 📁 aula3/              # Módulo 1: Ferramentas e Processos
+│   ├── main.py            # Comparação de processos com simulações
+│   ├── README.md          # Documentação completa
+│   └── exercicios.md      # Exercícios práticos
 ├── 📁 material_de_apoio/  # PDFs e documentação
 ├── 📁 podcasts/           # Conteúdo em áudio
 ├── hello_crewai.py        # Exemplo principal do curso
@@ -95,19 +106,30 @@ uv run python -m curso_crewai.hello_crewai
 
 ## � Conteúdo do Curso
 
-### 📚 Módulo 1: Fundamentos do CrewAI (6 horas)
+### 📚 Módulo 1: Fundamentos do CrewAI (6 horas) ✅
 
-- **Aula 1:** Introdução à IA de Agentes e ao CrewAI (2h)
+- **Aula 1:** Introdução à IA de Agentes e ao CrewAI (2h) ✅
   - 📁 `aula1/main.py` - Primeiro agente CrewAI
   - 📄 Configuração de ambiente e conceitos básicos
   
-- **Aula 2:** Construindo seu Primeiro Crew (2h)
-  - 📁 `aula2/main.py` - Crew com múltiplos agentes
-  - 📄 Agentes, tarefas e colaboração
+- **Aula 2:** Construindo seu Primeiro Crew (2h) ✅
+  - 📁 `aula2/main.py` - Crew com múltiplos agentes (Pesquisador + Redator)
+  - 📁 `aula2/README.md` - Documentação completa da aula
+  - 📁 `aula2/README_SOLUCOES.md` - Guia das soluções dos exercícios
+  - � **Exercício 1:** Agência de Marketing (`exercicio1_solucao.py`)
+    - Equipe de conteúdo para redes sociais (Gerador de Ideias + Escritor)
+  - 🛒 **Exercício 2:** Atendimento ao Cliente (`exercicio2_solucao.py`)
+    - Processamento de reclamações (Analisador + Respondedor Amigável)
+  - 📱 **Exercício 3:** Desenvolvimento de Produto (`exercicio3_solucao.py`)
+    - Criação de app para estudantes (Descobridor + Criador de Ideias)
+  - �📄 Agentes, tarefas e colaboração sequencial
   
-- **Aula 3:** Ferramentas e Processos (2h)
-  - 🔧 Integrando ferramentas externas
-  - ⚙️ Processos sequenciais e hierárquicos
+- **Aula 3:** Ferramentas e Processos (2h) ✅
+  - � `aula3/main.py` - Simulações de ferramentas e comparação de processos
+  - 📁 `aula3/README.md` - Documentação completa com exemplos
+  - 📁 `aula3/exercicios.md` - Exercícios práticos e desafios
+  - 🔧 Simulações de ferramentas (pesquisa web, scraping, arquivos)
+  - ⚙️ Processos sequenciais vs hierárquicos com medição de performance
 
 ### 🤖 Módulo 2: Chatbot Multi-Agente (10 horas)
 
@@ -172,9 +194,12 @@ Após configurar o ambiente e executar os primeiros exemplos:
 2. **🔍 Explore os exemplos:**
    - `hello_simples.py` - Versão simplificada
    - `aula1/main.py` - Primeiro agente
-   - `aula2/main.py` - Múltiplos agentes
+   - `aula2/main.py` - Crew colaborativo (Pesquisador + Redator)
+   - `aula2/exercicio*_solucao.py` - 3 soluções práticas de crews
+   - `aula3/main.py` - Ferramentas e processos avançados
 
 3. **🚀 Continue o curso:**
+   - **Aula 3:** `aula3/main.py` - Ferramentas e processos avançados
    - **Módulo 2:** Construindo chatbot completo
    - **Módulo 3:** Funcionalidades avançadas
 
@@ -195,6 +220,14 @@ uv run configurar-crewai
 # Executar exemplos das aulas
 uv run python aula1/main.py
 uv run python aula2/main.py
+
+# Executar exercícios específicos da aula2
+uv run python aula2/exercicio1_solucao.py  # Marketing
+uv run python aula2/exercicio2_solucao.py  # Atendimento
+uv run python aula2/exercicio3_solucao.py  # Desenvolvimento
+
+# Executar aula3
+uv run python aula3/main.py
 ```
 
 ### Gerenciamento do Projeto
@@ -247,6 +280,15 @@ uv run mypy .
 - 🎧 `podcasts/` - Conteúdo em áudio sobre CrewAI
 - 📄 `CURSO.md` - Cronograma completo do curso
 - ⚙️ `CONFIGURACAO_AMBIENTE.md` - Guia detalhado de configuração
+- 🤖 `aula2/` - Implementação completa de crews multi-agente
+  - 👥 Colaboração entre Pesquisador e Redator
+  - 📝 3 exercícios práticos com soluções completas
+  - 💼 Cenários reais: marketing, atendimento e desenvolvimento
+  - 🔄 Fluxo de trabalho sequencial detalhado
+- 🔧 `aula3/` - Implementação completa de ferramentas e processos
+  - 📊 Comparação de performance entre processos
+  - 🛠️ Simulações de ferramentas (sem dependências externas)
+  - 📚 Exercícios práticos e desafios avançados
 
 ### Repositórios e Comunidade
 
@@ -339,17 +381,22 @@ sudo python3.11 -m pip install uv
 
 ## 🚀 Status do Projeto
 
-- ✅ **Módulo 1:** Fundamentos implementados
-- 🔄 **Módulo 2:** Em desenvolvimento
-- 📋 **Módulo 3:** Planejado
-- 🎯 **Versão atual:** 0.1.0
+- ✅ **Módulo 1:** Fundamentos **COMPLETOS** (Aulas 1, 2 e 3 implementadas)
+  - ✅ Aula 1: Primeiro agente CrewAI
+  - ✅ Aula 2: Crew com múltiplos agentes + 3 exercícios práticos resolvidos
+  - ✅ Aula 3: Ferramentas e processos com simulações
+- � **Módulo 2:** Chatbot Multi-Agente (planejado)
+- 📋 **Módulo 3:** Tópicos Avançados (planejado)
+- 🎯 **Versão atual:** 0.2.0
+- 📈 **Progresso:** 15% do curso implementado (3/20 horas)
 
 ---
 
 **📚 Curso:** Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI  
 **🎯 Repositório:** [curso-ai-multiagentes](https://github.com/jhonne/curso-ai-multiagentes)  
 **👨‍💻 Autor:** [@jhonne](https://github.com/jhonne)  
-**📅 Última atualização:** Agosto 2025
+**📅 Última atualização:** Agosto 2025  
+**📈 Progresso:** Módulo 1 completo (3/9 aulas implementadas)
 
 ---
 

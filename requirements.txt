@@ -11,9 +11,10 @@ openai>=1.12.0
 python-dotenv>=1.0.0
 
 # Dependências opcionais para projetos futuros
-streamlit>=1.28.0  # Para interface web
-requests>=2.31.0   # Para ferramentas de busca
-pydantic>=2.5.0    # Para validação de dados
+streamlit>=1.28.0    # Para interface web
+requests>=2.31.0     # Para ferramentas de busca
+beautifulsoup4>=4.13.4  # Para parsing HTML (usado na aula3)
+pydantic>=2.5.0      # Para validação de dados
 
 # Para desenvolvimento e depuração
 rich>=13.0.0       # Para saída colorida no terminal
