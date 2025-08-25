@@ -180,14 +180,27 @@ print("📁 Leitura de Arquivo - Análise de documentos")
 
 # --- PARTE 2: AGENTES COM FERRAMENTAS INTEGRADAS ---
 
-# Configurações dinâmicas do sistema
+# Configurações dinâmicas do sistema carregadas do .env
 CONFIG_SISTEMA = {
-    'modelo_economico': 'gpt-3.5-turbo',
-    'modelo_premium': 'gpt-4',
-    'max_tokens': 2000,
-    'temperature': 0.7,
-    'timeout': 120
+    'modelo_economico': os.getenv('OPENAI_MODEL_ECONOMICO', 'gpt-3.5-turbo'),
+    'modelo_premium': os.getenv('OPENAI_MODEL_NAME', 'gpt-4'),
+    'max_tokens': int(os.getenv('OPENAI_MAX_TOKENS', '2000')),
+    'temperature': float(os.getenv('OPENAI_TEMPERATURE', '0.7')),
+    'timeout': int(os.getenv('OPENAI_TIMEOUT', '120'))
 }
+
+# Função para exibir configurações carregadas
+def exibir_configuracoes():
+    print("⚙️  CONFIGURAÇÕES CARREGADAS DO .env:")
+    print(f"   🔸 Modelo Premium: {CONFIG_SISTEMA['modelo_premium']}")
+    print(f"   🔸 Modelo Econômico: {CONFIG_SISTEMA['modelo_economico']}")
+    print(f"   🔸 Max Tokens: {CONFIG_SISTEMA['max_tokens']}")
+    print(f"   🔸 Temperature: {CONFIG_SISTEMA['temperature']}")
+    print(f"   🔸 Timeout: {CONFIG_SISTEMA['timeout']}s")
+    print()
+
+# Exibir configurações carregadas
+exibir_configuracoes()
 
 # Função para criar configuração de agente baseada no modo
 def criar_config_agente(modo='economico'):
@@ -494,7 +507,7 @@ crew_hierarquico = Crew(
             redator_especializado, revisor_critico],
     tasks=[tarefa_projeto_editorial],
     process=Process.hierarchical,  # Processo hierárquico com delegação
-    manager_llm='gpt-3.5-turbo',  # Modelo mais econômico para evitar cota
+    manager_llm=CONFIG_SISTEMA['modelo_economico'],  # Modelo mais econômico para evitar cota
     verbose=True,
     language='pt-br'  # Força comunicação em português
 )
@@ -503,7 +516,7 @@ print("📋 Processo Hierárquico configurado:")
 print("   👨‍💼 Manager → Coordena e delega EM PORTUGUÊS")
 print("   🔄 Agentes → Executam tarefas delegadas EM PORTUGUÊS")
 print("   ⚡ Execução: Otimizada com delegação inteligente em português")
-print("   💰 Usando gpt-3.5-turbo para economizar tokens")
+print(f"   💰 Usando {CONFIG_SISTEMA['modelo_economico']} para economizar tokens")
 
 # --- PARTE 6: COMPARAÇÃO DOS PROCESSOS ---
 
@@ -512,9 +525,9 @@ def executar_processo_sequencial(modo='economico'):
     print("\n" + "="*60)
     print("🚀 EXECUTANDO PROCESSO SEQUENCIAL")
     if modo == 'premium':
-        print("💎 MODO PREMIUM - Usando gpt-4 (mais tokens, melhor qualidade)")
+        print(f"💎 MODO PREMIUM - Usando {CONFIG_SISTEMA['modelo_premium']} (mais tokens, melhor qualidade)")
     else:
-        print("💰 MODO ECONÔMICO - Usando gpt-3.5-turbo (menos tokens)")
+        print(f"💰 MODO ECONÔMICO - Usando {CONFIG_SISTEMA['modelo_economico']} (menos tokens)")
     print("="*60)
 
     # Iniciar métricas
@@ -568,7 +581,7 @@ def executar_processo_hierarquico():
     print("\n" + "="*60)
     print("🚀 EXECUTANDO PROCESSO HIERÁRQUICO (COM COMUNICAÇÃO EM PORTUGUÊS)")
     print("="*60)
-    print("💰 Usando gpt-3.5-turbo para economizar tokens...")
+    print(f"💰 Usando {CONFIG_SISTEMA['modelo_economico']} para economizar tokens...")
 
     inicio = time.time()
     try:
@@ -595,7 +608,7 @@ def executar_processo_hierarquico():
             print("   4. Use APENAS o processo sequencial (opção 1)")
             print("      que consome menos tokens")
             print("\n🔧 Otimizações já aplicadas:")
-            print("   - Modelo alterado para gpt-3.5-turbo (mais barato)")
+            print(f"   - Modelo alterado para {CONFIG_SISTEMA['modelo_economico']} (mais barato)")
             print("   - Tarefas otimizadas para menor consumo")
             print("\n💡 DICA: O processo hierárquico usa mais tokens")
             print("         pois o manager precisa coordenar tudo.")
@@ -672,7 +685,7 @@ if __name__ == "__main__":
 
     elif escolha == "3":
         print("\n🇧🇷 EXECUTANDO COM COMUNICAÇÃO FORÇADA EM PORTUGUÊS")
-        print("💰 USANDO MODELO ECONÔMICO (gpt-3.5-turbo)")
+        print(f"💰 USANDO MODELO ECONÔMICO ({CONFIG_SISTEMA['modelo_economico']})")
         resultado_hier, tempo_hier = executar_processo_hierarquico()
 
     elif escolha == "4":
