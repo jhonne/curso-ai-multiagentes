@@ -45,7 +45,7 @@ tarefa_cardiologia = Task(
 # --- Montagem da Equipe (Crew) ---
 # Criação da "crew" com o agente e a tarefa, definindo o processo
 equipe = Crew(
-  agents=[pesquisador], # Lista de agentes que compõem a equipe
+  agents=[pesquisador, cardiologista], # Lista de agentes que compõem a equipe
   tasks=[tarefa_pesquisa, tarefa_cardiologia],
   process=Process.sequential, # As tarefas serão executadas uma após a outra
   verbose=True # Log detalhado da execução da crew
