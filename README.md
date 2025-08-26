@@ -274,6 +274,10 @@ uv run mypy .
 - ⚡ [UV Package Manager](https://docs.astral.sh/uv/)
 - 🐍 [Python 3.11+ Documentation](https://docs.python.org/3/)
 
+### Referência Rápida
+
+- 📚 [CREWAI_REFERENCE.md](CREWAI_REFERENCE.md) - Guia completo sobre CrewAI com informações do repositório oficial
+
 ### Material do Curso
 
 - 📁 `material_de_apoio/` - PDFs com conceitos fundamentais

@@ -86,3 +86,6 @@ uv.lock
 *.tmp
 *.temp
 .temporary/
+
+# GitHub workflows e configurações
+.github/
