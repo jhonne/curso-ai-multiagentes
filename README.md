@@ -276,14 +276,14 @@ uv run mypy .
 
 ### Referência Rápida
 
-- 📚 [CREWAI_REFERENCE.md](CREWAI_REFERENCE.md) - Guia completo sobre CrewAI com informações do repositório oficial
+- 📚 [CREWAI_REFERENCE.md](docs/CREWAI_REFERENCE.md) - Guia completo sobre CrewAI com informações do repositório oficial
 
 ### Material do Curso
 
 - 📁 `material_de_apoio/` - PDFs com conceitos fundamentais
 - 🎧 `podcasts/` - Conteúdo em áudio sobre CrewAI
-- 📄 `CURSO.md` - Cronograma completo do curso
-- ⚙️ `CONFIGURACAO_AMBIENTE.md` - Guia detalhado de configuração
+- 📄 `docs/CURSO.md` - Cronograma completo do curso
+- ⚙️ `docs/CONFIGURACAO_AMBIENTE.md` - Guia detalhado de configuração
 - 🤖 `aula2/` - Implementação completa de crews multi-agente
   - 👥 Colaboração entre Pesquisador e Redator
   - 📝 3 exercícios práticos com soluções completas
@@ -404,4 +404,4 @@ sudo python3.11 -m pip install uv
 
 ---
 
-> 💡 **Dica:** Para uma experiência completa de configuração, consulte sempre o arquivo **[CONFIGURACAO_AMBIENTE.md](CONFIGURACAO_AMBIENTE.md)** antes de começar!
+> 💡 **Dica:** Para uma experiência completa de configuração, consulte sempre o arquivo **[CONFIGURACAO_AMBIENTE.md](docs/CONFIGURACAO_AMBIENTE.md)** antes de começar!

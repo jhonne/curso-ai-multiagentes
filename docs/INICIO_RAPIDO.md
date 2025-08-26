@@ -109,4 +109,4 @@ python hello_crewai.py
 - [OpenAI API Keys](https://platform.openai.com/api-keys)
 - [OpenAI Usage](https://platform.openai.com/usage)
 - [CrewAI Docs](https://docs.crewai.com/)
-- [Curso Completo](curso.md)
+- [Curso Completo](CURSO.md)
