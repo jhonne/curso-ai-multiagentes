@@ -274,9 +274,31 @@ uv run mypy .
 - ⚡ [UV Package Manager](https://docs.astral.sh/uv/)
 - 🐍 [Python 3.11+ Documentation](https://docs.python.org/3/)
 
-### Referência Rápida
+### 📑 Índice de Documentação
 
-- 📚 [CREWAI_REFERENCE.md](docs/CREWAI_REFERENCE.md) - Guia completo sobre CrewAI com informações do repositório oficial
+#### 🚀 Configuração e Início Rápido
+
+- 📄 [INICIO_RAPIDO.md](docs/INICIO_RAPIDO.md) - Guia de início rápido
+- ⚙️ [CONFIGURACAO_AMBIENTE.md](docs/CONFIGURACAO_AMBIENTE.md) - Guia detalhado de configuração
+- 📦 [UV_GUIDE.md](docs/UV_GUIDE.md) - Guia completo do UV Package Manager
+- 🔄 [MIGRACAO_UV.md](docs/MIGRACAO_UV.md) - Como migrar de pip para UV
+- 📊 [STATUS_UV.md](docs/STATUS_UV.md) - Status da migração para UV
+
+#### 📚 Referências e Guias
+
+- 📚 [CREWAI_REFERENCE.md](docs/CREWAI_REFERENCE.md) - Guia completo sobre CrewAI
+- 📖 [CURSO.md](docs/CURSO.md) - Cronograma completo do curso
+- 💡 [DICAS.md](docs/DICAS.md) - Dicas e truques úteis
+- 🎯 [GUIA_BOAS_PRATICAS_PROMPTS.md](docs/GUIA_BOAS_PRATICAS_PROMPTS.md) - Boas práticas para prompts
+
+#### 🔒 Segurança e Otimização
+
+- 🛡️ [GUIA_SEGURANCA.md](docs/GUIA_SEGURANCA.md) - Guia de segurança
+- ⚡ [GUIA_OTIMIZACAO_OPENAI.md](docs/GUIA_OTIMIZACAO_OPENAI.md) - Otimização para OpenAI
+- 📈 [README_OTIMIZACAO.md](docs/README_OTIMIZACAO.md) - Documentação de otimização
+- 📋 [RESUMO_OTIMIZACAO_OPENAI.md](docs/RESUMO_OTIMIZACAO_OPENAI.md) - Resumo de otimização
+- 📊 [INDICE_OTIMIZACAO.md](docs/INDICE_OTIMIZACAO.md) - Índice de otimização
+- 🔐 [ATUALIZACAO_INSTRUCOES_SEGURANCA_ECONOMIA.md](docs/ATUALIZACAO_INSTRUCOES_SEGURANCA_ECONOMIA.md) - Atualizações de segurança
 
 ### Material do Curso
 
