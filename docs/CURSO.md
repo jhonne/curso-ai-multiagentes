@@ -85,19 +85,35 @@ Este módulo foca na aplicação prática dos conceitos do CrewAI para desenvolv
     * **Agente de Geração de Resposta:** Formula a resposta final para o usuário.
   * Desenhando o fluxo de conversação entre os agentes.
 
-#### Aula 5: Implementando os Agentes do Chatbot com OpenAI (3 horas)**
+#### Aula 5: Otimização e Configuração Avançada dos Agentes (3 horas)**
 
 * **Objetivos:**
-  * Implementar os agentes definidos na aula anterior usando CrewAI e OpenAI.
-  * Personalizar os `prompts` (instruções) de cada agente para otimizar seu desempenho.
+  * Otimizar o desempenho individual de cada agente através de prompts refinados.
+  * Configurar parâmetros avançados dos modelos OpenAI para diferentes tipos de agentes.
+  * Implementar testes unitários e debugging para agentes individuais.
+  * Estabelecer métricas de qualidade e monitoramento de custos.
 * **Tópicos:**
-  * Criando as definições dos agentes em Python.
-  * Escrevendo `backstories` detalhadas para guiar o comportamento de cada agente.
-  * Utilizando os modelos da OpenAI (e.g., GPT-4, GPT-3.5-turbo) para os agentes.
-  * Passando o histórico da conversa como contexto para os agentes.
+  * **Engenharia de Prompts Avançada:**
+    * Técnicas de prompt engineering específicas para cada tipo de agente
+    * Utilizando few-shot learning e chain-of-thought prompting
+    * Otimização de prompts para reduzir tokens e melhorar precisão
+  * **Configuração de Modelos OpenAI:**
+    * Ajuste de parâmetros: temperature, max_tokens, top_p
+    * Escolha do modelo ideal para cada agente (GPT-3.5 vs GPT-4)
+    * Implementação de fallbacks entre modelos
+  * **Testes e Debugging:**
+    * Criando casos de teste para cada agente
+    * Utilizando o modo `verbose=True` para debugging
+    * Logs estruturados para monitoramento de desempenho
+  * **Monitoramento de Custos e Performance:**
+    * Tracking de uso de tokens por agente
+    * Implementação de cache para respostas similares
+    * Métricas de latência e qualidade de resposta
 * **Exercício Prático:**
-  * Codificar as classes de Agente para cada um dos papéis definidos.
-  * Testar individualmente a capacidade de cada agente de seguir suas instruções.
+  * Criar uma suite de testes unitários para cada agente definido na Aula 4
+  * Otimizar os prompts de cada agente usando técnicas avançadas
+  * Implementar um sistema de monitoramento de custos e performance
+  * Configurar diferentes parâmetros de modelo para cada tipo de agente
 
 #### Aula 6: Gerenciando o Fluxo da Conversa e as Tarefas (3 horas)**
 
