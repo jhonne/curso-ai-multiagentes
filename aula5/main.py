@@ -8,7 +8,6 @@ Este arquivo demonstra os conceitos principais da aula através de exemplos prá
 import os
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process
-from crewai_tools import SerperDevTool
 import time
 import json
 from datetime import datetime
