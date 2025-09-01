@@ -40,6 +40,15 @@ Este é o índice completo dos guias de otimização para uso eficiente e econô
 - 💡 **Ideal para**: Primeira configuração
 - 📋 **Inclui**: Templates prontos para usar
 
+### ⚙️ Configuração de Parâmetros
+
+**📄 `GUIA_FREQUENCY_PRESENCE_PENALTY.md`**
+
+- ⏱️ **Tempo de leitura**: 15 minutos
+- 🎯 **Foco**: Frequency penalty vs presence penalty
+- 💡 **Ideal para**: Otimizar qualidade e criatividade
+- 🔧 **Inclui**: Configurações por contexto, exemplos práticos
+
 ## 🎯 Roteiro de Aprendizado Recomendado
 
 ### 🏃‍♂️ **Rápido** (15 minutos)
@@ -53,12 +62,13 @@ Este é o índice completo dos guias de otimização para uso eficiente e econô
 1. 📖 Leia `README_OTIMIZACAO.md` (10 min)
 2. 📚 Estude `GUIA_OTIMIZACAO_OPENAI.md` (25 min)
 3. 💻 Analise `exemplo_otimizacao_openai.py` (10 min)
+4. ⚙️ Leia `GUIA_FREQUENCY_PRESENCE_PENALTY.md` (15 min)
 
 ### 🔬 **Especialista** (2 horas)
 
 1. 📚 Estude todos os guias
 2. 💻 Modifique o código de exemplo
-3. 🧪 Teste diferentes configurações
+3. 🧪 Teste diferentes configurações de penalties
 4. 📊 Implemente monitoramento personalizado
 
 ## 📊 Resultados Esperados por Nível
@@ -125,6 +135,7 @@ code README_OTIMIZACAO.md
 |------------|----------|-------------|-------------------|
 | **Mudança para GPT-4o Mini** | 85% | 🟢 Fácil | 5 minutos |
 | **Cache Inteligente** | +50% | 🟡 Médio | 30 minutos |
+| **Configuração Penalties** | +15% | 🟢 Fácil | 10 minutos |
 | **Batch API** | +50% | 🟡 Médio | 45 minutos |
 | **Monitoramento** | +20% | 🟢 Fácil | 15 minutos |
 | **Otimização Prompts** | +30% | 🟢 Fácil | 20 minutos |
