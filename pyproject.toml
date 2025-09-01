@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "curso-crewai"
 version = "0.1.0"
-description = "Curso Básico de 20 Horas: Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI"
+description = "Curso de 20 Horas: Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
