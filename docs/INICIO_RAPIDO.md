@@ -25,7 +25,7 @@ Este script irá:
 ### 1. Instalar dependências
 
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 ### 2. Configurar chave API
@@ -44,7 +44,7 @@ OPENAI_MODEL_NAME=gpt-3.5-turbo
 ### Teste Rápido
 
 ```bash
-python teste_api.py
+uv run teste_api.py
 ```
 
 - Verifica se a chave API está funcionando
@@ -54,7 +54,7 @@ python teste_api.py
 ### Teste Completo
 
 ```bash
-python verificar_openai.py
+uv run verificar_openai.py
 ```
 
 - Análise completa da configuração
@@ -66,13 +66,13 @@ python verificar_openai.py
 ### Exemplo Simples
 
 ```bash
-python hello_simples.py
+uv run hello_simples.py
 ```
 
 ### Exemplo Completo
 
 ```bash
-python hello_crewai.py
+uv run hello_crewai.py
 ```
 
 ## ❓ Problemas Comuns

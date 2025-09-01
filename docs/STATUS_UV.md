@@ -60,7 +60,7 @@ uv run teste-api          # ✅ Funciona perfeitamente
 uv run hello-crewai       # ✅ Executa CrewAI
 
 # Scripts alternativos
-uv run python src/curso_crewai/hello_simples.py  # ✅ Funciona
+uv run hello_simples.py  # ✅ Funciona
 uv run python -m curso_crewai.teste_api          # ✅ Funciona
 ```
 

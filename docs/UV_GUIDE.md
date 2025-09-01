@@ -33,7 +33,7 @@ uv run teste-api
 uv run hello-crewai
 
 # Hello CrewAI simples
-uv run python src/curso_crewai/hello_simples.py
+uv run hello_simples.py
 ```
 
 ### Gerenciar dependências

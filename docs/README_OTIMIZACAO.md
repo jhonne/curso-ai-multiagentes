@@ -30,7 +30,7 @@ code RESUMO_OTIMIZACAO_OPENAI.md
 uv run configurar-crewai
 
 # Execute o exemplo de otimização
-uv run python exemplo_otimizacao_openai.py
+uv run exemplo_otimizacao_openai.py
 ```
 
 ### 3. Explore o Guia Completo
@@ -195,4 +195,4 @@ Com as práticas deste guia, você pode reduzir drasticamente os custos da OpenA
 
 ---
 
-**⚡ Comece agora**: Execute `uv run python exemplo_otimizacao_openai.py` e veja a economia em ação!
+**⚡ Comece agora**: Execute `uv run exemplo_otimizacao_openai.py` e veja a economia em ação!

@@ -83,13 +83,13 @@ Entrada → Agente 1 → Agente 2 → Agente 3 → Agente 4 → Saída Final
 
 ```bash
 # Instalar dependências
-pip install crewai langchain-openai
+uv add crewai langchain-openai
 
 # Configurar API key
 export OPENAI_API_KEY="sua_chave_aqui"
 
 # Executar o exemplo
-python main.py
+uv run aula4/main.py
 ```
 
 ## 📋 Opções de Execução

@@ -59,7 +59,7 @@ Esta aula ensina como criar e organizar um **Crew** completo com múltiplos agen
 2. Execute o script:
 
    ```bash
-   python aula2/main.py
+   uv run aula2/main.py
    ```
 
 ## 💡 Conceitos Aprendidos

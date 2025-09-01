@@ -21,7 +21,7 @@ try:
     print("✅ Biblioteca OpenAI importada com sucesso")
 except ImportError:
     print("❌ Erro: Biblioteca 'openai' não encontrada!")
-    print("Execute: pip install openai")
+    print("Execute: uv add openai")
     sys.exit(1)
 
 # Carrega variáveis de ambiente
@@ -202,8 +202,8 @@ def main():
 
         if sucesso:
             print("\n🚀 Próximos passos:")
-            print("   1. Execute: python hello_crewai.py")
-            print("   2. Ou execute: python hello_simples.py")
+            print("   1. Execute: uv run hello_crewai.py")
+            print("   2. Ou execute: uv run hello_simples.py")
             sys.exit(0)
         else:
             print("\n❌ Configuração incompleta. Resolva os problemas acima.")

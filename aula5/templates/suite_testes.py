@@ -385,8 +385,8 @@ if __name__ == "__main__":
         executar_suite_completa()
 
     print("\n💡 DICAS DE USO:")
-    print("• python suite_testes.py         # Suite completa")
-    print("• python suite_testes.py rapido  # Apenas testes rápidos")
+    print("• uv run aula5/templates/suite_testes.py         # Suite completa")
+    print("• uv run aula5/templates/suite_testes.py rapido  # Apenas testes rápidos")
     print("• Adapte os testes para seus agentes específicos")
     print("• Use subTest() para testes com múltiplos casos")
     print("• Monitore tempo de execução para otimização")

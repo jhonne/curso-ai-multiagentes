@@ -6,7 +6,7 @@ Antes de começar, certifique-se de ter:
 
 ```bash
 # Instalar dependências
-pip install crewai openai python-dotenv pytest
+uv add crewai openai python-dotenv pytest
 
 # Configurar variável de ambiente
 export OPENAI_API_KEY="sua_chave_aqui"
@@ -19,7 +19,7 @@ $env:OPENAI_API_KEY="sua_chave_aqui"
 ### 1. Arquivo Principal
 
 ```bash
-python main.py
+uv run aula5/main.py
 ```
 
 - Visão geral dos conceitos da aula
@@ -29,42 +29,42 @@ python main.py
 
 ```bash
 # Técnicas avançadas de prompts
-python exemplos/01_prompt_engineering.py
+uv run aula5/exemplos/01_prompt_engineering.py
 
 # Configuração de modelos OpenAI
-python exemplos/02_configuracao_modelos.py
+uv run aula5/exemplos/02_configuracao_modelos.py
 
 # Testes unitários para agentes
-python exemplos/03_testes_agentes.py
+uv run aula5/exemplos/03_testes_agentes.py
 
 # Sistema de monitoramento
-python exemplos/04_monitoramento.py
+uv run aula5/exemplos/04_monitoramento.py
 ```
 
 ### 3. Templates (para estudo e reutilização)
 
 ```bash
 # Template de agente otimizado
-python templates/agente_otimizado.py
+uv run aula5/templates/agente_otimizado.py
 
 # Suite completa de testes
-python templates/suite_testes.py
+uv run aula5/templates/suite_testes.py
 
 # Apenas testes rápidos
-python templates/suite_testes.py rapido
+uv run aula5/templates/suite_testes.py rapido
 ```
 
 ### 4. Exercícios Práticos
 
 ```bash
 # Exercício 1: Prompt Engineering
-python exercicios/exercicio1_prompts.py
+uv run aula5/exercicios/exercicio1_prompts.py
 
 # Exercício 2: Configuração de Modelos
-python exercicios/exercicio2_config.py
+uv run aula5/exercicios/exercicio2_config.py
 
 # Exercício 3: Testes e Monitoramento
-python exercicios/exercicio3_testes.py
+uv run exercicios/exercicio3_testes.py
 ```
 
 ## 🔧 Executando com Pytest
@@ -84,7 +84,7 @@ pytest templates/suite_testes.py -v
 Monitore seus gastos executando:
 
 ```bash
-python exemplos/04_monitoramento.py
+uv run exemplos/04_monitoramento.py
 ```
 
 Este script mostra:
@@ -115,7 +115,7 @@ Este script mostra:
 1. Abra `exercicios/exercicio3_testes.py`
 2. Complete a classe `ExercicioTestes`
 3. Implemente sistema de monitoramento
-4. Execute os testes: `python exercicios/exercicio3_testes.py`
+4. Execute os testes: `uv run exercicios/exercicio3_testes.py`
 
 ## 💡 Dicas Importantes
 
@@ -157,7 +157,7 @@ echo $env:OPENAI_API_KEY  # Windows PowerShell
 
 ```bash
 # Reinstale as dependências
-pip install --upgrade crewai openai python-dotenv
+uv add --upgrade crewai openai python-dotenv
 ```
 
 ## 📈 Próximos Passos

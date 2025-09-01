@@ -35,7 +35,7 @@ Este diretório contém as soluções para os 3 exercícios propostos na Aula 2 
 2. **Dependências instaladas**:
 
    ```bash
-   pip install -r requirements.txt
+   uv sync
    ```
 
 ### Executando os Exercícios
@@ -43,19 +43,19 @@ Este diretório contém as soluções para os 3 exercícios propostos na Aula 2 
 **Exercício 1 - Marketing Digital:**
 
 ```bash
-python exercicio1_solucao.py
+uv run aula2/exercicio1_solucao.py
 ```
 
 **Exercício 2 - Atendimento ao Cliente:**
 
 ```bash
-python exercicio2_solucao.py
+uv run aula2/exercicio2_solucao.py
 ```
 
 **Exercício 3 - Desenvolvimento de Produto:**
 
 ```bash
-python exercicio3_solucao.py
+uv run aula2/exercicio3_solucao.py
 ```
 
 ## 🎯 Conceitos Aplicados

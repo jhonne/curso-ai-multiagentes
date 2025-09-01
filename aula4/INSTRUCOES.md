@@ -12,13 +12,13 @@ $env:OPENAI_API_KEY="sua_chave_openai_aqui"
 ### 2. Executar Exemplo Simples
 
 ```powershell
-python exemplo_simples.py
+uv run aula4/exemplo_simples.py
 ```
 
 ### 3. Executar Exemplo Completo
 
 ```powershell
-python main.py
+uv run aula4/main.py
 ```
 
 ## 📋 O que Você Vai Ver

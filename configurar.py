@@ -228,7 +228,7 @@ def main():
     print("\n📝 Comandos disponíveis com UV:")
     print("   uv run teste-api           # Teste rápido")
     print("   uv run hello-crewai        # Primeiro exemplo")
-    print("   uv run python hello_simples.py  # Exemplo simples")
+    print("   uv run hello_simples.py  # Exemplo simples")
     print("\n📝 Comandos alternativos:")
     print("   uv run python -m curso_crewai.teste_api")
     print("   uv run python -m curso_crewai.hello_crewai")

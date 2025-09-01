@@ -97,11 +97,11 @@ pip install -r requirements.txt
 # Com UV (recomendado)
 uv run hello-crewai
 
-# Com Python tradicional
-python hello_crewai.py
+# Com UV (recomendado)
+uv run hello_crewai.py
 
 # Usando o módulo
-uv run python -m curso_crewai.hello_crewai
+uv run -m curso_crewai.hello_crewai
 ```
 
 ## � Conteúdo do Curso
@@ -212,22 +212,22 @@ Após configurar o ambiente e executar os primeiros exemplos:
 uv run teste-api
 
 # Verificar ambiente OpenAI
-uv run python verificar_openai.py
+uv run verificar_openai.py
 
 # Executar configuração automática
 uv run configurar-crewai
 
 # Executar exemplos das aulas
-uv run python aula1/main.py
-uv run python aula2/main.py
+uv run aula1/main.py
+uv run aula2/main.py
 
 # Executar exercícios específicos da aula2
-uv run python aula2/exercicio1_solucao.py  # Marketing
-uv run python aula2/exercicio2_solucao.py  # Atendimento
-uv run python aula2/exercicio3_solucao.py  # Desenvolvimento
+uv run aula2/exercicio1_solucao.py  # Marketing
+uv run aula2/exercicio2_solucao.py  # Atendimento
+uv run aula2/exercicio3_solucao.py  # Desenvolvimento
 
 # Executar aula3
-uv run python aula3/main.py
+uv run aula3/main.py
 ```
 
 ### Gerenciamento do Projeto
@@ -243,7 +243,7 @@ uv add <package>
 uv sync
 
 # Executar em ambiente limpo
-uv run --isolated python hello_crewai.py
+uv run --isolated hello_crewai.py
 
 # Ver informações do projeto
 uv show
@@ -336,7 +336,7 @@ cat .env     # Linux/Mac
 type .env    # Windows
 
 # Testar a chave manualmente
-uv run python -c "import os; print('Chave:', os.getenv('OPENAI_API_KEY', 'NÃO ENCONTRADA'))"
+uv run -c "import os; print('Chave:', os.getenv('OPENAI_API_KEY', 'NÃO ENCONTRADA'))"
 ```
 
 **Soluções:**

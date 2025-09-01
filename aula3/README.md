@@ -120,7 +120,7 @@ Pesquisador → Redator → Revisor
 ### Executar o Script
 
 ```bash
-uv run python aula3/main.py
+uv run aula3/main.py
 ```
 
 ### Opções de Execução
@@ -198,7 +198,7 @@ def simular_busca_personalizada(query, country="BR", language="pt"):
 ### Erro de importação de ferramentas
 
 ```bash
-pip install --upgrade crewai-tools
+uv add --upgrade crewai-tools
 ```
 
 ## 📊 Comparação Prática

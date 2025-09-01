@@ -233,4 +233,4 @@ ttl = 3600  # Pode economizar 50%+ dos custos
 
 **💰 Meta de economia: 90%+ dos custos mantendo 95% da qualidade**
 
-*Execute: `uv run python exemplo_otimizacao_openai.py` para ver na prática*
+*Execute: `uv run exemplo_otimizacao_openai.py` para ver na prática*

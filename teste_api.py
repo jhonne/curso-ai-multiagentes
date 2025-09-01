@@ -181,7 +181,7 @@ def main():
         print("   ✅ Validações de segurança ativas")
         print("\n📋 Próximos passos:")
         print("   uv run hello-crewai")
-        print("   python -m curso_crewai.hello_crewai")
+        print("   uv run -m curso_crewai.hello_crewai")
     else:
         print("\n🔧 Resolva os problemas acima antes de continuar")
         print("💡 Para mais ajuda, consulte: docs/CONFIGURACAO_AMBIENTE.md")

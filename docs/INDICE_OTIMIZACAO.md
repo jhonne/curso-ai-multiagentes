@@ -29,7 +29,7 @@ Este é o índice completo dos guias de otimização para uso eficiente e econô
 - ⏱️ **Tempo de execução**: 2 minutos
 - 🎯 **Foco**: Implementação prática das boas práticas
 - 💡 **Ideal para**: Ver as economias em ação
-- 🚀 **Comando**: `uv run python exemplo_otimizacao_openai.py`
+- 🚀 **Comando**: `uv run exemplo_otimizacao_openai.py`
 
 ### 🎯 Guia de Uso
 
@@ -45,7 +45,7 @@ Este é o índice completo dos guias de otimização para uso eficiente e econô
 ### 🏃‍♂️ **Rápido** (15 minutos)
 
 1. 📖 Leia `RESUMO_OTIMIZACAO_OPENAI.md` (5 min)
-2. 🚀 Execute `uv run python exemplo_otimizacao_openai.py` (2 min)
+2. 🚀 Execute `uv run exemplo_otimizacao_openai.py` (2 min)
 3. 📋 Use os templates do `README_OTIMIZACAO.md` (8 min)
 
 ### 🧠 **Completo** (45 minutos)
@@ -111,7 +111,7 @@ uv run configurar-crewai
 uv run teste-api
 
 # Execute exemplo de otimização
-uv run python exemplo_otimizacao_openai.py
+uv run exemplo_otimizacao_openai.py
 
 # Abra guias no editor
 code RESUMO_OTIMIZACAO_OPENAI.md

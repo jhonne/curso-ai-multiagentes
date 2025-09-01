@@ -55,7 +55,7 @@ uv run configurar-crewai
 |--------|----------------|------|
 | Instalar deps | `pip install -r requirements.txt` | `uv sync` |
 | Adicionar pacote | `pip install package` | `uv add package` |
-| Executar script | `python script.py` | `uv run python script.py` |
+| Executar script | `python script.py` | `uv run script.py` |
 | Ativar venv | `source venv/bin/activate` | *(automático)* |
 | Hello CrewAI | `python hello_crewai.py` | `uv run hello-crewai` |
 | Teste API | `python teste_api.py` | `uv run teste-api` |
@@ -71,8 +71,8 @@ uv run teste-api         # Teste da API
 uv run configurar-crewai # Configuração
 
 # Scripts Python diretos
-uv run python src/curso_crewai/hello_simples.py
-uv run python -m curso_crewai.hello_crewai
+uv run hello_simples.py
+uv run -m curso_crewai.hello_crewai
 ```
 
 ## 🔍 Verificação

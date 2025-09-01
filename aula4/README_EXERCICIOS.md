@@ -62,7 +62,7 @@ $env:OPENAI_API_KEY="sua_chave_openai_aqui"
 uv sync
 
 # 3. Testar conexão
-uv run python ../teste_api.py
+uv run ../teste_api.py
 ```
 
 ### Estrutura de Projeto Recomendada

@@ -320,7 +320,7 @@ def main():
 
     print("\n" + "=" * 70)
     print("🔍 QUER VER AS SOLUÇÕES? Execute:")
-    print("python -m unittest __main__.SolucaoTestes -v  # Para testes")
+    print("uv run -m unittest __main__.SolucaoTestes -v  # Para testes")
     print("# solucao_exercicio_3b()  # Para monitoramento")
 
     # Descomente para ver soluções:
