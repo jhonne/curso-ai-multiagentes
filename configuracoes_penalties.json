@@ -1,0 +1,112 @@
+{
+  "documentacao_tecnica": {
+    "contexto": "documentacao_tecnica",
+    "frequency_penalty": 0.1,
+    "presence_penalty": 0.0,
+    "temperature": 0.2,
+    "model": "gpt-4o-mini",
+    "descricao": "Para documentação técnica precisa que precisa repetir termos específicos",
+    "casos_uso": [
+      "APIs",
+      "manuais",
+      "especificações",
+      "código"
+    ]
+  },
+  "relatorio_analitico": {
+    "contexto": "relatorio_analitico",
+    "frequency_penalty": 0.3,
+    "presence_penalty": 0.2,
+    "temperature": 0.3,
+    "model": "gpt-4o-mini",
+    "descricao": "Para relatórios que precisam de precisão mas com alguma variação",
+    "casos_uso": [
+      "análises de dados",
+      "relatórios financeiros",
+      "pesquisas"
+    ]
+  },
+  "conteudo_educacional": {
+    "contexto": "conteudo_educacional",
+    "frequency_penalty": 0.4,
+    "presence_penalty": 0.4,
+    "temperature": 0.6,
+    "model": "gpt-4o-mini",
+    "descricao": "Para conteúdo que deve ser variado e explorar diferentes aspectos",
+    "casos_uso": [
+      "artigos",
+      "tutoriais",
+      "explicações",
+      "cursos"
+    ]
+  },
+  "brainstorming": {
+    "contexto": "brainstorming",
+    "frequency_penalty": 0.7,
+    "presence_penalty": 0.8,
+    "temperature": 0.8,
+    "model": "gpt-4o",
+    "descricao": "Para máxima criatividade e exploração de ideias",
+    "casos_uso": [
+      "ideação",
+      "inovação",
+      "soluções criativas",
+      "estratégias"
+    ]
+  },
+  "chatbot_atendimento": {
+    "contexto": "chatbot_atendimento",
+    "frequency_penalty": 0.3,
+    "presence_penalty": 0.2,
+    "temperature": 0.7,
+    "model": "gpt-4o-mini",
+    "descricao": "Para conversas naturais mas focadas no problema",
+    "casos_uso": [
+      "suporte",
+      "FAQ",
+      "atendimento",
+      "assistente virtual"
+    ]
+  },
+  "storytelling": {
+    "contexto": "storytelling",
+    "frequency_penalty": 0.5,
+    "presence_penalty": 0.6,
+    "temperature": 0.8,
+    "model": "gpt-4o",
+    "descricao": "Para narrativas ricas e envolventes",
+    "casos_uso": [
+      "histórias",
+      "cases",
+      "narrativas",
+      "marketing"
+    ]
+  },
+  "codigo_comentarios": {
+    "contexto": "codigo_comentarios",
+    "frequency_penalty": 0.2,
+    "presence_penalty": 0.1,
+    "temperature": 0.3,
+    "model": "gpt-4o-mini",
+    "descricao": "Para comentários de código claros e concisos",
+    "casos_uso": [
+      "documentação código",
+      "comments",
+      "docstrings"
+    ]
+  },
+  "marketing_criativo": {
+    "contexto": "marketing_criativo",
+    "frequency_penalty": 0.6,
+    "presence_penalty": 0.7,
+    "temperature": 0.9,
+    "model": "gpt-4o",
+    "descricao": "Para copy criativo e campanhas inovadoras",
+    "casos_uso": [
+      "copy",
+      "slogans",
+      "campanhas",
+      "social media"
+    ]
+  }
+}
