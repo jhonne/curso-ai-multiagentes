@@ -34,6 +34,7 @@
 ## 🔄 **Fluxo de Conexões:**
 
 ### **1. Sistema Completo (main.py):**
+
 ```python
 # main.py - Arquivo Principal
 from orquestrador import OrquestradorChatbot
@@ -44,6 +45,7 @@ resposta = orquestrador.processar_mensagem(mensagem)
 ```
 
 ### **2. Orquestrador (orquestrador.py):**
+
 ```python
 # orquestrador.py - Coordenador Central  
 from agentes import criar_todos_agentes
@@ -58,6 +60,7 @@ class OrquestradorChatbot:
 ```
 
 ### **3. Agentes (agentes.py):**
+
 ```python
 # agentes.py - Definições dos Agentes
 from crewai import Agent
@@ -72,6 +75,7 @@ def criar_todos_agentes():
 ```
 
 ### **4. Tarefas (tarefas.py):**
+
 ```python
 # tarefas.py - Definições das Tarefas
 from crewai import Task
@@ -86,10 +90,12 @@ def criar_tarefas_completas(mensagem, agentes):
 ## 🎯 **Arquivos Independentes:**
 
 ### **📚 Exemplos Didáticos:**
+
 - **`exemplo_basico.py`** - Sistema simples auto-contido (3 agentes internos)
 - **`chatbot_simples.py`** - Versão didática interativa (agentes internos)
 
 ### **🔧 Utilitários:**
+
 - **`verificar_configuracao.py`** - Testa se todos os módulos funcionam
 - **`README.md`** - Documentação
 - **`EXERCICIOS.md`** - Exercícios práticos
@@ -112,16 +118,19 @@ def criar_tarefas_completas(mensagem, agentes):
 ## 💡 **Vantagens desta Estrutura:**
 
 ### ✅ **Modularidade:**
+
 - Cada arquivo tem uma responsabilidade específica
 - Fácil de modificar partes isoladamente
 - Código reutilizável
 
 ### ✅ **Progressão Didática:**
+
 - `exemplo_basico.py` → conceitos básicos
 - `chatbot_simples.py` → interação
 - `main.py` → sistema completo
 
 ### ✅ **Testabilidade:**
+
 - `verificar_configuracao.py` testa todos os módulos
 - Cada arquivo pode ser testado independentemente
 
