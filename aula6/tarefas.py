@@ -20,39 +20,30 @@ def criar_tarefa_triagem(mensagem_usuario, agente_triagem):
     """
     return Task(
         description=f"""
-        Faça a triagem inicial desta mensagem do usuário: "{mensagem_usuario}"
+        Analise esta mensagem do usuário: "{mensagem_usuario}"
         
-        Sua análise deve incluir:
+        RESPONDA EXATAMENTE no seguinte formato:
         
-        1. TIPO DE SOLICITAÇÃO:
-           - Pergunta informativa
-           - Pedido de ajuda técnica
-           - Reclamação ou problema
-           - Solicitação de serviço
-           - Conversa casual
+        TIPO DE SOLICITAÇÃO: [Pergunta informativa/Pedido de ajuda/Reclamação/Solicitação de serviço/Conversa casual]
         
-        2. TÓPICO PRINCIPAL:
-           - Identifique o assunto central
-           - Palavras-chave importantes
+        TÓPICO PRINCIPAL: [Descreva o assunto central em uma frase]
         
-        3. NÍVEL DE URGÊNCIA:
-           - Baixa (informação geral)
-           - Média (dúvida específica)
-           - Alta (problema urgente)
+        PALAVRAS-CHAVE: [Liste 3-5 palavras importantes]
         
-        4. SENTIMENTO:
-           - Positivo, neutro ou negativo
-           - Nível de frustração se houver
+        URGÊNCIA: [Baixa/Média/Alta] - [Breve justificativa]
         
-        Seja claro e objetivo na classificação.
+        SENTIMENTO: [Positivo/Neutro/Negativo] - [Observações sobre o tom]
+        
+        RECOMENDAÇÃO: [Próximo passo sugerido em uma frase]
         """,
         expected_output="""
-        Relatório de triagem com:
-        - Tipo de solicitação identificado
-        - Tópico principal e palavras-chave
-        - Nível de urgência (baixa/média/alta)
-        - Análise de sentimento
-        - Recomendações para próximos passos
+        Relatório estruturado de triagem seguindo exatamente o formato solicitado com:
+        - Tipo de solicitação claramente identificado
+        - Tópico principal resumido
+        - Lista de palavras-chave relevantes
+        - Nível de urgência com justificativa
+        - Análise de sentimento com observações
+        - Recomendação clara para próximos passos
         """,
         agent=agente_triagem,
     )
@@ -64,37 +55,27 @@ def criar_tarefa_intencao(agente_intencao, tarefa_triagem):
     """
     return Task(
         description="""
-        Com base na triagem inicial, analise profundamente a intenção do usuário.
+        Com base na triagem inicial, analise a intenção do usuário.
         
-        Determine:
+        RESPONDA EXATAMENTE no seguinte formato:
         
-        1. OBJETIVO REAL:
-           - O que o usuário realmente quer alcançar?
-           - Existe uma necessidade por trás da pergunta?
+        OBJETIVO REAL: [O que o usuário realmente quer alcançar]
         
-        2. CONTEXTO IMPLÍCITO:
-           - Que informações estão subentendidas?
-           - Qual pode ser o background do usuário?
+        CONTEXTO IMPLÍCITO: [Informações subentendidas ou background provável]
         
-        3. TIPO DE RESPOSTA IDEAL:
-           - Explicação técnica detalhada
-           - Resposta simples e direta
-           - Tutorial passo-a-passo
-           - Lista de opções/alternativas
+        TIPO DE RESPOSTA IDEAL: [Explicação técnica/Resposta simples/Tutorial/Lista de opções]
         
-        4. INFORMAÇÕES NECESSÁRIAS:
-           - Que dados precisamos buscar?
-           - Que aspectos devem ser abordados?
+        INFORMAÇÕES NECESSÁRIAS: [Dados específicos que precisamos abordar]
         
-        Use a análise de triagem para refinar sua compreensão.
+        ABORDAGEM COMUNICATIVA: [Como devemos comunicar - tom e estilo]
         """,
         expected_output="""
-        Análise de intenção contendo:
-        - Objetivo real do usuário
-        - Contexto e background provável
-        - Tipo de resposta mais adequado
-        - Lista de informações necessárias para resposta completa
-        - Sugestões de abordagem comunicativa
+        Análise estruturada de intenção seguindo exatamente o formato com:
+        - Objetivo real identificado claramente
+        - Contexto e background provável do usuário
+        - Tipo de resposta mais adequado especificado
+        - Lista específica de informações necessárias
+        - Sugestões claras de abordagem comunicativa
         """,
         agent=agente_intencao,
         context=[tarefa_triagem],
@@ -107,38 +88,26 @@ def criar_tarefa_busca(agente_busca, tarefa_triagem, tarefa_intencao):
     """
     return Task(
         description="""
-        Com base nas análises anteriores, processe as informações necessárias.
+        Com base nas análises anteriores, organize as informações necessárias.
         
-        Organize:
+        RESPONDA EXATAMENTE no seguinte formato:
         
-        1. INFORMAÇÕES PRINCIPAIS:
-           - Dados centrais sobre o tópico
-           - Fatos importantes e atuais
-           - Conceitos fundamentais
+        INFORMAÇÕES PRINCIPAIS: [Dados centrais e conceitos fundamentais sobre o tópico]
         
-        2. INFORMAÇÕES COMPLEMENTARES:
-           - Detalhes relevantes
-           - Exemplos práticos
-           - Casos de uso
+        INFORMAÇÕES COMPLEMENTARES: [Detalhes relevantes, exemplos práticos e casos de uso]
         
-        3. ESTRUTURA DA RESPOSTA:
-           - Como organizar as informações
-           - Sequência lógica de apresentação
-           - Pontos que merecem destaque
+        ESTRUTURA DA RESPOSTA: [Como organizar - sequência lógica de apresentação]
         
-        4. VERIFICAÇÕES:
-           - Informações estão corretas?
-           - São relevantes para o usuário?
-           - Falta algum aspecto importante?
+        PONTOS DE DESTAQUE: [Aspectos que merecem ênfase especial]
         
-        Use tanto a triagem quanto a análise de intenção para guiar sua pesquisa.
+        VERIFICAÇÃO: [Confirmação de completude e relevância das informações]
         """,
         expected_output="""
-        Conjunto organizado de informações incluindo:
-        - Dados principais sobre o tópico
-        - Informações complementares relevantes
-        - Estrutura sugerida para a resposta
-        - Exemplos práticos quando aplicável
+        Conjunto estruturado de informações seguindo o formato com:
+        - Dados principais organizados sobre o tópico
+        - Informações complementares com exemplos práticos
+        - Estrutura clara sugerida para a resposta final
+        - Lista de pontos que merecem destaque especial
         - Verificação de completude e relevância
         """,
         agent=agente_busca,
@@ -154,39 +123,30 @@ def criar_tarefa_resposta(
     """
     return Task(
         description="""
-        Crie a resposta final para o usuário usando todas as análises anteriores.
+        Crie a resposta final usando TODAS as análises anteriores.
         
-        A resposta deve ser:
+        A resposta deve seguir estas diretrizes:
         
-        1. CLARA E ESTRUTURADA:
-           - Linguagem apropriada ao usuário
-           - Organização lógica das informações
-           - Parágrafos bem definidos
+        1. CLARA E ESTRUTURADA: Use linguagem apropriada e organize logicamente
         
-        2. COMPLETA MAS CONCISA:
-           - Responde completamente à pergunta
-           - Não é muito longa nem muito curta
-           - Vai direto ao ponto
+        2. COMPLETA MAS CONCISA: Responda completamente mas vá direto ao ponto
         
-        3. ÚTIL E PRÁTICA:
-           - Informações aplicáveis
-           - Exemplos quando necessário
-           - Próximos passos se relevante
+        3. ÚTIL E PRÁTICA: Inclua informações aplicáveis e exemplos relevantes
         
-        4. AMIGÁVEL E PROFISSIONAL:
-           - Tom adequado ao contexto
-           - Empático quando necessário
-           - Convida para mais perguntas
+        4. AMIGÁVEL E PROFISSIONAL: Use tom adequado e seja empático
         
-        Use TODAS as informações das análises anteriores para criar a melhor resposta.
+        IMPORTANTE: Baseie-se nas análises de triagem, intenção e busca para criar 
+        uma resposta específica e relevante para a pergunta original do usuário.
+        
+        NÃO use respostas genéricas. Use as informações específicas coletadas.
         """,
         expected_output="""
-        Resposta final completa e bem estruturada que:
-        - Atende completamente à necessidade do usuário
+        Resposta final completa que:
+        - Atende diretamente à pergunta original do usuário
         - Está organizada de forma clara e lógica
         - Usa linguagem apropriada e tom amigável
         - Inclui informações práticas e relevantes
-        - Convida para interação futura se apropriado
+        - Demonstra ter usado todas as análises anteriores
         """,
         agent=agente_resposta,
         context=[tarefa_triagem, tarefa_intencao, tarefa_busca],

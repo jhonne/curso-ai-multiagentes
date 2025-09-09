@@ -38,6 +38,7 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "requests>=2.32.4",
     "selenium>=4.35.0",
+    "streamlit>=1.48.1",
 ]
 
 # Dependências opcionais organizadas por grupos

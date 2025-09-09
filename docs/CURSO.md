@@ -1,8 +1,8 @@
-# Curso Básico de 20 Horas: Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI
+# Curso Básico de 18 Horas: Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI
 
 **Nível:** Iniciante
 
-**Carga Horária Total:** 20 horas
+**Carga Horária Total:** 18 horas
 
 **Pré-requisitos:**
 
@@ -12,7 +12,7 @@
 
 ## Visão Geral do Curso:**
 
-Este curso introdutório de 20 horas foi projetado para capacitar desenvolvedores a construir sistemas de chatbot sofisticados e inteligentes, aproveitando o poder da colaboração de múltiplos agentes de IA. Os alunos mergulharão no framework CrewAI para orquestrar equipes de agentes autônomos e utilizarão os modelos de linguagem da OpenAI para alimentar as capacidades de conversação e raciocínio desses agentes. Ao final do curso, os participantes terão o conhecimento prático para projetar, construir e implantar um chatbot com múltiplos agentes capaz de realizar tarefas complexas e interagir de forma dinâmica com os usuários.
+Este curso introdutório de 18 horas foi projetado para capacitar desenvolvedores a construir sistemas de chatbot sofisticados e inteligentes, aproveitando o poder da colaboração de múltiplos agentes de IA. Os alunos mergulharão no framework CrewAI para orquestrar equipes de agentes autônomos e utilizarão os modelos de linguagem da OpenAI para alimentar as capacidades de conversação e raciocínio desses agentes. Ao final do curso, os participantes terão o conhecimento prático para projetar, construir e implantar um chatbot com múltiplos agentes capaz de realizar tarefas complexas e interagir de forma dinâmica com os usuários.
 
 ---
 
@@ -129,76 +129,71 @@ Este módulo foca na aplicação prática dos conceitos do CrewAI para desenvolv
   * Implementar a lógica principal do chatbot que recebe a entrada do usuário e inicia o "Crew".
   * Conectar as tarefas em uma sequência lógica.
 
-#### Aula 7: Criando uma Interface de Chat Simples (2 horas)**
+#### Aula 7: Interface Web com Streamlit (2 horas)**
 
-* **Objetivos:**
-  * Integrar o "Crew" do chatbot a uma interface de linha de comando (CLI) ou a uma interface web simples.
-* **Tópicos:**
-  * Construindo um loop `while` para manter a conversa ativa no terminal.
-  * (Opcional) Introdução ao Streamlit ou Flask para criar uma interface web básica.
-  * Exibindo a resposta final do "Crew" para o usuário.
-* **Exercício Prático:**
-  * Desenvolver uma aplicação de console que permita ao usuário conversar com o chatbot.
+* **Objetivo Único:**
+  * Criar uma interface web funcional para o chatbot em 30 minutos.
+* **Conteúdo Essencial:**
+  * Interface completa com Streamlit em menos de 50 linhas
+  * Chat com histórico de mensagens
+  * Deploy local com `streamlit run app.py`
+* **Exercício Único:**
+  * Implementar interface completa com chat history
+  * Adicionar botão de limpar conversa
+  * (Opcional) Indicador de "digitando..."
 
 ---
 
-### Módulo 3: Tópicos Avançados e Próximos Passos (4 horas)
+### Módulo 3: Interface, Memória e Projeto Final (7 horas)
 
 Este módulo final explora funcionalidades mais avançadas e aponta direções para o aprimoramento contínuo do chatbot.
 
-#### Aula 8: Adicionando Memória e Ferramentas Personalizadas (2 horas)**
+#### Aula 8: Memória de Contexto (2 horas)**
 
-* **Objetivos:**
-  * Entender a importância da memória em conversas de chatbot.
-  * Aprender a criar ferramentas personalizadas para estender as capacidades dos agentes.
-* **Tópicos:**
-  * Conceitos de memória de curto e longo prazo para chatbots.
-  * Estratégias para passar o histórico da conversa para o "Crew".
-  * Desenvolvendo uma ferramenta personalizada em Python (e.g., para consultar um banco de dados interno).
-  * Atribuindo a nova ferramenta a um agente específico.
-* **Exercício Prático:**
-  * Modificar o chatbot para que ele se lembre do nome do usuário e o utilize em conversas futuras.
-  * Criar uma ferramenta simples que retorna a data e hora atuais.
+* **Objetivo Único:**
+  * Implementar memória de conversa em 5 linhas de código.
+* **Conteúdo Essencial:**
+  * Adicionar histórico simples ao ChatbotCrew
+  * Incluir contexto das últimas conversas
+  * Memória persistente com JSON
+* **Exercício Único:**
+  * Implementar memória persistente com JSON
+  * Limitar histórico aos últimos 5 turnos de conversa
 
-#### Aula 9: Debugging, Avaliação e Próximos Passos (2 horas)
+#### Aula 9: Tratamento de Erros (1 hora)**
 
-* **Objetivos:**
-  * Aprender a depurar e avaliar o desempenho do "Crew" de agentes.
-  * Explorar tópicos avançados e como continuar aprendendo.
-* **Tópicos:**
-  * Utilizando o modo `verbose=True` para entender o processo de pensamento dos agentes.
-  * Estratégias para avaliar a qualidade das respostas do chatbot.
-  * Introdução a conceitos como RAG (Retrieval-Augmented Generation) com CrewAI.
-  * Ideias para projetos futuros e como contribuir para a comunidade CrewAI.
-* **Projeto Final (sugestão):**
-  * Aprimorar o chatbot para um caso de uso específico (e.g., um chatbot de atendimento ao cliente para um e-commerce fictício, um assistente de pesquisa pessoal).
-  * Apresentar o chatbot e o fluxo de trabalho dos agentes.
+* **Objetivo Único:**
+  * Tornar o chatbot à prova de falhas com try/except.
+* **Conteúdo Essencial:**
+  * Validação de entrada do usuário
+  * Tratamento de exceções da API
+  * Logs de erro em arquivo
+* **Exercício Único:**
+  * Adicionar logs de erro em arquivo
+  * Implementar retry automático (1 tentativa)
 
 ---
 
 ## Sugestões de Melhoria e Tópicos Complementares
 
-### Aula 10: Boas Práticas, Segurança e Tratamento de Erros (2 horas) - **ADICIONAL**
+### Aula 10: Projeto Final - Chatbot Especializado (4 horas)
 
-* **Objetivos:**
-  * Implementar práticas de segurança e robustez no chatbot.
-  * Aprender a lidar com falhas e erros de forma elegante.
-* **Tópicos:**
-  * **Tratamento de Erros:**
-    * Lidando com falhas de API da OpenAI (timeouts, rate limits)
-    * Implementando retry logic e fallbacks
-    * Tratamento de exceções em agentes e tarefas
-  * **Segurança:**
-    * Sanitização de inputs do usuário
-    * Implementação de rate limiting
-    * Práticas de segurança para chaves de API
-  * **Gerenciamento de Custos:**
-    * Monitoramento de uso de tokens
-    * Estratégias para otimizar custos com OpenAI
-    * Implementação de cache para respostas similares
-* **Exercício Prático:**
-  * Adicionar tratamento de erros robusto ao chatbot
-  * Implementar um sistema simples de cache de respostas
+* **Objetivo:**
+  * Cada aluno cria um chatbot para um domínio específico.
+* **Opções de Projeto (escolher 1):**
+  * **Assistente de Receitas:** Chef + Nutricionista
+  * **Tutor de Programação:** Professor + Debugger
+  * **Planejador de Viagens:** Pesquisador + Organizador
+* **Requisitos Mínimos:**
+  * 2 agentes especializados
+  * Interface Streamlit funcional
+  * Memória de contexto
+  * Tratamento de erros
+  * Deploy no Streamlit Cloud (grátis)
+* **Apresentação (15 min/aluno):**
+  * Demo ao vivo
+  * Explicar escolhas de design
+  * Compartilhar código no GitHub
 
 ### Recursos Complementares Recomendados
 
@@ -253,16 +248,11 @@ Este módulo final explora funcionalidades mais avançadas e aponta direções p
 
 ### Versionamento e Dependências Recomendadas
 
-```python
-# requirements.txt sugerido
-crewai>=0.28.0
-openai>=1.12.0
-python-dotenv>=1.0.0
-streamlit>=1.28.0  # para interface web
-flask>=2.3.0       # alternativa para interface web
-requests>=2.31.0
-pydantic>=2.5.0
-```
+* **CrewAI:** versão 0.28.0 ou superior
+* **OpenAI:** versão 1.12.0 ou superior
+* **Python-dotenv:** para gerenciamento de variáveis de ambiente
+* **Streamlit:** para interface web
+* **Requests e Pydantic:** para integrações e validações
 
 ### Estimativa de Custos com OpenAI
 
