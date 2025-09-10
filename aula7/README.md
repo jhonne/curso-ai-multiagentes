@@ -27,11 +27,12 @@ uv run streamlit run app.py
 
 ```
 aula7/
-├── README.md           # Este arquivo
-├── app.py             # Interface Streamlit (PRINCIPAL)
-├── chatbot_crew.py    # Classe do chatbot simplificada
-├── exemplo_basico.py  # Exemplo sem interface
-└── exercicios.md      # Exercícios práticos
+├── README.md              # Este arquivo
+├── app.py                # Interface Streamlit (PRINCIPAL)
+├── chatbot_crew.py       # Classe do chatbot simplificada
+├── exemplo_basico.py     # Exemplo sem interface
+├── exercicios.md         # Exercícios práticos
+└── state_management.md   # Guia completo de gerenciamento de estado
 ```
 
 ## 🏃‍♂️ Começar Agora
@@ -51,13 +52,14 @@ aula7/
 3. **Faça os exercícios:**
    - Leia `exercicios.md`
    - Modifique `app.py`
+   - Estude `state_management.md`
 
 ## 💡 Conceitos Chave
 
 ### Interface Mínima Funcional
 
 - **45 linhas de código** para chat completo
-- **State management** com `st.session_state`
+- **State management** com `st.session_state` (veja `state_management.md`)
 - **Chat history** automático
 - **Deploy instantâneo** com Streamlit
 
