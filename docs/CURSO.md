@@ -1,264 +1,562 @@
-# Curso Básico de 18 Horas: Desenvolvendo Chatbots com Múltiplos Agentes usando CrewAI e OpenAI
+# Curso Avançado: Sistema de Atendimento Médico com CrewAI e WhatsApp Business
 
-**Nível:** Iniciante
+**Nível:** Iniciante a Intermediário
 
-**Carga Horária Total:** 18 horas
+**Carga Horária Total:** 24 horas
 
 **Pré-requisitos:**
 
 * Conhecimento básico de Python.
 * Familiaridade com o conceito de APIs.
 * Uma chave de API da OpenAI.
+* Noções básicas de banco de dados (SQL).
 
 ## Visão Geral do Curso:**
 
-Este curso introdutório de 18 horas foi projetado para capacitar desenvolvedores a construir sistemas de chatbot sofisticados e inteligentes, aproveitando o poder da colaboração de múltiplos agentes de IA. Os alunos mergulharão no framework CrewAI para orquestrar equipes de agentes autônomos e utilizarão os modelos de linguagem da OpenAI para alimentar as capacidades de conversação e raciocínio desses agentes. Ao final do curso, os participantes terão o conhecimento prático para projetar, construir e implantar um chatbot com múltiplos agentes capaz de realizar tarefas complexas e interagir de forma dinâmica com os usuários.
+Este curso prático de 24 horas capacita desenvolvedores a construir um **sistema completo de atendimento médico** usando CrewAI com dados reais. Os alunos aprenderão a integrar múltiplos agentes de IA com banco de dados PostgreSQL, implementar busca semântica com embeddings, e criar uma API completa integrada ao WhatsApp Business.
+
+**Projeto Final:** Sistema de triagem médica inteligente que recebe sintomas via WhatsApp e recomenda estabelecimentos de saúde próximos baseado em dados reais do Piauí com 3.284 estabelecimentos, 65 queixas principais e 22 sintomas catalogados.
+
+---
+
+## 🏥 **Contexto do Projeto: Sistema de Atendimento Médico**
+
+O curso utilizará dados reais de saúde do Piauí para construir um sistema prático de triagem médica:
+
+* **3.284 estabelecimentos de saúde** com geolocalização
+* **65 queixas principais** catalogadas (ex: "ALERGIA", "CEFALEIA", "CONVULSÕES")
+* **22 sintomas médicos** (ex: "RESPIRAÇÃO INADEQUADA", "CHOQUE", "DOR INTENSA")
+* **25 relacionamentos** queixa-sintoma para algoritmos de recomendação
 
 ---
 
 ### Módulo 1: Fundamentos do CrewAI (6 horas)
 
-Este módulo introdutório foca nos conceitos centrais do CrewAI, estabelecendo a base para a construção de aplicações com múltiplos agentes.
-
 #### Aula 1: Introdução à Inteligência Artificial de Agentes e ao CrewAI (2 horas)
 
 * **Objetivos:**
-  * Compreender o que são agentes de IA e o paradigma de sistemas de múltiplos agentes.
-  * Conhecer a proposta e a arquitetura do CrewAI.
-  * Configurar o ambiente de desenvolvimento.
+  * Compreender sistemas multi-agentes aplicados à saúde
+  * Configurar ambiente de desenvolvimento com UV
+  * Entender o contexto médico do projeto
 * **Tópicos:**
-  * O que é um Agente de IA?
-  * Vantagens da abordagem multi-agente.
-  * Apresentação do CrewAI: Agentes, Tarefas, Ferramentas e Processos.
-  * Instalação do CrewAI e configuração das dependências.
-  * Configurando sua chave de API da OpenAI no ambiente.
+  * Vantagens de agentes especializados em triagem médica
+  * Apresentação do CrewAI: Agentes, Tarefas, Ferramentas
+  * Setup com UV (gerenciador moderno de pacotes)
+  * Visão geral do banco de dados médico
 * **Exercício Prático:**
-  * Instalar o CrewAI e bibliotecas associadas.
-  * Configurar a chave de API da OpenAI como uma variável de ambiente.
-  * Executar um script "Hello, World!" com um único agente CrewAI.
+  * Setup completo do ambiente com `uv sync`
+  * Primeiro agente médico: "Agente de Triagem Básica"
+  * Exploração inicial dos dados médicos reais
 
-#### Aula 2: Construindo seu Primeiro Crew: Agentes e Tarefas (2 horas)**
+#### Aula 2: Construindo seu Primeiro Crew Médico (2 horas)
 
 * **Objetivos:**
-  * Aprender a definir Agentes com papéis, objetivos e histórias de fundo (backstories).
-  * Aprender a criar e atribuir Tarefas para os agentes.
+  * Criar agentes especializados em contexto médico
+  * Definir personalidades apropriadas para saúde
 * **Tópicos:**
-  * A classe `Agent`: definindo `role`, `goal` e `backstory`.
-  * A importância de "personalidades" para os agentes.
-  * A classe `Task`: descrevendo a tarefa e o resultado esperado (`expected_output`).
-  * Atribuindo tarefas a agentes específicos.
+  * Agente Triagem: role, goal, backstory médico
+  * Agente Busca Sintomas: especialista em catalogação
+  * Ética e responsabilidade em sistemas de saúde automatizados
 * **Exercício Prático:**
-  * Criar um "Crew" simples com dois agentes: um pesquisador e um redator.
-  * Definir uma tarefa de pesquisa para o primeiro agente e uma tarefa de resumo para o segundo.
+  * Crew com "Enfermeiro de Triagem" e "Especialista em Sintomas"
+  * Primeiras interações com dados médicos estruturados
 
-#### Aula 3: Ferramentas (Tools) e Processos (Processes) no CrewAI (2 horas)**
+#### Aula 3: Ferramentas Médicas e Processos (2 horas)
 
 * **Objetivos:**
-  * Entender como equipar agentes com ferramentas para interagir com o mundo exterior.
-  * Aprender sobre os diferentes tipos de processos de execução de tarefas.
+  * Ferramentas específicas para dados médicos
+  * Processos hierárquicos para tomada de decisão médica
 * **Tópicos:**
-  * O que são Ferramentas (Tools) no CrewAI?
-  * Utilizando ferramentas pré-construídas (e.g., busca na web).
-  * O conceito de Processos: Sequencial vs. Hierárquico.
-  * Orquestrando o fluxo de trabalho do seu "Crew".
+  * Tools personalizadas para busca de sintomas
+  * Processo Sequential vs Hierarchical em contexto médico
+  * Priorização baseada em criticidade de sintomas
 * **Exercício Prático:**
-  * Adicionar uma ferramenta de busca à internet ao agente pesquisador.
-  * Configurar um processo sequencial para que o redator utilize o resultado da pesquisa do primeiro agente.
+  * Ferramenta de busca em base de sintomas
+  * Processo que escala casos críticos automaticamente
 
 ---
 
-### Módulo 2: Construindo um Chatbot com Múltiplos Agentes (10 horas)
+### Módulo 2: Integração com Banco de Dados e Busca Semântica (8 horas)
 
-Este módulo foca na aplicação prática dos conceitos do CrewAI para desenvolver um chatbot funcional.
-
-#### Aula 4: Arquitetura de um Chatbot Multi-Agente (2 horas)**
+#### Aula 4: Arquitetura do Sistema Médico Multi-Agente (2 horas)
 
 * **Objetivos:**
-  * Projetar a arquitetura de um chatbot com diferentes agentes especializados.
-  * Definir os papéis e responsabilidades de cada agente no chatbot.
+  * Projetar arquitetura completa de triagem médica
+  * Definir fluxo de decisão baseado em dados reais
 * **Tópicos:**
-  * Por que usar múltiplos agentes para um chatbot?
-  * Definindo os agentes necessários:
-    * **Agente de Saudação e Triagem:** Recebe a primeira mensagem do usuário.
-    * **Agente de Extração de Intenção:** Identifica o que o usuário deseja.
-    * **Agente de Busca de Informação:** Coleta dados relevantes (de uma base de conhecimento ou da web).
-    * **Agente de Geração de Resposta:** Formula a resposta final para o usuário.
-  * Desenhando o fluxo de conversação entre os agentes.
-
-#### Aula 5: Otimização e Configuração Avançada dos Agentes (3 horas)**
-
-* **Objetivos:**
-  * Otimizar o desempenho individual de cada agente através de prompts refinados.
-  * Configurar parâmetros avançados dos modelos OpenAI para diferentes tipos de agentes.
-  * Implementar testes unitários e debugging para agentes individuais.
-  * Estabelecer métricas de qualidade e monitoramento de custos.
-* **Tópicos:**
-  * **Engenharia de Prompts Avançada:**
-    * Técnicas de prompt engineering específicas para cada tipo de agente
-    * Utilizando few-shot learning e chain-of-thought prompting
-    * Otimização de prompts para reduzir tokens e melhorar precisão
-  * **Configuração de Modelos OpenAI:**
-    * Ajuste de parâmetros: temperature, max_tokens, top_p
-    * Escolha do modelo ideal para cada agente (GPT-3.5 vs GPT-4)
-    * Implementação de fallbacks entre modelos
-  * **Testes e Debugging:**
-    * Criando casos de teste para cada agente
-    * Utilizando o modo `verbose=True` para debugging
-    * Logs estruturados para monitoramento de desempenho
-  * **Monitoramento de Custos e Performance:**
-    * Tracking de uso de tokens por agente
-    * Implementação de cache para respostas similares
-    * Métricas de latência e qualidade de resposta
+  * **Agente de Triagem Inicial:** Classifica urgência
+  * **Agente de Análise Sintomas:** Correlaciona com base médica
+  * **Agente Geográfico:** Localiza estabelecimentos próximos
+  * **Agente de Recomendação:** Formula orientação final
 * **Exercício Prático:**
-  * Criar uma suite de testes unitários para cada agente definido na Aula 4
-  * Otimizar os prompts de cada agente usando técnicas avançadas
-  * Implementar um sistema de monitoramento de custos e performance
-  * Configurar diferentes parâmetros de modelo para cada tipo de agente
+  * Desenho completo do fluxo de atendimento
+  * Definição de critérios de priorização médica
 
-#### Aula 6: Gerenciando o Fluxo da Conversa e as Tarefas (3 horas)**
+#### Aula 5: Otimização para Contexto Médico (3 horas)
 
 * **Objetivos:**
-  * Orquestrar a interação entre os agentes do chatbot.
-  * Gerenciar o estado da conversa.
+  * Prompts otimizados para precisão médica
+  * Configurações específicas para saúde
+  * Testes com casos reais de urgência/emergência
 * **Tópicos:**
-  * Criando as Tarefas para cada agente com base na entrada do usuário.
-  * Utilizando o processo sequencial para garantir a ordem correta de execução.
-  * Passando a saída de uma tarefa como entrada para a próxima.
-  * Como lidar com a entrada do usuário de forma dinâmica.
+  * **Prompts Médicos Especializados:**
+    * Chain-of-thought para diagnóstico diferencial
+    * Few-shot com casos médicos reais
+    * Terminologia médica consistente
+  * **Configuração OpenAI para Saúde:**
+    * Temperature baixa para consistência (0.1-0.3)
+    * Max_tokens otimizado para respostas médicas
+    * Fallbacks para casos críticos
+  * **Validação Médica:**
+    * Casos de teste baseados em protocolos reais
+    * Métricas de precisão para sintomas críticos
+    * Compliance com normas de saúde
 * **Exercício Prático:**
-  * Implementar a lógica principal do chatbot que recebe a entrada do usuário e inicia o "Crew".
-  * Conectar as tarefas em uma sequência lógica.
+  * Suite de testes com casos médicos variados
+  * Otimização de prompts para precisão diagnóstica
+  * Sistema de alertas para sintomas críticos
 
-#### Aula 7: Interface Web com Streamlit (2 horas)**
+#### Aula 6: Gerenciamento de Fluxo Médico (3 horas)
 
-* **Objetivo Único:**
-  * Criar uma interface web funcional para o chatbot em 30 minutos.
-* **Conteúdo Essencial:**
-  * Interface completa com Streamlit em menos de 50 linhas
-  * Chat com histórico de mensagens
-  * Deploy local com `streamlit run app.py`
-* **Exercício Único:**
-  * Implementar interface completa com chat history
-  * Adicionar botão de limpar conversa
-  * (Opcional) Indicador de "digitando..."
+* **Objetivos:**
+  * Orquestrar decisões médicas complexas
+  * Implementar protocolos de escalação
+* **Tópicos:**
+  * Tasks médicas com contexto de urgência
+  * Passagem de dados entre especialistas
+  * Protocolos de escalação automática
+* **Exercício Prático:**
+  * Sistema completo de triagem com escalação
+  * Integração de todos os agentes médicos
 
 ---
 
-### Módulo 3: Interface, Memória e Projeto Final (7 horas)
+### Módulo 3: Sistema Avançado com Banco de Dados e WhatsApp (10 horas)
 
-Este módulo final explora funcionalidades mais avançadas e aponta direções para o aprimoramento contínuo do chatbot.
+#### Aula 7: Integração PostgreSQL e MCP (2 horas)
 
-#### Aula 8: Memória de Contexto (2 horas)**
+* **Objetivos:**
+  * Conectar agentes CrewAI ao banco de dados real
+  * Queries otimizadas para dados médicos
+* **Tópicos:**
+  * **Configuração PostgreSQL:**
+    * Conexão via MCP (Model Context Protocol)
+    * Estrutura das tabelas médicas
+    * Índices otimizados para performance
+  * **Agentes com Dados Reais:**
+    * Consultas aos estabelecimentos
+    * Busca por queixas principais
+    * Correlação sintoma-estabelecimento
+* **Exercício Prático:**
+  * Agente que consulta estabelecimentos próximos por coordenadas
+  * Busca de sintomas relacionados a queixas específicas
+  * Sistema de cache para queries frequentes
+* **Código de Exemplo:**
 
-* **Objetivo Único:**
-  * Implementar memória de conversa em 5 linhas de código.
-* **Conteúdo Essencial:**
-  * Adicionar histórico simples ao ChatbotCrew
-  * Incluir contexto das últimas conversas
-  * Memória persistente com JSON
-* **Exercício Único:**
-  * Implementar memória persistente com JSON
-  * Limitar histórico aos últimos 5 turnos de conversa
+```python
+# Agente especializado em dados geográficos
+agente_geografico = Agent(
+    role="Especialista em Geolocalização Médica",
+    goal="Encontrar estabelecimentos de saúde próximos com base na localização do paciente",
+    backstory="Especialista em sistemas de geolocalização médica com conhecimento da rede de saúde do Piauí",
+    tools=[postgresql_tool, distancia_tool],
+    llm=llm_otimizado
+)
+```
 
-#### Aula 9: Tratamento de Erros (1 hora)**
+#### Aula 8: Embeddings e pgvector para Busca Semântica (2 horas)
 
-* **Objetivo Único:**
-  * Tornar o chatbot à prova de falhas com try/except.
-* **Conteúdo Essencial:**
-  * Validação de entrada do usuário
-  * Tratamento de exceções da API
-  * Logs de erro em arquivo
-* **Exercício Único:**
-  * Adicionar logs de erro em arquivo
-  * Implementar retry automático (1 tentativa)
+* **Objetivos:**
+  * Implementar busca semântica nos sintomas
+  * Usar OpenAI Embeddings + pgvector
+* **Tópicos:**
+  * **Setup pgvector:**
+    * Extensão PostgreSQL para vetores
+    * Criação de índices vetoriais
+    * Configuração de similarity search
+  * **Embeddings Médicos:**
+    * Vetorização de sintomas e queixas
+    * Similaridade semântica para diagnóstico
+    * Cache inteligente de embeddings
+* **Exercício Prático:**
+  * Embedding de todos os 22 sintomas catalogados
+  * Busca por sintomas similares com threshold de confiança
+  * Sistema de recomendação baseado em similaridade
+* **Código de Exemplo:**
+
+```python
+# Sistema de embeddings para sintomas
+def buscar_sintomas_similares(sintoma_input, threshold=0.8):
+    embedding = openai.embeddings.create(
+        input=sintoma_input,
+        model="text-embedding-ada-002"
+    )
+    
+    # Busca por similaridade no pgvector
+    query = """
+    SELECT nome, 1 - (embedding <=> %s) as similarity 
+    FROM sintomas_embeddings 
+    WHERE 1 - (embedding <=> %s) > %s 
+    ORDER BY similarity DESC
+    """
+    return execute_query(query, [embedding.data[0].embedding, embedding.data[0].embedding, threshold])
+```
+
+#### Aula 9: Sistema de Recomendação Médica Completo (2 horas)
+
+* **Objetivos:**
+  * Integrar todos os agentes com dados reais
+  * Algoritmo de recomendação médica baseado em IA
+* **Tópicos:**
+  * **Agente de Triagem Avançada:**
+    * Análise de sintomas com embeddings
+    * Classificação de urgência automática
+    * Integração com protocolos médicos
+  * **Agente de Recomendação Geográfica:**
+    * Cálculo de distância real (lat/lng)
+    * Filtro por tipo de estabelecimento
+    * Consideração de horário de funcionamento
+  * **Agente de Protocolo Médico:**
+    * Aplicação de guidelines médicos
+    * Recomendações baseadas em evidências
+    * Alertas para casos críticos
+* **Exercício Prático:**
+  * Sistema completo que recebe sintomas e retorna:
+    * Nível de urgência (1-5)
+    * 3 estabelecimentos mais adequados
+    * Orientações iniciais baseadas em protocolos
+* **Exemplo de Uso:**
+
+```bash
+Input: "Dor no peito intensa, falta de ar, sudorese"
+Output: 
+- 🚨 URGÊNCIA MÁXIMA (5/5)
+- 🏥 Hospital de Urgência de Teresina - 2.3km
+- 🚑 UPA Promorar - 5.7km  
+- ⚕️ PROTOCOLO: Procure atendimento IMEDIATAMENTE
+```
+
+#### Aula 10: API REST com FastAPI (2 horas)
+
+* **Objetivos:**
+  * Criar API profissional para os agentes
+  * Documentação automática e autenticação
+* **Tópicos:**
+  * **Estrutura da API:**
+    * Endpoints RESTful para cada agente
+    * Modelos Pydantic para validação
+    * Middleware de logging e monitoramento
+  * **Endpoints Principais:**
+    * `POST /triagem` - Análise inicial de sintomas
+    * `GET /estabelecimentos` - Busca por localização
+    * `POST /recomendacao` - Recomendação completa
+    * `GET /sintomas/similares` - Busca semântica
+* **Exercício Prático:**
+  * API completa com 8 endpoints
+  * Documentação automática no Swagger
+  * Testes automatizados com pytest
+* **Estrutura da API:**
+
+```python
+@app.post("/triagem")
+async def triagem_medica(
+    sintomas: List[str],
+    localizacao: Optional[Coordenadas] = None,
+    urgencia_percebida: Optional[int] = None
+) -> TriagemResponse:
+    # Processa com agentes CrewAI
+    resultado = crew_triagem.kickoff({
+        'sintomas': sintomas,
+        'localizacao': localizacao
+    })
+    return TriagemResponse.parse_obj(resultado)
+```
+
+#### Aula 11: Integração WhatsApp Business API (2 horas)
+
+* **Objetivos:**
+  * Conectar sistema médico ao WhatsApp
+  * Bot de atendimento médico via mensagens
+* **Tópicos:**
+  * **Setup WhatsApp Business:**
+    * Configuração do webhook
+    * Autenticação com Meta API
+    * Gestão de templates de mensagem
+  * **Bot Médico WhatsApp:**
+    * Recepção de sintomas via texto/áudio
+    * Processamento com agentes CrewAI
+    * Respostas formatadas para mobile
+  * **Fluxo de Atendimento:**
+    * Saudação e coleta de sintomas
+    * Análise automática com IA
+    * Recomendação de estabelecimentos
+    * Follow-up opcional
+* **Exercício Prático:**
+  * Bot completo integrado ao WhatsApp
+  * Teste com números reais (sandbox)
+  * Fluxo de atendimento médico automatizado
+* **Exemplo de Conversa:**
+
+```
+👨‍⚕️ Bot: Olá! Sou seu assistente de saúde. Descreva seus sintomas.
+
+👤 Usuário: Estou com febre, dor de cabeça e enjoo
+
+👨‍⚕️ Bot: Analisando... 
+🔍 Sintomas identificados: FEBRE, CEFALEIA, NÁUSEAS
+⚠️ Nível de urgência: 3/5 (Moderado)
+
+🏥 Recomendações próximas:
+1. UPA Promorar - 2.1km - ⭐⭐⭐⭐
+2. Hospital Municipal - 4.3km - ⭐⭐⭐
+
+💊 Orientação: Hidrate-se e monitore a febre. Se piorar, procure atendimento.
+```
+
+#### Aula 12: Deploy, Monitoramento e Produção (2 horas)
+
+* **Objetivos:**
+  * Deploy profissional do sistema completo
+  * Monitoramento e logs para produção
+* **Tópicos:**
+  * **Containerização:**
+    * Dockerfile otimizado para CrewAI
+    * Docker-compose com PostgreSQL + pgvector
+    * Variáveis de ambiente para produção
+  * **Monitoramento:**
+    * Logs estruturados com loguru
+    * Métricas de performance dos agentes
+    * Alertas para casos críticos não resolvidos
+  * **Deploy em Produção:**
+    * Deploy no Railway/Heroku/DigitalOcean
+    * SSL e domínio personalizado
+    * Backup automatizado do banco
+* **Exercício Prático:**
+  * Sistema completo rodando em produção
+  * Dashboard de monitoramento funcionando
+  * Testes end-to-end via WhatsApp
+* **Arquitetura Final:**
+
+```
+WhatsApp → Webhook → FastAPI → CrewAI Agents → PostgreSQL
+                                      ↓
+                              OpenAI API + Embeddings
+                                      ↓
+                              Sistema de Logs + Métricas
+```
 
 ---
 
-## Sugestões de Melhoria e Tópicos Complementares
+## 🎯 **Projeto Final: Sistema Médico Completo**
 
-### Aula 10: Projeto Final - Chatbot Especializado (4 horas)
+Ao final do curso, cada aluno terá construído um **sistema de atendimento médico real** com as seguintes capacidades:
 
-* **Objetivo:**
-  * Cada aluno cria um chatbot para um domínio específico.
-* **Opções de Projeto (escolher 1):**
-  * **Assistente de Receitas:** Chef + Nutricionista
-  * **Tutor de Programação:** Professor + Debugger
-  * **Planejador de Viagens:** Pesquisador + Organizador
-* **Requisitos Mínimos:**
-  * 2 agentes especializados
-  * Interface Streamlit funcional
-  * Memória de contexto
-  * Tratamento de erros
-  * Deploy no Streamlit Cloud (grátis)
-* **Apresentação (15 min/aluno):**
-  * Demo ao vivo
-  * Explicar escolhas de design
-  * Compartilhar código no GitHub
+### ✅ **Funcionalidades Implementadas:**
 
-### Recursos Complementares Recomendados
+* **🤖 Bot WhatsApp** para coleta de sintomas
+* **🧠 4 Agentes Especializados** (Triagem, Sintomas, Geográfico, Protocolo)
+* **🗃️ Banco PostgreSQL** com dados reais de 3.284 estabelecimentos
+* **🔍 Busca Semântica** com OpenAI Embeddings + pgvector
+* **🚀 API REST** completa com documentação Swagger
+* **📊 Dashboard** de monitoramento e métricas
+* **🐳 Deploy** containerizado em produção
 
-#### **Materiais de Apoio:**
+### 📱 **Demo Final - Fluxo Completo:**
 
-* **Repositório GitHub:** Código completo dos exercícios e soluções
-* **Documentação Oficial:** Links para CrewAI e OpenAI documentation
-* **Vídeos Complementares:** Demonstrações práticas de cada aula
-* **Templates de Código:** Estruturas base para acelerar o desenvolvimento
+```text
+[WhatsApp] → [Webhook] → [FastAPI] → [CrewAI Agents] → [PostgreSQL + Embeddings] → [Resposta Médica]
+```
 
-#### **Tópicos para Aprofundamento:**
+**Exemplo de interação real:**
 
-* **Performance e Otimização:**
-  * Implementação de cache inteligente
-  * Otimização de prompts para reduzir tokens
-  * Paralelização de tarefas quando possível
-* **Deploy em Produção:**
-  * Containerização com Docker
-  * Deploy em cloud (AWS, GCP, Azure)
-  * Monitoramento e logging em produção
-* **Casos de Uso Avançados:**
-  * Integração com RAG (Retrieval-Augmented Generation)
-  * Chatbots especializados por domínio
-  * Sistemas híbridos (humano + IA)
+1. Usuário envia: *"Estou com dor no peito e falta de ar"*
+2. Sistema responde em **<5 segundos**:
+   * 🚨 Urgência: **ALTA (4/5)**
+   * 🏥 Hospital mais próximo: **2.3km**
+   * ⚕️ Orientação: **"Procure atendimento imediatamente"**
 
-#### **Comparação com Outras Ferramentas:**
+---
 
-* **LangChain vs CrewAI:** Quando usar cada framework
-* **AutoGen vs CrewAI:** Diferenças na arquitetura multi-agente
-* **Análise de custo-benefício** de diferentes abordagens
+## 🛠️ **Stack Tecnológico Completo**
 
-#### **Sistema de Avaliação Sugerido:**
+### **Dependências Principais (pyproject.toml)**
 
-* **Quizzes teóricos** ao final de cada módulo
-* **Projetos práticos** com critérios de avaliação claros
-* **Peer review** entre alunos dos projetos finais
-* **Certificado de conclusão** mediante aprovação
+```toml
+dependencies = [
+    "crewai>=0.95.0",           # Framework principal
+    "openai>=1.12.0",           # LLM + Embeddings
+    "fastapi>=0.104.0",         # API REST
+    "uvicorn>=0.24.0",          # ASGI server
+    "psycopg2-binary>=2.9.0",   # PostgreSQL driver
+    "pgvector>=0.2.0",          # Extensão vetorial
+    "pydantic>=2.5.0",          # Validação de dados
+    "python-dotenv>=1.0.0",     # Variáveis de ambiente
+    "loguru>=0.7.0",            # Logging avançado
+    "pytest>=7.4.0",            # Testes automatizados
+    "httpx>=0.25.0",            # Cliente HTTP assíncrono
+    "python-multipart>=0.0.6"   # Upload de arquivos
+]
 
-#### **Comunidade e Suporte:**
+[project.optional-dependencies]
+whatsapp = ["requests>=2.31.0", "flask>=2.3.0"]
+monitoring = ["prometheus-client>=0.17.0", "grafana-api>=1.0.3"]
+deploy = ["docker>=6.1.0", "gunicorn>=21.2.0"]
+```
 
-* **Fórum de discussão** para dúvidas e compartilhamento
-* **Sessões de Q&A** semanais com instrutor
-* **Showcase de projetos** dos alunos
-* **Grupo no Discord/Slack** para networking
+### **Estrutura do Projeto Final**
 
-#### **Próximos Passos após o Curso:**
+```text
+sistema-medico-crewai/
+├── 🐳 docker-compose.yml          # Orquestração completa
+├── 🚀 api/
+│   ├── main.py                   # FastAPI principal
+│   ├── endpoints/                # Endpoints REST
+│   ├── models.py                 # Modelos Pydantic
+│   └── middleware.py             # Logging, CORS, etc
+├── 🤖 agents/
+│   ├── triagem.py               # Agente de Triagem
+│   ├── sintomas.py              # Especialista em Sintomas
+│   ├── geografico.py            # Busca Geográfica
+│   └── protocolo.py             # Protocolos Médicos
+├── 🗃️ database/
+│   ├── models.py                # SQLAlchemy models
+│   ├── migrations/              # Alembic migrations
+│   └── seeds/                   # Dados iniciais
+├── 📱 whatsapp/
+│   ├── webhook.py               # Receptor de mensagens
+│   ├── sender.py                # Envio de respostas
+│   └── templates/               # Templates de mensagem
+├── 🔍 embeddings/
+│   ├── generator.py             # Geração de embeddings
+│   ├── similarity.py            # Busca por similaridade
+│   └── cache.py                 # Cache inteligente
+├── 📊 monitoring/
+│   ├── metrics.py               # Métricas customizadas
+│   ├── alerts.py                # Sistema de alertas
+│   └── dashboard/               # Dashboard Grafana
+└── 🧪 tests/
+    ├── unit/                    # Testes unitários
+    ├── integration/             # Testes de integração
+    └── e2e/                     # Testes end-to-end
+```
 
-* **Projetos sugeridos** para portfolio
-* **Contribuições open-source** para a comunidade CrewAI
-* **Especializações avançadas** (MLOps, AI Ethics, etc.)
-* **Roadmap de carreira** em AI Engineering
+---
 
-### Versionamento e Dependências Recomendadas
+## 📊 **Métricas e KPIs do Sistema**
 
-* **CrewAI:** versão 0.28.0 ou superior
-* **OpenAI:** versão 1.12.0 ou superior
-* **Python-dotenv:** para gerenciamento de variáveis de ambiente
-* **Streamlit:** para interface web
-* **Requests e Pydantic:** para integrações e validações
+### **Performance Esperada:**
 
-### Estimativa de Custos com OpenAI
+* **⚡ Latência:** <5s para respostas completas
+* **🎯 Precisão:** >85% na classificação de urgência
+* **💰 Custo:** <$0.10 por consulta completa
+* **📈 Throughput:** 1000+ consultas/hora
+* **✅ Uptime:** 99.5% de disponibilidade
 
-| Modelo | Custo por 1K tokens | Uso estimado/aula | Custo estimado |
-|--------|-------------------|------------------|----------------|
-| GPT-3.5-turbo | $0.0015 input / $0.002 output | 10K tokens | $0.035 |
-| GPT-4 | $0.03 input / $0.06 output | 5K tokens | $0.45 |
+### **Monitoramento em Tempo Real:**
 
-**Custo total estimado do curso:** $15-30 USD (dependendo do modelo escolhido)
+* Dashboard com métricas de uso dos agentes
+* Alertas automáticos para casos críticos não resolvidos
+* Análise de sentiment das interações WhatsApp
+* Tracking de custos OpenAI por agente
+
+---
+
+## 🌟 **Diferenciais do Curso**
+
+### **Por que este curso é único:**
+
+1. **📊 Dados Reais:** Trabalha com dados governamentais reais de saúde
+2. **🏥 Aplicação Prática:** Resolve problema real de acesso à saúde
+3. **🚀 Stack Moderno:** CrewAI + FastAPI + pgvector + WhatsApp
+4. **💼 Portfolio:** Projeto completo para portfólio profissional
+5. **🔄 Deploy Real:** Sistema funcionando em produção
+6. **📱 Integração WhatsApp:** Acessibilidade via app mais usado no Brasil
+
+### **Skills Desenvolvidas:**
+
+* ✅ **Arquitetura Multi-Agentes** para problemas complexos
+* ✅ **Integração de Banco de Dados** com IA
+* ✅ **Busca Semântica** com embeddings
+* ✅ **APIs REST** profissionais com FastAPI
+* ✅ **Integração WhatsApp Business**
+* ✅ **Deploy e Monitoramento** em produção
+* ✅ **Ética em IA** aplicada à saúde
+
+---
+
+## 📈 **Próximos Passos Após o Curso**
+
+### **Expansões Sugeridas:**
+
+1. **🔊 Processamento de Áudio:** Integrar Whisper para mensagens de voz
+2. **📸 Análise de Imagens:** GPT-4 Vision para análise de ferimentos
+3. **🌐 Multi-idiomas:** Suporte a inglês e espanhol
+4. **📱 App Mobile:** Interface nativa iOS/Android
+5. **🤖 IA Generativa:** Gerar relatórios médicos automáticos
+6. **🔗 Integração SUS:** Conectar com sistemas oficiais de saúde
+
+### **Oportunidades de Carreira:**
+
+* **🏥 Healthtech:** Startups de tecnologia em saúde
+* **🤖 AI Engineer:** Especialista em sistemas multi-agentes
+* **🚀 Product Manager:** Produtos de IA para saúde
+* **📊 Data Science:** Análise de dados médicos com IA
+* **🏢 Consultoria:** Implementação de IA em hospitais/clínicas
+
+---
+
+## 💰 **Investimento e ROI**
+
+### **Custo Estimado do Curso:**
+
+| Recurso | Custo Mensal | Custo Total |
+|---------|--------------|-------------|
+| **OpenAI API** | $25-50 | $25-50 |
+| **PostgreSQL** (Railway) | $5 | $5 |
+| **WhatsApp Business** | Gratuito | $0 |
+| **Deploy** (Railway/Heroku) | $10 | $10 |
+| **Total** | | **$40-65** |
+
+### **ROI Esperado:**
+
+* **Portfolio:** Projeto real para apresentar em entrevistas
+* **Skills Valiosas:** Stack moderno valorizado pelo mercado
+* **Network:** Conexões com outros devs AI
+* **Certificação:** Certificado de conclusão
+* **Mentoria:** Acompanhamento durante todo o desenvolvimento
+
+---
+
+## 🎓 **Certificação e Avaliação**
+
+### **Critérios de Aprovação:**
+
+* ✅ **90% de Presença** nas aulas práticas
+* ✅ **Sistema Funcionando** com todos os componentes
+* ✅ **Deploy em Produção** com URL funcionando
+* ✅ **Apresentação Final** de 10 minutos
+* ✅ **Código no GitHub** com documentação completa
+
+### **Entregáveis Finais:**
+
+1. **🔗 URL do Sistema** funcionando em produção
+2. **📱 Número WhatsApp** do bot funcionando
+3. **📊 Dashboard** com métricas em tempo real
+4. **📚 Documentação** técnica completa
+5. **🎥 Video Demo** de 3 minutos
+6. **💻 Código Fonte** no GitHub
+
+---
+
+## 🤝 **Suporte e Comunidade**
+
+* **💬 Discord Exclusivo** para alunos
+* **📅 Office Hours** semanais com instrutor
+* **🔄 Code Review** dos projetos
+* **🎯 Mentoria** para próximos passos profissionais
+* **📢 Showcase** dos melhores projetos
+* **💼 Conexões** com recrutadores de healthtechs
+
+---
+
+**🚀 Pronto para construir o futuro da saúde digital com IA?**
