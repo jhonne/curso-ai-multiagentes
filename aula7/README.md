@@ -1,89 +1,122 @@
-# Aula 7: Integração PostgreSQL e CrewAI - Dados Médicos Reais
+# Aula 7: Sistema Médico Avançado - PostgreSQL + pgvector + OpenAI Embeddings
 
-## 🎯 Objetivos da Aula
+## 🚀 Visão Geral do Sistema Avançado
 
-- Conectar agentes CrewAI ao banco de dados PostgreSQL com dados médicos
-- Implementar consultas otimizadas em sistemas médicos
-- Criar agentes especializados em consultas geográficas e médicas
-- Implementar sistema de busca por estabelecimentos de saúde próximos
+Este sistema integra as aulas 7 e 8, oferecendo uma solução médica completa com tecnologias de ponta:
 
-## � Escopo Educacional da Aula
+### **🤖 Tecnologias Integradas:**
+- **PostgreSQL + pgvector**: Banco vetorial para embeddings
+- **OpenAI Embeddings API**: Análise semântica de sintomas  
+- **PostGIS**: Análise geoespacial avançada
+- **CrewAI**: Orquestração de agentes inteligentes
+- **Cache Inteligente**: Otimização de custos e performance
 
-### **O que os alunos aprenderão:**
+### **⚡ Funcionalidades Avançadas:**
+- ✅ **Busca Semântica**: Encontra sintomas similares usando IA
+- ✅ **Análise Geoespacial**: Busca otimizada com índices espaciais
+- ✅ **Cache de Embeddings**: Reduz custos da API OpenAI
+- ✅ **Dados Médicos Reais**: 12+ estabelecimentos do Piauí
+- ✅ **Classificação Inteligente**: Urgência baseada em múltiplos fatores
+- ✅ **Protocolos Médicos**: Baseados em evidências científicas
 
-- ✅ **Integração CrewAI + Dados Estruturados**: Como conectar agentes a fontes de dados
-- ✅ **Consultas em Sistemas Médicos**: Queries otimizadas para dados de saúde
-- ✅ **Geolocalização Médica**: Busca por proximidade e cálculos geográficos
-- ✅ **Classificação de Urgência**: Algoritmos para priorização médica
-- ✅ **Múltiplos Agentes Especializados**: Orquestração de agentes médicos e geográficos
+## 🎯 Objetivos de Aprendizado
 
-### **Implementação Didática:**
+### **O que você dominará:**
 
-- 🗄️ **Dados Simulados**: SQLite em memória para aprendizado prático
-- 📊 **Baseado na Realidade**: Estrutura real do sistema de saúde do Piauí
-- 🎯 **Preparação para Produção**: Conceitos aplicáveis ao PostgreSQL real (Aula 8)
-- 📚 **Exercícios Progressivos**: Do básico ao avançado
+- 🧠 **IA Médica Aplicada**: Como usar embeddings para análise de sintomas
+- 🗄️ **PostgreSQL Avançado**: pgvector, PostGIS e índices otimizados  
+- � **Busca Semântica**: Correlação inteligente sintoma-diagnóstico
+- 📍 **GIS Médico**: Otimização geoespacial de acesso à saúde
+- 💰 **Otimização de Custos**: Cache inteligente para APIs pagas
+- 🤖 **Agentes Especializados**: CrewAI com ferramentas personalizadas
 
-## 🏥 Contexto: Sistema Médico Simulado
+### **Diferencial desta Aula:**
 
-Esta aula usa dados simulados baseados no sistema real de saúde do Piauí:
+- 🚫 **Sem dados simulados** - PostgreSQL real com dados reais
+- 🎯 **Focada em produção** - Técnicas usadas em sistemas reais
+- 💡 **IA de ponta** - OpenAI embeddings para análise médica
+- 📊 **Métricas completas** - Monitoramento de custos e performance
 
-- **10 estabelecimentos de saúde** para demonstração prática
-- **10 queixas principais** (CEFALEIA, DOR NO PEITO, FEBRE, etc.)
-- **10 sintomas médicos** (DOR INTENSA, FEBRE ALTA, NÁUSEA, etc.)
-- **Coordenadas reais** de Teresina para cálculos geográficos
+## 🏥 Sistema Médico Real
 
-## 📁 Estrutura da Aula
+Base de dados completa do sistema de saúde do Piauí:
+
+## 📁 Estrutura Modernizada
 
 ```
 aula7/
-├── README.md                    # Este arquivo
-├── main.py                      # Exemplo principal completo
-├── config_database.py           # Configuração do banco PostgreSQL
-├── dados_simulados.py           # Dados médicos para simulação
-├── agente_geografico.py         # Agente especializado em geolocalização
-├── agente_medico.py            # Agente especializado em dados médicos
-├── exemplo_basico.py           # Exemplo simples para começar
-├── exercicio1_consulta.py      # Exercício: consultas básicas
-├── exercicio2_geografico.py    # Exercício: busca geográfica
-└── exercicio3_integrado.py     # Exercício: sistema completo
+├── README.md                    # Documentação completa
+├── main.py                      # Sistema principal com menu interativo
+├── config_database.py           # PostgreSQL + pgvector + PostGIS
+├── dados_medicos_reais.py       # Dados reais com embeddings
+├── agente_medico.py            # Agente com análise semântica
+├── agente_geografico.py        # Agente com PostGIS avançado
+├── exemplo_basico.py           # Início rápido 
+├── exercicio1_consulta.py      # Exercícios com embeddings
+├── exercicio2_geografico.py    # Exercícios geoespaciais
+└── dados_simulados.py          # [LEGADO] Removido do sistema
 ```
 
-## 🚀 Como Executar
+## 🚀 Configuração e Execução
 
-⚠️ **IMPORTANTE**: Este projeto usa UV para gerenciamento de dependências.
+### **Pré-requisitos:**
 
-### 1. Instalar Dependências
-
+1. **PostgreSQL com pgvector**
 ```bash
-# Instalar dependências do projeto
+# Opção 1: Docker (Recomendado)
+docker run --name postgres-crewai \
+  -e POSTGRES_PASSWORD=senha123 \
+  -e POSTGRES_DB=crewai_medico \
+  -p 5432:5432 \
+  -d pgvector/pgvector:pg16
+
+# Opção 2: Instalação local
+# Instale PostgreSQL + extensão pgvector
+# Veja docs/INSTALACAO_PGVECTOR_COMPLETO.md
+```
+
+2. **Dependências Python**
+```bash
+# Instalar todas as dependências
 uv sync
 
-# Ou instalar dependências específicas desta aula
-uv add psycopg2-binary pandas geopy
+# Ou dependências específicas desta aula
+uv add psycopg2-binary pgvector-python openai python-dotenv
 ```
 
-### 2. Configurar Banco PostgreSQL (Simulado)
+3. **Configurar OpenAI API**
+```bash
+# Criar arquivo .env na raiz do projeto
+echo "OPENAI_API_KEY=sua_chave_aqui" > .env
 
-Para fins didáticos, vamos simular o banco usando dados em memória:
+# Ou usar o configurador automático
+uv run configurar.py
+```
+
+### **🎯 Executar Sistema Principal:**
 
 ```bash
-# Executar exemplo básico (dados simulados)
-uv run aula7/exemplo_basico.py
-
-# Executar exemplo principal
+# Sistema completo com menu interativo
 uv run aula7/main.py
+
+# Opções disponíveis:
+# 1. Demonstração com casos clínicos IA
+# 2. Modo interativo com análise semântica  
+# 3. Estatísticas completas do sistema
+# 4. Teste de embeddings e cache
 ```
 
-### 3. Extensão para PostgreSQL Real (Conceitual)
-
-Esta aula demonstra os conceitos que serão aplicados com PostgreSQL real:
+### **🧪 Exemplos Específicos:**
 
 ```bash
-# Os conceitos aprendidos aqui serão aplicados na Aula 8 com:
-# - PostgreSQL real com pgvector
-# - OpenAI Embeddings
-# - Busca semântica avançada
+# Testar apenas dados e embeddings
+uv run aula7/dados_medicos_reais.py
+
+# Testar agente médico avançado
+uv run aula7/agente_medico.py
+
+# Testar agente geográfico com PostGIS
+uv run aula7/agente_geografico.py
 ```
 
 ## 🧠 Conceitos Fundamentais

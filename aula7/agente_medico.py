@@ -1,76 +1,93 @@
 """
-Agente Médico - Especialista em Análise de Sintomas
-===================================================
+Agente Médico Avançado - Especialista em Análise Semântica de Sintomas
+=====================================================================
 
-Este agente é especializado em analisar sintomas médicos,
-classificar urgência e correlacionar com protocolos de atendimento.
+Este agente utiliza PostgreSQL + embeddings para análise médica avançada:
 
-Funcionalidades:
-- Análise de sintomas em texto livre
-- Classificação de urgência médica (1-5)
-- Correlação com queixas principais
-- Recomendação de protocolos de atendimento
+Funcionalidades Modernas:
+- Análise semântica de sintomas usando OpenAI embeddings
+- Busca por similaridade em base de dados médica real
+- Classificação inteligente de urgência (1-5)
+- Correlação com protocolos médicos baseados em evidência
+- Integração com sistema PostgreSQL + pgvector
+
+Substitui completamente o sistema simulado anterior.
 """
 
 from crewai import Agent
-from crewai_tools import BaseTool
+from crewai.tools import BaseTool
 from langchain_openai import ChatOpenAI
-from dados_simulados import dados_medicos
+
+try:
+    from .dados_medicos_reais import dados_medicos
+except ImportError:
+    from dados_medicos_reais import dados_medicos
 import re
 
 
-class AnaliseSintomasAvancadaTool(BaseTool):
-    """Ferramenta avançada para análise de sintomas médicos"""
+class AnaliseSemanticaSintomasTool(BaseTool):
+    """Ferramenta avançada para análise semântica de sintomas com embeddings"""
     
-    name: str = "analise_sintomas_avancada"
+    name: str = "analise_semantica_sintomas"
     description: str = (
-        "Analisa sintomas descritos em linguagem natural e classifica urgência. "
-        "Identifica sintomas críticos e correlaciona com protocolos médicos. "
+        "Analisa sintomas usando busca semântica por embeddings. "
+        "Identifica sintomas similares e classifica urgência inteligentemente. "
         "Parâmetro: texto_sintomas"
     )
     
     def _run(self, texto_sintomas: str) -> str:
-        """Executa análise avançada de sintomas"""
+        """Executa análise semântica avançada de sintomas"""
         
-        # Análise usando dados médicos
-        resultado_base = dados_medicos.classificar_urgencia_sintomas(texto_sintomas)
-        
-        # Análise adicional de padrões críticos
-        padroes_criticos = self._identificar_padroes_criticos(texto_sintomas)
+        # Análise inteligente usando embeddings
+        resultado = dados_medicos.classificar_urgencia_inteligente(texto_sintomas)
         
         # Formatar resultado completo
-        relatorio = "🔍 ANÁLISE MÉDICA AVANÇADA\n"
-        relatorio += "=" * 35 + "\n\n"
+        relatorio = "🧠 ANÁLISE SEMÂNTICA AVANÇADA\n"
+        relatorio += "=" * 40 + "\n\n"
         
-        relatorio += f"📝 TEXTO ANALISADO:\n"
+        relatorio += "📝 TEXTO ANALISADO:\n"
         relatorio += f'"{texto_sintomas}"\n\n'
         
-        # Sintomas identificados
-        if resultado_base['sintomas_encontrados']:
-            relatorio += "✅ SINTOMAS IDENTIFICADOS:\n"
-            for sintoma in resultado_base['sintomas_encontrados']:
-                criticidade_emoji = self._get_criticidade_emoji(sintoma['criticidade'])
-                relatorio += f"   {criticidade_emoji} {sintoma['nome']} "
-                relatorio += f"(criticidade: {sintoma['criticidade']}/5)\n"
+        # Sintomas identificados por similaridade
+        if resultado['sintomas_similares']:
+            relatorio += "🔍 SINTOMAS SIMILARES ENCONTRADOS:\n"
+            for sintoma in resultado['sintomas_similares'][:5]:
+                emoji = self._get_criticidade_emoji(sintoma['criticidade'])
+                similarity = sintoma['similaridade']
+                relatorio += f"   {emoji} {sintoma['nome']} "
+                relatorio += f"(similaridade: {similarity:.1%}, "
+                relatorio += f"criticidade: {sintoma['criticidade']}/5)\n"
+                if sintoma.get('categoria'):
+                    relatorio += f"      📂 Categoria: {sintoma['categoria']}\n"
         else:
-            relatorio += "⚠️ Nenhum sintoma específico identificado na base\n"
+            relatorio += "⚠️ Nenhum sintoma similar encontrado na base\n"
         
-        # Padrões críticos adicionais
-        if padroes_criticos:
-            relatorio += f"\n🚨 PADRÕES CRÍTICOS DETECTADOS:\n"
-            for padrao in padroes_criticos:
+        # Queixas principais correlacionadas
+        if resultado['queixas_similares']:
+            relatorio += "\n📋 QUEIXAS PRINCIPAIS CORRELACIONADAS:\n"
+            for queixa in resultado['queixas_similares'][:3]:
+                urgencia_emoji = self._get_urgencia_emoji(queixa['nivel_urgencia'])
+                similarity = queixa['similaridade']
+                relatorio += f"   {urgencia_emoji} {queixa['nome']} "
+                relatorio += f"(similaridade: {similarity:.1%})\n"
+                relatorio += f"      📝 {queixa['descricao']}\n"
+        
+        # Padrões críticos identificados
+        if resultado['padroes_criticos']:
+            relatorio += "\n🚨 PADRÕES CRÍTICOS IDENTIFICADOS:\n"
+            for padrao in resultado['padroes_criticos']:
                 relatorio += f"   ⚠️ {padrao}\n"
         
-        # Classificação de urgência
-        urgencia_final = max(
-            resultado_base['nivel_urgencia'],
-            5 if padroes_criticos else 1
-        )
-        
-        relatorio += f"\n📊 CLASSIFICAÇÃO FINAL:\n"
-        relatorio += f"   🎯 Nível de urgência: {urgencia_final}/5\n"
-        relatorio += f"   📋 Status: {self._get_status_urgencia(urgencia_final)}\n"
-        relatorio += f"   💡 Recomendação: {self._get_recomendacao(urgencia_final)}\n"
+        # Classificação final
+        nivel = resultado['nivel_urgencia']
+        relatorio += "\n📊 CLASSIFICAÇÃO INTELIGENTE:\n"
+        relatorio += f"   🎯 Nível de urgência: {nivel}/5\n"
+        relatorio += f"   📋 Status: {resultado['classificacao']}\n"
+        relatorio += f"   💡 Recomendação: {resultado['recomendacao']}\n"
+        relatorio += f"   🏥 Estabelecimento recomendado: "
+        relatorio += f"{resultado['tipo_estabelecimento_recomendado']}\n"
+        relatorio += f"   🔍 Confiança da análise: "
+        relatorio += f"{resultado['confianca_analise']} correlações\n"
         
         return relatorio
     
@@ -126,45 +143,83 @@ class AnaliseSintomasAvancadaTool(BaseTool):
         return recomendacoes.get(nivel, "Consulte profissional de saúde")
 
 
-class ConsultaProtocolosTool(BaseTool):
-    """Ferramenta para consulta de protocolos médicos"""
+class ConsultaProtocolosAvancadosTool(BaseTool):
+    """Ferramenta avançada para consulta de protocolos médicos com busca semântica"""
     
-    name: str = "consulta_protocolos"
+    name: str = "consulta_protocolos_avancados"
     description: str = (
-        "Consulta protocolos médicos para queixas específicas. "
-        "Parâmetro: tipo_queixa"
+        "Consulta protocolos médicos usando busca semântica. "
+        "Encontra protocolos relevantes mesmo com termos similares. "
+        "Parâmetro: descricao_caso"
     )
     
-    def _run(self, tipo_queixa: str) -> str:
-        """Consulta protocolos baseados em queixas principais"""
+    def _run(self, descricao_caso: str) -> str:
+        """Consulta protocolos usando busca semântica"""
         
-        # Buscar sintomas relacionados à queixa
-        sintomas_relacionados = dados_medicos.buscar_sintomas_por_queixa(tipo_queixa)
+        # Buscar queixas similares usando embeddings
+        queixas_similares = dados_medicos.buscar_queixas_por_similaridade(
+            descricao_caso
+        )
         
-        if not sintomas_relacionados:
-            return f"❌ Protocolo não encontrado para queixa: {tipo_queixa}"
+        if not queixas_similares:
+            return f"❌ Nenhum protocolo encontrado para: {descricao_caso}"
         
-        resultado = f"📋 PROTOCOLO MÉDICO: {tipo_queixa.upper()}\n"
-        resultado += "=" * (len(tipo_queixa) + 20) + "\n\n"
+        # Selecionar a queixa mais similar
+        queixa_principal = queixas_similares[0]
         
-        # Sintomas associados
-        resultado += "🔍 SINTOMAS ASSOCIADOS:\n"
-        for sintoma in sintomas_relacionados:
-            emoji = self._get_emoji_criticidade(sintoma['criticidade'])
-            resultado += f"   {emoji} {sintoma['nome']} "
-            resultado += f"(criticidade: {sintoma['criticidade']}/5)\n"
+        resultado = "📋 PROTOCOLO MÉDICO AVANÇADO\n"
+        resultado += "=" * 35 + "\n\n"
         
-        # Protocolo de atendimento baseado na criticidade máxima
-        max_criticidade = max([s['criticidade'] for s in sintomas_relacionados])
+        resultado += f"📝 CASO ANALISADO:\n"
+        resultado += f'"{descricao_caso}"\n\n'
         
-        resultado += f"\n📊 AVALIAÇÃO DO PROTOCOLO:\n"
-        resultado += f"   • Criticidade máxima: {max_criticidade}/5\n"
-        resultado += f"   • Tipo de atendimento: {self._get_tipo_atendimento(max_criticidade)}\n"
-        resultado += f"   • Tempo recomendado: {self._get_tempo_atendimento(max_criticidade)}\n"
+        # Queixa principal identificada
+        resultado += "🎯 PROTOCOLO IDENTIFICADO:\n"
+        resultado += f"   📋 {queixa_principal['nome']}\n"
+        resultado += f"   📝 {queixa_principal['descricao']}\n"
+        resultado += f"   🔍 Similaridade: "
+        resultado += f"{queixa_principal['similaridade']:.1%}\n"
+        resultado += f"   🚨 Urgência: {queixa_principal['nivel_urgencia']}/5\n\n"
         
-        # Sinais de alerta
-        resultado += f"\n⚠️ SINAIS DE ALERTA:\n"
-        resultado += self._get_sinais_alerta(tipo_queixa)
+        # Protocolo detalhado se disponível
+        if queixa_principal.get('protocolo_atendimento'):
+            resultado += "⚕️ PROTOCOLO DE ATENDIMENTO:\n"
+            resultado += f"{queixa_principal['protocolo_atendimento']}\n\n"
+        
+        # Tempo limite para atendimento
+        if queixa_principal.get('tempo_limite_atendimento'):
+            resultado += "⏱️ TEMPO LIMITE PARA ATENDIMENTO:\n"
+            tempo = queixa_principal['tempo_limite_atendimento']
+            resultado += f"   🕐 Máximo: {tempo}\n\n"
+        
+        # Outras queixas similares (diagnósticos diferenciais)
+        if len(queixas_similares) > 1:
+            resultado += "� DIAGNÓSTICOS DIFERENCIAIS:\n"
+            for queixa in queixas_similares[1:3]:
+                resultado += f"   • {queixa['nome']} "
+                resultado += f"(similaridade: {queixa['similaridade']:.1%})\n"
+        
+        # Recomendações específicas baseadas na urgência
+        nivel = queixa_principal['nivel_urgencia']
+        resultado += "\n💡 RECOMENDAÇÕES ESPECÍFICAS:\n"
+        
+        if nivel >= 5:
+            resultado += "   🚨 EMERGÊNCIA - Atendimento imediato\n"
+            resultado += "   📞 Considerar chamar SAMU (192)\n"
+            resultado += "   🏥 Direto para sala de emergência\n"
+        elif nivel >= 4:
+            resultado += "   🔴 URGENTE - Atendimento prioritário\n"
+            resultado += "   🏥 UPA ou Hospital rapidamente\n"
+            resultado += "   📋 Triagem imediata\n"
+        elif nivel >= 3:
+            resultado += "   🟠 MODERADO - Avaliação em algumas horas\n"
+            resultado += "   🏥 UPA ou consulta médica em 24h\n"
+        elif nivel >= 2:
+            resultado += "   🟡 LEVE - Acompanhamento recomendado\n"
+            resultado += "   🏥 UBS ou consulta agendada\n"
+        else:
+            resultado += "   🟢 NÃO URGENTE - Rotina médica\n"
+            resultado += "   🏥 Consulta quando conveniente\n"
         
         return resultado
     
@@ -206,59 +261,79 @@ class ConsultaProtocolosTool(BaseTool):
         return alertas.get(queixa.upper(), '• Procure ajuda se sintomas piorarem\n• Não ignore sinais de alarme')
 
 
-def criar_agente_medico(llm: ChatOpenAI = None) -> Agent:
+def criar_agente_medico_avancado(llm: ChatOpenAI = None) -> Agent:
     """
-    Cria agente especializado em análise médica
+    Cria agente médico especializado com análise semântica avançada
     
     Args:
         llm: Modelo de linguagem (opcional)
         
     Returns:
-        Agent configurado para análise médica
+        Agent configurado para análise médica com embeddings
     """
     
     if llm is None:
         llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1)
     
     return Agent(
-        role="Especialista em Triagem e Protocolos Médicos",
-        goal="Analisar sintomas e aplicar protocolos médicos adequados",
+        role="Especialista em Medicina Baseada em IA e Análise Semântica",
+        goal="Analisar sintomas usando inteligência artificial e busca semântica",
         backstory="""
-        Sou um profissional de saúde especializado em triagem médica e protocolos
-        de atendimento com mais de 15 anos de experiência. Minha expertise inclui:
+        Sou um médico especialista em medicina digital e sistemas de IA médica,
+        com experiência em análise semântica de sintomas e protocolos inteligentes.
         
-        🩺 ESPECIALIDADES:
-        • Análise clínica de sintomas e sinais
-        • Protocolos de classificação de risco
-        • Medicina de urgência e emergência  
-        • Sistemas de triagem hospitalar (Manchester, START)
+        🤖 TECNOLOGIAS AVANÇADAS:
+        • Análise semântica com OpenAI embeddings
+        • Busca por similaridade em bases médicas extensas
+        • Classificação inteligente de urgência
+        • Correlação automática sintoma-protocolo
+        • Sistema PostgreSQL com pgvector integrado
         
-        🎯 COMPETÊNCIAS:
-        • Identificação precoce de quadros críticos
-        • Correlação sintoma-patologia
-        • Priorização baseada em evidências
-        • Comunicação clara com pacientes
+        🩺 ESPECIALIDADES MÉDICAS:
+        • Triagem médica inteligente
+        • Protocolos de emergência (Manchester, START)
+        • Medicina de urgência e emergência
+        • Análise preditiva de risco
+        • Telemedicina e medicina digital
         
-        ⚕️ PRINCÍPIOS:
-        • Segurança do paciente sempre em primeiro lugar
-        • Aplicação de protocolos baseados em evidências
-        • Comunicação empática e clara
-        • Encaminhamento apropriado conforme complexidade
+        🎯 METODOLOGIA AVANÇADA:
+        • Uso embeddings para encontrar sintomas similares
+        • Análise de padrões críticos automática
+        • Correlação com base de dados médica real
+        • Classificação multi-dimensional de urgência
+        • Recomendações baseadas em evidência científica
         
-        Minha missão é garantir que cada paciente seja adequadamente avaliado,
-        classificado quanto à urgência e direcionado ao nível de atenção correto,
-        sempre priorizando a segurança e o melhor desfecho clínico.
+        ⚕️ PRINCÍPIOS FUNDAMENTAIS:
+        • Segurança do paciente como prioridade absoluta
+        • Precisão diagnóstica com suporte de IA
+        • Transparência nas análises e recomendações
+        • Integração humano-IA para melhores resultados
+        • Melhoria contínua através de feedback
         
-        ⚠️ IMPORTANTE: Minhas análises são para triagem inicial. Casos suspeitos
-        de emergência devem sempre buscar atendimento médico presencial imediato.
+        🔬 DIFERENCIAL TECNOLÓGICO:
+        Utilizo sistema avançado de PostgreSQL + pgvector para busca semântica
+        de sintomas, permitindo identificar correlações que análises tradicionais
+        podem não detectar. Minha análise combina experiência médica com 
+        capacidades de IA para oferecer diagnósticos mais precisos.
+        
+        ⚠️ DISCLAIMER MÉDICO:
+        Minhas análises são ferramentas de suporte diagnóstico. Emergências
+        médicas reais sempre requerem atendimento presencial imediato.
+        Não substituo consulta médica profissional.
         """,
         tools=[
-            AnaliseSintomasAvancadaTool(),
-            ConsultaProtocolosTool()
+            AnaliseSemanticaSintomasTool(),
+            ConsultaProtocolosAvancadosTool()
         ],
         llm=llm,
         verbose=True
     )
+
+
+# Manter compatibilidade com código existente
+def criar_agente_medico(llm: ChatOpenAI = None) -> Agent:
+    """Função de compatibilidade - usa a versão avançada"""
+    return criar_agente_medico_avancado(llm)
 
 
 # Exemplo de uso do agente médico

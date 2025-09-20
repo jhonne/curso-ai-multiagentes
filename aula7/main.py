@@ -1,12 +1,20 @@
 """
-Main - Aula 7: Sistema Médico Integrado CrewAI + Dados Estruturados
-===================================================================
+Main - Aula 7: Sistema Médico Avançado CrewAI + PostgreSQL + Embeddings
+======================================================================
 
-Sistema completo demonstrando integração entre agentes especializados:
-- Agente Médico: Análise de sintomas e protocolos
-- Agente Geográfico: Busca por estabelecimentos próximos
-- Fluxo de triagem médica automatizada
-- Conceitos aplicáveis ao PostgreSQL real
+Sistema completo com tecnologias modernas:
+- PostgreSQL + pgvector para embeddings
+- Busca semântica avançada de sintomas
+- Análise geoespacial com PostGIS
+- Cache inteligente de embeddings
+- Dados médicos reais do Piauí
+- Agentes especializados com IA
+
+Este sistema integra o que seria das aulas 7 e 8, oferecendo:
+• Análise semântica de sintomas com OpenAI embeddings
+• Busca geográfica otimizada com PostgreSQL
+• Cache para redução de custos
+• Dados reais de estabelecimentos de saúde
 
 Execute: uv run aula7/main.py
 """
@@ -16,10 +24,10 @@ from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 
-# Importar agentes especializados
-from agente_medico import criar_agente_medico
-from agente_geografico import criar_agente_geografico
-from dados_simulados import dados_medicos
+# Importar agentes modernizados
+from agente_medico import criar_agente_medico_avancado
+from agente_geografico import criar_agente_geografico_avancado
+from dados_medicos_reais import dados_medicos
 
 # Carregar variáveis de ambiente
 load_dotenv()
@@ -32,23 +40,33 @@ llm_medico = ChatOpenAI(
 )
 
 
-class SistemaMedicoIntegrado:
-    """Sistema médico completo com múltiplos agentes especializados"""
+class SistemaMedicoAvancado:
+    """Sistema médico avançado com PostgreSQL, embeddings e agentes IA"""
     
     def __init__(self):
-        """Inicializa sistema com agentes especializados"""
-        self.agente_medico = criar_agente_medico(llm_medico)
-        self.agente_geografico = criar_agente_geografico(llm_medico)
+        """Inicializa sistema com tecnologias avançadas"""
+        self.agente_medico = criar_agente_medico_avancado(llm_medico)
+        self.agente_geografico = criar_agente_geografico_avancado(llm_medico)
         
         # Estatísticas do sistema
         self.stats = dados_medicos.get_estatisticas()
         
-        print("🏥 SISTEMA MÉDICO INTEGRADO INICIADO")
+        print("🚀 SISTEMA MÉDICO AVANÇADO INICIADO")
         print("="*45)
-        print(f"📊 Base de dados: {self.stats['total_estabelecimentos']} estabelecimentos")
-        print(f"🔍 Sintomas catalogados: {self.stats['total_sintomas']}")
-        print(f"📋 Queixas principais: {self.stats['total_queixas']}")
-        print("✅ Agentes especializados carregados\n")
+        print("🤖 PostgreSQL + pgvector + OpenAI embeddings")
+        print(f"📊 Estabelecimentos: {self.stats['total_estabelecimentos']}")
+        print(f"🔍 Sintomas: {self.stats['total_sintomas']}")
+        print(f"📋 Queixas: {self.stats['total_queixas']}")
+        print(f"📝 Consultas registradas: {self.stats['total_consultas']}")
+        
+        # Stats do cache de embeddings
+        cache_stats = self.stats['cache_embeddings']
+        print(f"💾 Cache embeddings: {cache_stats['entradas']} entradas")
+        if cache_stats['custo_total_usd'] > 0:
+            custo = cache_stats['custo_total_usd']
+            print(f"💰 Custo total embeddings: ${custo:.4f}")
+        
+        print("✅ Agentes IA especializados carregados\n")
     
     def triagem_completa(self, sintomas: str, latitude: float = -5.0892, 
                         longitude: float = -42.8019, nome_paciente: str = "Paciente"):
@@ -210,57 +228,71 @@ class SistemaMedicoIntegrado:
 
 
 def casos_clinicos_demonstrativos():
-    """Demonstra sistema com casos clínicos realistas"""
+    """Demonstra sistema avançado com casos clínicos realistas"""
     
-    sistema = SistemaMedicoIntegrado()
+    sistema = SistemaMedicoAvancado()
     
     casos = [
         {
             'nome': 'João Silva',
-            'sintomas': 'dor no peito há 30 minutos, irradiando para braço esquerdo, suor frio',
+            'sintomas': 'dor intensa no peito há 30 minutos, suor frio, falta de ar, dor no braço esquerdo',
             'lat': -5.0892, 'lng': -42.8019,  # Centro de Teresina
-            'contexto': 'Emergência cardiológica - Alta prioridade'
+            'contexto': 'EMERGÊNCIA: Suspeita síndrome coronariana aguda'
         },
         {
-            'nome': 'Maria Santos', 
-            'sintomas': 'febre de 38.5°C há 2 dias, dor de cabeça, mal estar',
+            'nome': 'Maria Santos',
+            'sintomas': 'febre alta de 39°C há 3 dias, dor de cabeça forte, vômito, rigidez no pescoço',
             'lat': -5.0650, 'lng': -42.7850,  # Zona Norte
-            'contexto': 'Quadro infeccioso - Prioridade moderada'
+            'contexto': 'URGENTE: Suspeita meningite - sinais neurológicos'
         },
         {
-            'nome': 'Pedro Costa',
-            'sintomas': 'check-up de rotina, sem sintomas específicos',
-            'lat': -5.0800, 'lng': -42.8100,  # Próximo UBS
-            'contexto': 'Prevenção - Baixa prioridade'
+            'nome': 'Ana Costa',
+            'sintomas': 'dor abdominal intensa no lado direito, náusea, febre baixa',
+            'lat': -5.0800, 'lng': -42.8100,  # Zona Sul
+            'contexto': 'URGENTE: Suspeita apendicite aguda'
+        },
+        {
+            'nome': 'Carlos Mendes',
+            'sintomas': 'tosse seca persistente há 2 semanas, cansaço, perda de peso',
+            'lat': -5.0500, 'lng': -42.8200,  # Zona Norte
+            'contexto': 'MODERADO: Investigação de doença pulmonar'
+        },
+        {
+            'nome': 'Lucia Oliveira',
+            'sintomas': 'consulta de rotina para check-up anual, sem sintomas específicos',
+            'lat': -5.0920, 'lng': -42.8050,  # Centro
+            'contexto': 'ROTINA: Medicina preventiva'
         }
     ]
     
-    print("🎯 DEMONSTRAÇÃO: CASOS CLÍNICOS REALISTAS")
-    print("="*50)
+    print("🎯 DEMONSTRAÇÃO: CASOS CLÍNICOS COM IA AVANÇADA")
+    print("=" * 55)
+    print("🤖 Análise semântica + Busca geográfica otimizada")
     
     for i, caso in enumerate(casos, 1):
         print(f"\n📋 CASO {i}: {caso['nome']}")
         print(f"🩺 Sintomas: {caso['sintomas']}")
         print(f"📍 Localização: ({caso['lat']}, {caso['lng']})")
         print(f"🎯 Contexto: {caso['contexto']}")
-        print("-" * 50)
+        print("-" * 70)
         
         resultado = sistema.triagem_completa(
             sintomas=caso['sintomas'],
             latitude=caso['lat'],
-            longitude=caso['lng'], 
+            longitude=caso['lng'],
             nome_paciente=caso['nome']
         )
         
-        print(f"\n📄 RESULTADO FINAL PARA {caso['nome']}:")
+        print(f"\n📄 ANÁLISE COMPLETA PARA {caso['nome']}:")
+        print("=" * 50)
         print(resultado.raw)
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
 
 
 def modo_interativo():
-    """Permite teste interativo do sistema"""
+    """Permite teste interativo do sistema avançado"""
     
-    sistema = SistemaMedicoIntegrado()
+    sistema = SistemaMedicoAvancado()
     
     print("\n🤖 MODO INTERATIVO - SISTEMA MÉDICO INTEGRADO")
     print("="*55)
@@ -310,15 +342,17 @@ def modo_interativo():
 def main():
     """Função principal com menu de opções"""
     
-    print("🏥 SISTEMA MÉDICO INTEGRADO - AULA 7")
-    print("="*45)
-    print("Integração CrewAI + PostgreSQL + Dados Médicos")
+    print("🚀 SISTEMA MÉDICO AVANÇADO - AULA 7")
+    print("=" * 50)
+    print("🤖 CrewAI + PostgreSQL + pgvector + OpenAI Embeddings")
+    print("🏥 Análise Semântica + Busca Geoespacial Avançada")
     
-    print("\n🎯 FUNCIONALIDADES DISPONÍVEIS:")
-    print("1. 📋 Demonstração com casos clínicos (recomendado)")
-    print("2. 🤖 Modo interativo (você informa sintomas)")
-    print("3. 📊 Mostrar estatísticas do sistema")
-    print("4. ❌ Sair")
+    print("\n🎯 FUNCIONALIDADES AVANÇADAS:")
+    print("1. 📋 Demonstração com casos clínicos IA (recomendado)")
+    print("2. 🤖 Modo interativo com análise semântica")
+    print("3. 📊 Estatísticas completas do sistema")
+    print("4. 🧪 Teste de embeddings e cache")
+    print("5. ❌ Sair")
     
     while True:
         try:
@@ -332,20 +366,49 @@ def main():
                 break
             elif opcao == '3':
                 stats = dados_medicos.get_estatisticas()
-                print("\n📊 ESTATÍSTICAS DO SISTEMA:")
-                print("="*35)
-                print(f"🏥 Total de estabelecimentos: {stats['total_estabelecimentos']}")
-                print(f"🔍 Sintomas catalogados: {stats['total_sintomas']}")
-                print(f"📋 Queixas principais: {stats['total_queixas']}")
+                print("\n📊 ESTATÍSTICAS COMPLETAS DO SISTEMA:")
+                print("=" * 45)
+                print(f"🏥 Estabelecimentos: {stats['total_estabelecimentos']}")
+                print(f"🔍 Sintomas: {stats['total_sintomas']}")
+                print(f"📋 Queixas: {stats['total_queixas']}")
+                print(f"📝 Consultas: {stats['total_consultas']}")
+                
                 print("\n🏢 Por tipo de estabelecimento:")
                 for tipo, qtd in stats['tipos_estabelecimentos'].items():
                     print(f"   • {tipo}: {qtd} unidades")
-                print("\n💡 Dica: Escolha opção 1 para ver o sistema funcionando!")
+                
+                print("\n� Cache de embeddings:")
+                cache = stats['cache_embeddings']
+                print(f"   • Entradas: {cache['entradas']}")
+                print(f"   • Tokens consumidos: {cache['tokens_total']:,}")
+                print(f"   • Custo total: ${cache['custo_total_usd']:.4f}")
+                print(f"   • Acessos: {cache['acessos_total']}")
+                
+                print("\n�💡 Sistema totalmente funcional com IA!")
+                
             elif opcao == '4':
-                print("👋 Até logo!")
+                print("\n🧪 TESTE DE EMBEDDINGS E CACHE")
+                print("=" * 40)
+                teste_texto = "dor de cabeça intensa e náusea"
+                print(f"📝 Testando: '{teste_texto}'")
+                
+                resultado = dados_medicos.classificar_urgencia_inteligente(teste_texto)
+                print(f"🎯 Urgência detectada: {resultado['classificacao']}")
+                print(f"🔍 Sintomas similares: {len(resultado['sintomas_similares'])}")
+                print(f"📋 Queixas correlatas: {len(resultado['queixas_similares'])}")
+                
+                if resultado['sintomas_similares']:
+                    print("\nMais similar:")
+                    s = resultado['sintomas_similares'][0]
+                    print(f"   • {s['nome']} ({s['similaridade']:.1%})")
+                
+                print("\n✅ Sistema de embeddings funcionando!")
+                
+            elif opcao == '5':
+                print("👋 Até logo! Sistema médico avançado encerrado.")
                 break
             else:
-                print("❌ Opção inválida. Digite 1, 2, 3 ou 4.")
+                print("❌ Opção inválida. Digite 1, 2, 3, 4 ou 5.")
         
         except KeyboardInterrupt:
             print("\n\n👋 Interrompido pelo usuário. Até logo!")
