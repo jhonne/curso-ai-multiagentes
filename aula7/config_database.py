@@ -62,8 +62,7 @@ class PostgreSQLMedico:
         self._configurar_extensoes()
         self._criar_schema()
         
-        print("✅ PostgreSQL conectado com sucesso!")
-        print("🔍 Extensões pgvector e PostGIS configuradas")
+        # Mensagem final consolidada removida - interface mais limpa
     
     def _conectar(self):
         """Estabelece conexão com PostgreSQL"""
@@ -76,7 +75,8 @@ class PostgreSQLMedico:
             cursor = self.conn.cursor()
             cursor.execute("SELECT version()")
             version = cursor.fetchone()[0]
-            print(f"🗄️ Conectado ao PostgreSQL: {version}")
+            # Mensagem simplificada para interface limpa
+            print("🗄️ PostgreSQL conectado")
             
         except Exception as e:
             print(f"❌ Erro ao conectar PostgreSQL: {e}")
@@ -220,7 +220,7 @@ class PostgreSQLMedico:
         # Criar índices para performance
         self._criar_indices()
         
-        print("✅ Schema do banco criado com sucesso!")
+        # Schema criado silenciosamente
     
     def _criar_indices(self):
         """Cria índices otimizados para busca"""
@@ -254,7 +254,7 @@ class PostgreSQLMedico:
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_sintomas_criticidade ON sintomas(criticidade)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_cache_hash ON cache_embeddings(texto_hash)")
             
-            print("✅ Índices de performance criados")
+            # Índices criados silenciosamente
             
         except Exception as e:
             print(f"⚠️ Alguns índices podem não ter sido criados: {e}")
@@ -586,7 +586,7 @@ def configurar_banco_exemplo():
         # Por enquanto, só testamos a conexão
         
         stats = db.get_estatisticas_sistema()
-        print(f"✅ Banco configurado!")
+        print("✅ Sistema de banco preparado")
         print(f"📈 Estatísticas: {stats}")
         
         return db

@@ -11,7 +11,10 @@ Sistema completo com tecnologias modernas:
 - Agentes especializados com IA
 
 Este sistema integra o que seria das aulas 7 e 8, oferecendo:
-• Análise semântica de sintomas com OpenAI embeddings
+• Análise semânti                print("\n💡 Sistema totalmente funcional com IA!")
+                exibir_menu()
+                
+            elif opcao == '4':de sintomas com OpenAI embeddings
 • Busca geográfica otimizada com PostgreSQL
 • Cache para redução de custos
 • Dados reais de estabelecimentos de saúde
@@ -28,6 +31,12 @@ from langchain_openai import ChatOpenAI
 from agente_medico import criar_agente_medico_avancado
 from agente_geografico import criar_agente_geografico_avancado
 from dados_medicos_reais import dados_medicos
+
+# Importar validação (importação local na função quando necessário)
+
+# Configurar modo silencioso para inicialização mais limpa
+import logging
+logging.getLogger('psycopg2').setLevel(logging.WARNING)
 
 # Carregar variáveis de ambiente
 load_dotenv()
@@ -51,22 +60,8 @@ class SistemaMedicoAvancado:
         # Estatísticas do sistema
         self.stats = dados_medicos.get_estatisticas()
         
-        print("🚀 SISTEMA MÉDICO AVANÇADO INICIADO")
-        print("="*45)
-        print("🤖 PostgreSQL + pgvector + OpenAI embeddings")
-        print(f"📊 Estabelecimentos: {self.stats['total_estabelecimentos']}")
-        print(f"🔍 Sintomas: {self.stats['total_sintomas']}")
-        print(f"📋 Queixas: {self.stats['total_queixas']}")
-        print(f"📝 Consultas registradas: {self.stats['total_consultas']}")
-        
-        # Stats do cache de embeddings
-        cache_stats = self.stats['cache_embeddings']
-        print(f"💾 Cache embeddings: {cache_stats['entradas']} entradas")
-        if cache_stats['custo_total_usd'] > 0:
-            custo = cache_stats['custo_total_usd']
-            print(f"💰 Custo total embeddings: ${custo:.4f}")
-        
-        print("✅ Agentes IA especializados carregados\n")
+        # Sistema carregado silenciosamente - interface limpa
+        print("✅ Sistema médico carregado com sucesso!")
     
     def triagem_completa(self, sintomas: str, latitude: float = -5.0892, 
                         longitude: float = -42.8019, nome_paciente: str = "Paciente"):
@@ -227,6 +222,96 @@ class SistemaMedicoAvancado:
         return resultado
 
 
+def executar_validacao_completa():
+    """Executa validação completa do sistema médico avançado"""
+    
+    print("\n🔍 VALIDAÇÃO COMPLETA DO SISTEMA")
+    print("=" * 50)
+    print("🎯 Verificando todos os componentes...")
+    
+    try:
+        # Importar validação local
+        from validacao_completa import (
+            verificar_dependencias, verificar_postgresql,
+            verificar_openai, verificar_sistema_completo,
+            verificar_casos_demonstracao
+        )
+        
+        print("\n🔧 VERIFICANDO DEPENDÊNCIAS...")
+        deps_ok = verificar_dependencias()
+        
+        print("\n🗄️ VERIFICANDO POSTGRESQL...")
+        db_ok = verificar_postgresql()
+        
+        print("\n🤖 VERIFICANDO OPENAI API...")
+        ai_ok = verificar_openai()
+        
+        print("\n🏥 VERIFICANDO SISTEMA MÉDICO COMPLETO...")
+        sistema_ok = verificar_sistema_completo()
+        
+        print("\n🎯 VERIFICANDO CASOS DE DEMONSTRAÇÃO...")
+        casos_ok = verificar_casos_demonstracao()
+        
+        # Resumo final
+        componentes = [deps_ok, db_ok, ai_ok, sistema_ok, casos_ok]
+        aprovados = sum(componentes)
+        total = len(componentes)
+        
+        print("\n" + "=" * 65)
+        print("📋 RESUMO DA VALIDAÇÃO:")
+        print("=" * 25)
+        
+        status_msgs = [
+            ("Dependências Python", deps_ok),
+            ("PostgreSQL + Extensões", db_ok),
+            ("OpenAI API", ai_ok),
+            ("Sistema Médico Completo", sistema_ok),
+            ("Casos de Demonstração", casos_ok)
+        ]
+        
+        for nome, status in status_msgs:
+            emoji = "✅ APROVADO" if status else "❌ REPROVADO"
+            print(f"{emoji}: {nome}")
+        
+        porcentagem = (aprovados / total) * 100
+        print(f"\n📊 RESULTADO FINAL: {aprovados}/{total} ({porcentagem:.0f}%)")
+        print("\n" + "=" * 50)
+        
+        if porcentagem == 100:
+            print("🎉 SISTEMA PRONTO PARA AULA!")
+            print("✅ Todos os componentes principais funcionando")
+            print("🚀 Pode iniciar a demonstração prática")
+        elif porcentagem >= 80:
+            print("⚠️ SISTEMA QUASE PRONTO")
+            print("✅ Componentes principais funcionando")
+            print("🔧 Pequenos ajustes necessários")
+        else:
+            print("❌ SISTEMA PRECISA DE AJUSTES")
+            print("🔧 Corrija os problemas antes da aula")
+        
+        print("\n💡 COMANDO PARA AULA:")
+        print("   uv run aula7/main.py")
+        print("\n" + "=" * 50)
+        print("\n" + "=" * 50)
+        
+    except ImportError as e:
+        print(f"❌ Erro ao importar validação: {e}")
+        print("💡 Executando validação simplificada...")
+        
+        # Validação simplificada
+        try:
+            from dados_medicos_reais import dados_medicos
+            stats = dados_medicos.get_estatisticas()
+            print(f"✅ Sistema carregado: {stats['total_estabelecimentos']} estabelecimentos")
+            print("✅ Validação simplificada OK")
+        except Exception as ve:
+            print(f"❌ Erro na validação simplificada: {ve}")
+    
+    except Exception as e:
+        print(f"❌ Erro na validação: {e}")
+        print("💡 Verifique se todos os arquivos estão presentes")
+
+
 def casos_clinicos_demonstrativos():
     """Demonstra sistema avançado com casos clínicos realistas"""
     
@@ -339,24 +424,35 @@ def modo_interativo():
             print(f"❌ Erro no sistema: {e}")
 
 
-def main():
-    """Função principal com menu de opções"""
-    
-    print("🚀 SISTEMA MÉDICO AVANÇADO - AULA 7")
-    print("=" * 50)
-    print("🤖 CrewAI + PostgreSQL + pgvector + OpenAI Embeddings")
-    print("🏥 Análise Semântica + Busca Geoespacial Avançada")
-    
-    print("\n🎯 FUNCIONALIDADES AVANÇADAS:")
-    print("1. 📋 Demonstração com casos clínicos IA (recomendado)")
+def exibir_menu():
+    """Exibe o menu principal de opções"""
+    print("\n" + "=" * 55)
+    print("🎯 ESCOLHA UMA FUNCIONALIDADE:")
+    print("=" * 55)
+    print("\n1. 📋 Demonstração com casos clínicos IA (recomendado)")
     print("2. 🤖 Modo interativo com análise semântica")
     print("3. 📊 Estatísticas completas do sistema")
     print("4. 🧪 Teste de embeddings e cache")
-    print("5. ❌ Sair")
+    print("5. 🔍 Validação completa do sistema")
+    print("6. ❌ Sair")
+    print("\n" + "-" * 55)
+
+
+def main():
+    """Função principal com menu de opções"""
+    
+    print("\n" + "=" * 60)
+    print("🚀 SISTEMA MÉDICO AVANÇADO - AULA 7")
+    print("=" * 60)
+    print("🤖 Tecnologias: CrewAI + PostgreSQL + pgvector + OpenAI")
+    print("🏥 Recursos: Análise Semântica + Busca Geoespacial")
+    print("=" * 60)
+    
+    exibir_menu()
     
     while True:
         try:
-            opcao = input("\nEscolha uma opção (1-4): ").strip()
+            opcao = input("\nEscolha uma opção (1-6): ").strip()
             
             if opcao == '1':
                 casos_clinicos_demonstrativos()
@@ -366,8 +462,9 @@ def main():
                 break
             elif opcao == '3':
                 stats = dados_medicos.get_estatisticas()
-                print("\n📊 ESTATÍSTICAS COMPLETAS DO SISTEMA:")
-                print("=" * 45)
+                print("\n" + "=" * 50)
+                print("📊 ESTATÍSTICAS COMPLETAS DO SISTEMA")
+                print("=" * 50)
                 print(f"🏥 Estabelecimentos: {stats['total_estabelecimentos']}")
                 print(f"🔍 Sintomas: {stats['total_sintomas']}")
                 print(f"📋 Queixas: {stats['total_queixas']}")
@@ -387,28 +484,39 @@ def main():
                 print("\n�💡 Sistema totalmente funcional com IA!")
                 
             elif opcao == '4':
-                print("\n🧪 TESTE DE EMBEDDINGS E CACHE")
-                print("=" * 40)
+                print("\n" + "=" * 45)
+                print("🧪 TESTE DE EMBEDDINGS E CACHE")
+                print("=" * 45)
+                
                 teste_texto = "dor de cabeça intensa e náusea"
-                print(f"📝 Testando: '{teste_texto}'")
+                print(f"\n📝 Texto de teste: '{teste_texto}'")
+                print("\n🔄 Processando análise semântica...")
                 
                 resultado = dados_medicos.classificar_urgencia_inteligente(teste_texto)
-                print(f"🎯 Urgência detectada: {resultado['classificacao']}")
-                print(f"🔍 Sintomas similares: {len(resultado['sintomas_similares'])}")
-                print(f"📋 Queixas correlatas: {len(resultado['queixas_similares'])}")
+                
+                print(f"\n🎯 RESULTADO DA ANÁLISE:")
+                print(f"   • Urgência detectada: {resultado['classificacao']}")
+                print(f"   • Sintomas similares encontrados: {len(resultado['sintomas_similares'])}")
+                print(f"   • Queixas correlacionadas: {len(resultado['queixas_similares'])}")
                 
                 if resultado['sintomas_similares']:
-                    print("\nMais similar:")
+                    print(f"\n🔍 MAIS SIMILAR ENCONTRADO:")
                     s = resultado['sintomas_similares'][0]
-                    print(f"   • {s['nome']} ({s['similaridade']:.1%})")
+                    print(f"   • {s['nome']} (similaridade: {s['similaridade']:.1%})")
                 
-                print("\n✅ Sistema de embeddings funcionando!")
+                print("\n✅ Sistema de embeddings funcionando perfeitamente!")
+                print("=" * 45)
+                exibir_menu()
                 
             elif opcao == '5':
+                executar_validacao_completa()
+                exibir_menu()
+                
+            elif opcao == '6':
                 print("👋 Até logo! Sistema médico avançado encerrado.")
                 break
             else:
-                print("❌ Opção inválida. Digite 1, 2, 3, 4 ou 5.")
+                print("❌ Opção inválida. Digite 1, 2, 3, 4, 5 ou 6.")
         
         except KeyboardInterrupt:
             print("\n\n👋 Interrompido pelo usuário. Até logo!")

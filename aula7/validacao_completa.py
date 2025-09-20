@@ -47,7 +47,7 @@ def verificar_dependencias():
             print(f"❌ {dep} - {desc} - ERRO: {e}")
             falhas.append(dep)
     
-    return len(falhas) == 0, falhas
+    return len(falhas) == 0
 
 
 def verificar_postgresql():
