@@ -5,6 +5,7 @@
 Este sistema integra as aulas 7 e 8, oferecendo uma solução médica completa com tecnologias de ponta:
 
 ### **🤖 Tecnologias Integradas:**
+
 - **PostgreSQL + pgvector**: Banco vetorial para embeddings
 - **OpenAI Embeddings API**: Análise semântica de sintomas  
 - **PostGIS**: Análise geoespacial avançada
@@ -12,6 +13,7 @@ Este sistema integra as aulas 7 e 8, oferecendo uma solução médica completa c
 - **Cache Inteligente**: Otimização de custos e performance
 
 ### **⚡ Funcionalidades Avançadas:**
+
 - ✅ **Busca Semântica**: Encontra sintomas similares usando IA
 - ✅ **Análise Geoespacial**: Busca otimizada com índices espaciais
 - ✅ **Cache de Embeddings**: Reduz custos da API OpenAI
@@ -62,6 +64,7 @@ aula7/
 ### **Pré-requisitos:**
 
 1. **PostgreSQL com pgvector**
+
 ```bash
 # Opção 1: Docker (Recomendado)
 docker run --name postgres-crewai \
@@ -76,6 +79,7 @@ docker run --name postgres-crewai \
 ```
 
 2. **Dependências Python**
+
 ```bash
 # Instalar todas as dependências
 uv sync
@@ -85,6 +89,7 @@ uv add psycopg2-binary pgvector-python openai python-dotenv
 ```
 
 3. **Configurar OpenAI API**
+
 ```bash
 # Criar arquivo .env na raiz do projeto
 echo "OPENAI_API_KEY=sua_chave_aqui" > .env
