@@ -565,6 +565,132 @@ class PostgreSQLMedico:
         
         return removidas
     
+    def calcular_distancia(self, lat1: float, lng1: float, lat2: float, lng2: float) -> float:
+        """
+        Calcula distância entre dois pontos usando PostGIS (se disponível) ou fórmula de Haversine
+        
+        Args:
+            lat1, lng1: Coordenadas do primeiro ponto
+            lat2, lng2: Coordenadas do segundo ponto
+            
+        Returns:
+            Distância em quilômetros
+        """
+        
+        cursor = self.conn.cursor()
+        
+        try:
+            # Tentar usar PostGIS se disponível
+            cursor.execute("""
+            SELECT ST_Distance(
+                ST_GeogFromText('POINT(%s %s)'),
+                ST_GeogFromText('POINT(%s %s)')
+            ) / 1000.0 AS distancia_km
+            """, (lng1, lat1, lng2, lat2))
+            
+            distancia = cursor.fetchone()[0]
+            return float(distancia)
+            
+        except Exception:
+            # Fallback para fórmula de Haversine se PostGIS não disponível
+            import math
+            
+            # Converter para radianos
+            lat1_rad = math.radians(lat1)
+            lat2_rad = math.radians(lat2)
+            delta_lat = math.radians(lat2 - lat1)
+            delta_lng = math.radians(lng2 - lng1)
+            
+            # Fórmula de Haversine
+            a = (math.sin(delta_lat/2) * math.sin(delta_lat/2) + 
+                 math.cos(lat1_rad) * math.cos(lat2_rad) * 
+                 math.sin(delta_lng/2) * math.sin(delta_lng/2))
+            
+            c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+            
+            # Raio da Terra em km
+            R = 6371.0
+            distancia = R * c
+            
+            return distancia
+    
+    def buscar_estabelecimentos_proximos(self, latitude: float, longitude: float, 
+                                       raio_km: float = 10, 
+                                       tipo_estabelecimento: str = None) -> List[Dict]:
+        """
+        Busca estabelecimentos próximos usando cálculo de distância otimizado
+        
+        Args:
+            latitude, longitude: Coordenadas de referência
+            raio_km: Raio de busca em quilômetros
+            tipo_estabelecimento: Filtro por tipo (opcional)
+            
+        Returns:
+            Lista de estabelecimentos ordenados por distância
+        """
+        
+        cursor = self.conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Query base com cálculo de distância
+        base_query = """
+        SELECT 
+            id, nome, tipo, latitude, longitude,
+            municipio, telefone, endereco, horario_funcionamento,
+            especialidades,
+            """
+        
+        try:
+            # Tentar usar PostGIS para cálculo otimizado
+            distance_calc = """
+            ST_Distance(
+                ST_GeogFromText('POINT(' || longitude || ' ' || latitude || ')'),
+                ST_GeogFromText('POINT(%s %s)')
+            ) / 1000.0 AS distancia_km
+            """
+        except:
+            # Fallback para fórmula de Haversine em SQL
+            distance_calc = """
+            (6371 * acos(
+                cos(radians(%s)) * cos(radians(latitude)) * 
+                cos(radians(longitude) - radians(%s)) + 
+                sin(radians(%s)) * sin(radians(latitude))
+            )) AS distancia_km
+            """
+        
+        query = base_query + distance_calc + """
+        FROM estabelecimentos
+        WHERE 1=1
+        """
+        
+        params = [longitude, latitude]
+        
+        # Adicionar filtro de tipo se especificado
+        if tipo_estabelecimento:
+            query += " AND UPPER(tipo) = UPPER(%s)"
+            params.append(tipo_estabelecimento)
+        
+        # Adicionar filtro de distância e ordenação
+        query += """
+        HAVING distancia_km <= %s
+        ORDER BY distancia_km
+        """
+        params.append(raio_km)
+        
+        # Para fórmula de Haversine, ajustar parâmetros
+        if 'acos' in distance_calc:
+            params = [latitude, longitude, latitude] + params[2:]
+        
+        cursor.execute(query, params)
+        estabelecimentos = cursor.fetchall()
+        
+        # Converter para lista de dicts normais
+        resultado = []
+        for est in estabelecimentos:
+            est_dict = dict(est)
+            resultado.append(est_dict)
+        
+        return resultado
+
     def __del__(self):
         """Fecha conexão ao destruir objeto"""
         if self.conn:

@@ -120,6 +120,11 @@ class AnaliseSemanticaSintomasTool(BaseTool):
         emojis = {1: "🟢", 2: "🟡", 3: "🟠", 4: "🔴", 5: "🚨"}
         return emojis.get(nivel, "❓")
     
+    def _get_urgencia_emoji(self, nivel: int) -> str:
+        """Retorna emoji baseado no nível de urgência"""
+        emojis = {1: "🟢", 2: "🟡", 3: "🟠", 4: "🔴", 5: "🚨"}
+        return emojis.get(nivel, "❓")
+    
     def _get_status_urgencia(self, nivel: int) -> str:
         """Retorna status textual da urgência"""
         status = {
