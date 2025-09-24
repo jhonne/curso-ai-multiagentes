@@ -7,6 +7,7 @@ O agente **NÃO se conecta diretamente** ao banco PostgreSQL. Ele usa sua **ferr
 ## 🔗 PONTO 1: CONEXÃO DA FERRAMENTA AO AGENTE
 
 ### **📍 Localização: Linhas 257-258**
+
 ```python
 agente_busca = Agent(
     role="Especialista em Estabelecimentos Médicos",
@@ -17,6 +18,7 @@ agente_busca = Agent(
 ```
 
 **✅ O que acontece aqui:**
+
 - A ferramenta `BuscadorEstabelecimentosTool` é **conectada** ao agente
 - Agente agora **pode** usar a ferramenta quando necessário
 - Esta linha dá ao agente a **"habilidade"** de acessar PostgreSQL
@@ -49,6 +51,7 @@ def _run(self, tipo: str, municipio: str, limite: int = 5) -> str:
 ```
 
 **✅ O que acontece aqui:**
+
 - **Momento exato** da conexão com PostgreSQL
 - Usa credenciais do arquivo `.env`
 - Cria cursor para executar comandos SQL
@@ -86,6 +89,7 @@ def _run(self, tipo: str, municipio: str, limite: int = 5) -> str:
 ```
 
 **✅ O que acontece aqui:**
+
 - **Monta SQL dinâmico** baseado nos parâmetros do agente
 - **Executa a query** no PostgreSQL
 - **Consome os dados** retornados pelo banco
@@ -122,6 +126,7 @@ def _run(self, tipo: str, municipio: str, limite: int = 5) -> str:
 ```
 
 **✅ O que acontece aqui:**
+
 - **Dados do PostgreSQL** são formatados em texto estruturado
 - **Conexão é fechada** adequadamente
 - **Resultado é retornado** para o agente usar
@@ -161,6 +166,7 @@ def _run(self, tipo: str, municipio: str, limite: int = 5) -> str:
 ## 💡 EXEMPLO PRÁTICO REAL
 
 ### **Quando você executa:**
+
 ```bash
 uv run aula7/exercicio_agente_postgres.py
 ```
@@ -168,6 +174,7 @@ uv run aula7/exercicio_agente_postgres.py
 ### **Isso acontece internamente:**
 
 #### **🔸 MOMENTO 1: Agente decide usar ferramenta**
+
 ```python
 # O agente "pensa": "Preciso buscar hospitais, vou usar minha ferramenta"
 # Agente chama automaticamente:
@@ -179,6 +186,7 @@ ferramenta.buscar_estabelecimentos_postgres(
 ```
 
 #### **🔸 MOMENTO 2: Ferramenta conecta no banco (LINHA 79)**
+
 ```python
 # AQUI É A CONEXÃO REAL!
 conn = psycopg2.connect(
@@ -191,6 +199,7 @@ conn = psycopg2.connect(
 ```
 
 #### **🔸 MOMENTO 3: Ferramenta consome dados (LINHA 97-98)**
+
 ```python
 # SQL gerado dinamicamente:
 query = "SELECT nome, tipo, municipio, telefone, endereco FROM estabelecimentos WHERE 1=1 AND LOWER(tipo) LIKE '%hospital%' AND LOWER(municipio) LIKE '%são paulo%' ORDER BY nome LIMIT 5"
@@ -201,6 +210,7 @@ resultados = cursor.fetchall()  # ← DADOS DO POSTGRESQL!
 ```
 
 #### **🔸 MOMENTO 4: Dados retornam para o agente**
+
 ```python
 # Ferramenta retorna para o agente:
 return """Encontrados 4 estabelecimento(s):
@@ -216,26 +226,34 @@ return """Encontrados 4 estabelecimento(s):
 ## 🎯 RESUMO DOS PONTOS CRÍTICOS
 
 ### **🔍 ONDE:** Linha 257-258
+
 **O QUE:** Agente recebe acesso à ferramenta
+
 ```python
 tools=[ferramenta_busca]  # ← Agente ganha "habilidade PostgreSQL"
 ```
 
 ### **🔍 ONDE:** Linha 79  
+
 **O QUE:** Conexão real com PostgreSQL
+
 ```python
 conn = psycopg2.connect(**db_config)  # ← CONEXÃO FÍSICA!
 ```
 
 ### **🔍 ONDE:** Linhas 97-98
+
 **O QUE:** Execução e consumo de dados
+
 ```python
 cursor.execute(query, params)      # ← EXECUTA SQL
 resultados = cursor.fetchall()     # ← CONSOME DADOS
 ```
 
 ### **🔍 ONDE:** Linhas 104-113
+
 **O QUE:** Formatação para o agente
+
 ```python
 output = f"Encontrados {len(resultados)} estabelecimento(s):\n"
 # ← FORMATA DADOS PARA O AGENTE ENTENDER
@@ -246,16 +264,19 @@ output = f"Encontrados {len(resultados)} estabelecimento(s):\n"
 ## ⚡ PONTO CRUCIAL DE ENTENDIMENTO
 
 **❌ O AGENTE NÃO:**
+
 - Se conecta diretamente no PostgreSQL
 - Sabe SQL
 - Conhece detalhes do banco de dados
 
 **✅ O AGENTE APENAS:**
+
 - Usa sua ferramenta quando precisa de dados
 - Passa parâmetros em linguagem natural
 - Recebe dados já formatados da ferramenta
 
 **🛠️ A FERRAMENTA FAZ TUDO:**
+
 - Conecta no PostgreSQL (linha 79)
 - Monta SQL dinâmico (linhas 84-95)  
 - Executa queries (linha 97)

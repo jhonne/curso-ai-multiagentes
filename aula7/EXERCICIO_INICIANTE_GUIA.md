@@ -7,6 +7,7 @@ Criar um agente CrewAI que consegue buscar hospitais em um banco PostgreSQL usan
 ## 📊 COMPLEXIDADE REDUZIDA
 
 ### **ANTES: 7/10 (Média-Alta)**
+
 ### **AGORA: 4/10 (Iniciante) ✅**
 
 ---
@@ -14,6 +15,7 @@ Criar um agente CrewAI que consegue buscar hospitais em um banco PostgreSQL usan
 ## 🔄 SIMPLIFICAÇÕES FEITAS
 
 ### **❌ REMOVIDO (Complexo demais):**
+
 - Schema Pydantic complexo com validações
 - SQL dinâmico com parâmetros variáveis  
 - Múltiplas classes auxiliares
@@ -23,6 +25,7 @@ Criar um agente CrewAI que consegue buscar hospitais em um banco PostgreSQL usan
 - Logs detalhados de debug
 
 ### **✅ MANTIDO (Essencial):**
+
 - Conceito de agente CrewAI
 - Ferramenta customizada (BaseTool)
 - Conexão PostgreSQL básica
@@ -34,6 +37,7 @@ Criar um agente CrewAI que consegue buscar hospitais em um banco PostgreSQL usan
 ## 🧩 ESTRUTURA SIMPLIFICADA
 
 ### **PARTE 1: Ferramenta Simples**
+
 ```python
 class BuscaSimples(BaseTool):
     name = "buscar_hospitais" 
@@ -46,6 +50,7 @@ class BuscaSimples(BaseTool):
 ```
 
 ### **PARTE 2: Agente Simples**
+
 ```python
 agente = Agent(
     role="Assistente de Hospitais",
@@ -55,6 +60,7 @@ agente = Agent(
 ```
 
 ### **PARTE 3: Execução Básica**
+
 ```python
 tarefa = Task(description="Busque hospitais")
 crew = Crew(agents=[agente], tasks=[tarefa])
@@ -81,6 +87,7 @@ resultado = crew.kickoff()
 ## 🎓 CONCEITOS QUE O INICIANTE APRENDE
 
 ### **✅ Mantidos (Essenciais):**
+
 1. **Como criar uma ferramenta CrewAI**
    - Herdar de `BaseTool`
    - Definir `name` e `description`
@@ -100,6 +107,7 @@ resultado = crew.kickoff()
    - Execução com `kickoff()`
 
 ### **❌ Removidos (Muito avançados):**
+
 - Validação de schema com Pydantic
 - SQL parametrizado e dinâmico
 - Configurações complexas
@@ -111,6 +119,7 @@ resultado = crew.kickoff()
 ## 🚀 COMO USAR
 
 ### **PASSO 1: Preparar PostgreSQL**
+
 ```sql
 -- Banco 'curso' deve existir
 -- Tabela 'estabelecimentos' deve existir
@@ -118,11 +127,13 @@ resultado = crew.kickoff()
 ```
 
 ### **PASSO 2: Executar**
+
 ```bash
 uv run aula7/exercicio_iniciante_postgres.py
 ```
 
 ### **PASSO 3: Observar resultado**
+
 ```
 Encontrei 2 hospitais:
 
@@ -140,16 +151,19 @@ Encontrei 2 hospitais:
 ## 🎯 PROGRESSÃO DE APRENDIZAGEM
 
 ### **INICIANTE (Este exercício):**
+
 - Ferramenta simples e fixa
 - SQL básico  
 - Conceitos fundamentais CrewAI
 
 ### **INTERMEDIÁRIO (Próximo passo):**
+
 - Parâmetros na ferramenta
 - SQL com filtros
 - Validação de entrada
 
 ### **AVANÇADO (Versão original):**
+
 - Schema Pydantic
 - SQL dinâmico
 - Arquitetura completa
@@ -159,6 +173,7 @@ Encontrei 2 hospitais:
 ## 💡 VANTAGENS DA VERSÃO INICIANTE
 
 ### **✅ Para o Aluno:**
+
 - **Menos intimidante** - código mais curto
 - **Conceitos claros** - foco no essencial  
 - **Setup simples** - credenciais fixas
@@ -166,12 +181,14 @@ Encontrei 2 hospitais:
 - **Compreensão rápida** - menos abstrações
 
 ### **✅ Para o Professor:**
+
 - **Explicação mais fácil** - menos conceitos simultâneos
 - **Demonstração rápida** - execução em minutos
 - **Troubleshooting simples** - menos variáveis
 - **Foco no conceito** - agente + ferramenta + banco
 
 ### **✅ Para a Aula:**
+
 - **Tempo adequado** - 30-45 minutos
 - **Menos pré-requisitos** - apenas conceitos básicos CrewAI
 - **Mais interativo** - menos tempo lendo código
@@ -182,12 +199,14 @@ Encontrei 2 hospitais:
 ## 🔄 QUANDO USAR CADA VERSÃO
 
 ### **📚 VERSÃO INICIANTE:**
+
 - **Primeiro contato** com integração CrewAI + DB
 - **Aulas introdutórias** de IA + Banco de Dados  
 - **Workshops rápidos** (1-2 horas)
 - **Alunos sem experiência** em PostgreSQL
 
 ### **🏗️ VERSÃO ORIGINAL:**  
+
 - **Cursos avançados** de arquitetura
 - **Projetos reais** que precisam de flexibilidade
 - **Treinamento corporativo** completo
@@ -200,6 +219,7 @@ Encontrei 2 hospitais:
 **OBJETIVO ALCANÇADO:** ✅
 
 O aluno sai da aula sabendo:
+
 1. ✅ Como criar uma ferramenta CrewAI básica
 2. ✅ Como conectar agente ao PostgreSQL
 3. ✅ Como ferramenta funciona "por trás dos panos"
