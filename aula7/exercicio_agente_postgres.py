@@ -19,16 +19,89 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 from crewai import Agent, Task, Crew, Process
+from crewai.tools import BaseTool
 from langchain_openai import ChatOpenAI
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from pydantic import BaseModel, Field
+from typing import Type
 
 # Carregar variáveis de ambiente
 load_dotenv()
 
 
+class BuscadorEstabelecimentosInput(BaseModel):
+    """Input schema para a ferramenta de busca"""
+    tipo: str = Field(description="Tipo de estabelecimento (hospital, upa, clinica, ou 'todos')")
+    municipio: str = Field(description="Nome do município (ou 'todos' para qualquer cidade)")
+    limite: int = Field(default=5, description="Número máximo de resultados (padrão: 5)")
+
+
+class BuscadorEstabelecimentosTool(BaseTool):
+    """Ferramenta CrewAI para buscar estabelecimentos médicos no PostgreSQL"""
+    
+    name: str = "buscar_estabelecimentos_postgres"
+    description: str = (
+        "Busca estabelecimentos médicos no banco PostgreSQL. "
+        "Use para encontrar hospitais, UPAs, clínicas por tipo e/ou município. "
+        "Parâmetros: tipo (hospital/upa/clinica/todos), municipio (nome ou 'todos'), limite (número)"
+    )
+    args_schema: Type[BaseModel] = BuscadorEstabelecimentosInput
+    
+    def _run(self, tipo: str, municipio: str, limite: int = 5) -> str:
+        """Executa a busca no PostgreSQL"""
+        try:
+            # Configuração do banco (dentro do método para evitar problemas com BaseTool)
+            db_config = {
+                'host': os.getenv('POSTGRES_HOST', 'localhost'),
+                'port': os.getenv('POSTGRES_PORT', '5432'),
+                'database': os.getenv('POSTGRES_DB', 'curso'),
+                'user': os.getenv('POSTGRES_USER', 'postgres'),
+                'password': os.getenv('POSTGRES_PASSWORD', 'arpus')
+            }
+            
+            conn = psycopg2.connect(**db_config)
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+            
+            # Query base
+            query = "SELECT nome, tipo, municipio, telefone, endereco FROM estabelecimentos WHERE 1=1"
+            params = []
+            
+            # Adicionar filtros
+            if tipo.lower() != 'todos':
+                query += " AND LOWER(tipo) LIKE %s"
+                params.append(f"%{tipo.lower()}%")
+            
+            if municipio.lower() != 'todos':
+                query += " AND LOWER(municipio) LIKE %s"
+                params.append(f"%{municipio.lower()}%")
+            
+            query += f" ORDER BY nome LIMIT {limite}"
+            
+            cursor.execute(query, params)
+            resultados = cursor.fetchall()
+            
+            if not resultados:
+                return f"Nenhum estabelecimento encontrado para: tipo='{tipo}', município='{municipio}'"
+            
+            # Formatar resultados para o agente
+            output = f"Encontrados {len(resultados)} estabelecimento(s):\n"
+            for i, row in enumerate(resultados, 1):
+                output += f"\n{i}. {row['nome']}"
+                output += f"\n   Tipo: {row['tipo']}"
+                output += f"\n   Município: {row['municipio']}"
+                output += f"\n   Telefone: {row['telefone']}"
+                output += f"\n   Endereço: {row['endereco']}"
+                
+            conn.close()
+            return output
+            
+        except Exception as e:
+            return f"Erro ao consultar PostgreSQL: {str(e)}"
+
+
 class BuscadorEstabelecimentos:
-    """Ferramenta para buscar estabelecimentos médicos no PostgreSQL"""
+    """Classe auxiliar para operações diretas no PostgreSQL (fora do agente)"""
     
     def __init__(self):
         self.db_config = {
@@ -127,20 +200,24 @@ def criar_agente_postgres():
         temperature=0.1
     )
     
+    # Criar ferramenta de busca
+    ferramenta_busca = BuscadorEstabelecimentosTool()
+    
     # Agente especialista em estabelecimentos médicos
     agente_busca = Agent(
         role="Especialista em Busca de Estabelecimentos Médicos",
         goal="Encontrar estabelecimentos médicos adequados usando o banco PostgreSQL",
         backstory="""
         Sou um especialista em localizar estabelecimentos médicos em bancos de dados.
-        Tenho acesso ao sistema PostgreSQL com informações completas sobre hospitais,
+        Tenho acesso direto ao sistema PostgreSQL com informações completas sobre hospitais,
         UPAs, clínicas e outros serviços de saúde.
         
-        Minha especialidade é fazer buscas precisas e retornar informações organizadas
-        e úteis para os usuários.
+        Posso realizar buscas precisas por tipo de estabelecimento, município ou 
+        combinações de filtros, sempre retornando informações organizadas e úteis.
         """,
         verbose=True,
         llm=llm,
+        tools=[ferramenta_busca],  # CONECTAR A FERRAMENTA AO AGENTE
         allow_delegation=False
     )
     
@@ -188,28 +265,24 @@ def executar_exercicio():
     print("\n🤖 Criando agente CrewAI...")
     agente = criar_agente_postgres()
     
-    # Definir tarefa de busca
-    tarefa_busca = Task(
+    # Definir tarefa REAL que usa a ferramenta do agente
+    tarefa_busca_real = Task(
         description="""
-        Realize uma busca de estabelecimentos médicos no banco PostgreSQL com os seguintes critérios:
+        Use sua ferramenta de busca PostgreSQL para encontrar estabelecimentos médicos:
         
         1. Busque hospitais em São Paulo
-        2. Busque UPAs (Unidades de Pronto Atendimento) em qualquer cidade
-        3. Liste clínicas disponíveis
+        2. Busque UPAs em qualquer cidade  
+        3. Busque clínicas em Santo André
         
-        Para cada busca:
-        - Use a ferramenta de busca no PostgreSQL
-        - Organize os resultados de forma clara
-        - Inclua nome, tipo, município e contato quando disponível
-        
-        Apresente um relatório organizado com as três buscas.
+        Para cada busca, use a ferramenta buscar_estabelecimentos_postgres com os 
+        parâmetros apropriados. Organize os resultados de forma clara e profissional.
         """,
         agent=agente,
         expected_output="""
         Relatório estruturado com três seções:
-        1. Hospitais em São Paulo
-        2. UPAs disponíveis  
-        3. Clínicas encontradas
+        1. Hospitais em São Paulo (resultados da consulta PostgreSQL)
+        2. UPAs disponíveis (resultados da consulta PostgreSQL) 
+        3. Clínicas em Santo André (resultados da consulta PostgreSQL)
         
         Para cada estabelecimento: nome, tipo, município e telefone.
         """
@@ -240,40 +313,25 @@ def executar_exercicio():
         print(f"   • {clinica['nome']} - {clinica['municipio']}")
         print(f"     Telefone: {clinica['telefone']}")
     
-    # Criar crew simples (demonstrativo)
-    print("\n🎯 DEMONSTRAÇÃO COM CREWAI:")
-    print("-" * 35)
     
-    # Tarefa simplificada para demonstração
-    tarefa_demo = Task(
-        description=f"""
-        Analise os dados encontrados no PostgreSQL e faça um resumo:
-        
-        DADOS ENCONTRADOS:
-        - Hospitais: {len(hospitais)} encontrados
-        - UPAs: {len(upas)} encontradas  
-        - Clínicas: {len(clinicas)} encontradas
-        
-        Crie um breve resumo da disponibilidade de serviços médicos.
-        """,
-        agent=agente,
-        expected_output="Resumo executivo da disponibilidade de estabelecimentos médicos."
-    )
+    # DEMONSTRAÇÃO REAL: Agente usando sua ferramenta PostgreSQL
+    print("\n🤖 DEMONSTRAÇÃO REAL: AGENTE + FERRAMENTA POSTGRESQL")
+    print("-" * 55)
     
-    # Executar crew
-    crew = Crew(
+    # Executar crew com agente que TEM ACESSO à ferramenta
+    crew_real = Crew(
         agents=[agente],
-        tasks=[tarefa_demo],
+        tasks=[tarefa_busca_real],
         process=Process.sequential,
-        verbose=False
+        verbose=True
     )
     
-    print("🚀 Executando análise com CrewAI...")
-    resultado = crew.kickoff()
+    print("🚀 Executando agente CrewAI com acesso REAL ao PostgreSQL...")
+    resultado_real = crew_real.kickoff()
     
-    print("\n📋 RESULTADO DA ANÁLISE CREWAI:")
-    print("-" * 40)
-    print(resultado.raw)
+    print("\n📋 RESULTADO DA BUSCA REAL (AGENTE + POSTGRESQL):")
+    print("-" * 50)
+    print(resultado_real.raw)
     
     print(f"\n✅ EXERCÍCIO CONCLUÍDO!")
     print(f"📊 Resultados: {len(hospitais + upas + clinicas)} estabelecimentos encontrados")
