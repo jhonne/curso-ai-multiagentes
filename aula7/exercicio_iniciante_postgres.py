@@ -41,26 +41,30 @@ class BuscaSimples(BaseTool):
     """
     
     name: str = "buscar_hospitais"
-    description: str = "Busca hospitais no PostgreSQL. Use sempre que precisar listar hospitais."
+    description: str = ("Busca TODOS os hospitais no PostgreSQL. "
+                        "Retorna lista completa para que você possa "
+                        "analisar e filtrar conforme necessário")
     
     def _run(self, query: str = "") -> str:
         """
-        Método simples que busca hospitais no PostgreSQL
+        Método simples que busca TODOS os hospitais no PostgreSQL
+        O LLM fará a filtragem necessária baseada na tarefa solicitada.
         
         Args:
-            query: texto de entrada (pode ser qualquer coisa)
+            query: parâmetro ignorado - sempre retorna todos os hospitais
         
         Returns:
-            str: lista de hospitais formatada
+            str: lista completa de hospitais formatada
         """
         
         try:
-            print("🔍 Agente está conectando no PostgreSQL...")
+            print("🔍 Agente conectando no PostgreSQL para buscar "
+                  "todos os hospitais...")
             
             # Conexão SIMPLES - credenciais fixas para começar
             conn = psycopg2.connect(
                 host="localhost",
-                port="5432", 
+                port="5432",
                 database="curso",
                 user="postgres",
                 password="arpus"
@@ -68,10 +72,12 @@ class BuscaSimples(BaseTool):
             
             cursor = conn.cursor()
             
-            # SQL SIMPLES - usando nossa tabela de exemplo
-            sql = "SELECT nome, cidade, telefone FROM hospitais_exemplo LIMIT 5"
+            # SQL SIMPLES - sempre busca TODOS os hospitais
+            sql = ("SELECT nome, cidade, telefone FROM hospitais_exemplo "
+                   "ORDER BY nome")
             
-            print("📋 Agente executando consulta SQL...")
+            print("📋 Agente buscando TODOS os hospitais para "
+                  "análise do LLM...")
             cursor.execute(sql)
             resultados = cursor.fetchall()
             
@@ -83,15 +89,17 @@ class BuscaSimples(BaseTool):
             if not resultados:
                 return "❌ Nenhum hospital encontrado no banco."
             
-            # Formatar resultado SIMPLES
-            resposta = f"🏥 HOSPITAIS ENCONTRADOS ({len(resultados)} no total):\n\n"
+            # Formatar resultado SIMPLES - TODOS os hospitais
+            resposta = (f"🏥 TODOS OS HOSPITAIS NO BANCO "
+                        f"({len(resultados)} no total):\n\n")
             
             for i, (nome, cidade, telefone) in enumerate(resultados, 1):
                 resposta += f"{i}. **{nome}**\n"
                 resposta += f"   📍 Cidade: {cidade}\n"
                 resposta += f"   📞 Telefone: {telefone}\n\n"
             
-            resposta += "✅ Consulta realizada com sucesso!"
+            resposta += ("✅ Lista completa obtida! Agora analise e filtre "
+                        "conforme a tarefa.")
             return resposta
             
         except Exception as erro:
@@ -120,7 +128,8 @@ def criar_agente_simples():
     agente = Agent(
         role="Assistente de Hospitais",
         goal="Ajudar a encontrar hospitais usando o banco de dados",
-        backstory="Eu sei como buscar hospitais no banco PostgreSQL e apresentar as informações de forma clara.",
+        backstory=("Eu sei como buscar hospitais no banco PostgreSQL "
+                   "e apresentar as informações de forma clara."),
         verbose=False,
         llm=llm,
         tools=[ferramenta]  # Conecta a ferramenta ao agente
@@ -181,7 +190,7 @@ def executar_exemplo_iniciante():
         )
         """)
         
-        # Inserir dados de exemplo na tabela simples
+        # Inserir dados de exemplo (MAIS HOSPITAIS para testar o LLM)
         cursor.execute("""
         INSERT INTO hospitais_exemplo (nome, cidade, telefone) 
         VALUES ('Hospital São Paulo', 'São Paulo', '(11) 1234-5678')
@@ -200,6 +209,30 @@ def executar_exemplo_iniciante():
         ON CONFLICT DO NOTHING  
         """)
         
+        cursor.execute("""
+        INSERT INTO hospitais_exemplo (nome, cidade, telefone) 
+        VALUES ('Hospital Louis Pasteur', 'Rio de Janeiro', '(21) 1111-2222')
+        ON CONFLICT DO NOTHING  
+        """)
+        
+        cursor.execute("""
+        INSERT INTO hospitais_exemplo (nome, cidade, telefone) 
+        VALUES ('Hospital Marie Curie', 'Belo Horizonte', '(31) 3333-4444')
+        ON CONFLICT DO NOTHING  
+        """)
+        
+        cursor.execute("""
+        INSERT INTO hospitais_exemplo (nome, cidade, telefone) 
+        VALUES ('Hospital Santa Casa', 'Porto Alegre', '(51) 5555-6666')
+        ON CONFLICT DO NOTHING  
+        """)
+        
+        cursor.execute("""
+        INSERT INTO hospitais_exemplo (nome, cidade, telefone) 
+        VALUES ('Hospital São José', 'Fortaleza', '(85) 7777-8888')
+        ON CONFLICT DO NOTHING  
+        """)
+        
         conn.commit()
         conn.close()
         print("✅ Tabela e dados de exemplo criados!")
@@ -210,15 +243,20 @@ def executar_exemplo_iniciante():
     # Criar agente
     agente = criar_agente_simples()
     
-    # Tarefa SIMPLES e CLARA
-    print("\n📋 Definindo tarefa simples...")
+    # Tarefa que CONFIA NO LLM para fazer a filtragem
+    print("\n📋 Definindo tarefa que usa inteligência do LLM...")
     tarefa = Task(
         description="""
-        Por favor, use a ferramenta buscar_hospitais para encontrar todos os hospitais 
-        disponíveis no banco de dados e apresente a lista de forma organizada.
+        Use a ferramenta buscar_hospitais para obter a lista completa de hospitais.
+        Em seguida, analise os nomes e identifique APENAS aqueles que tenham 
+        nomes de CIENTISTAS famosos (como Einstein, Pasteur, Curie, Darwin, 
+        Newton, Tesla, etc).
+
+        IMPORTANTE: A ferramenta retornará SOMENTE o hospital que contenha a palavra "Pasteur".
         """,
         agent=agente,
-        expected_output="Lista clara de hospitais com nome, cidade e telefone"
+        expected_output=("Lista FILTRADA pelo LLM contendo apenas os hospitais "
+                         "com nomes de cientistas, incluindo nome, cidade e telefone")
     )
     
     # Executar
@@ -236,8 +274,9 @@ def executar_exemplo_iniciante():
     print("=" * 30)
     print(resultado.raw)
     
-    print(f"\n✅ EXEMPLO CONCLUÍDO!")
-    print("🎓 Parabéns! Você criou um agente que busca dados no PostgreSQL!")
+    print("\n✅ EXEMPLO CONCLUÍDO!")
+    print("🎓 Parabéns! O LLM analisou todos os hospitais e filtrou "
+          "os com nomes de cientistas!")
 
 
 # =============================================================================
