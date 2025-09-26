@@ -43,6 +43,7 @@ conn.close()
 ### 📚 Documentação Completa
 
 Consulte a documentação na pasta `db/`:
+
 - **`db/README.md`** - Índice da pasta db
 - **`db/README_MIGRACAO.md`** - Guia técnico completo  
 - **`db/MIGRACAO_CONCLUIDA.md`** - Resumo e estatísticas

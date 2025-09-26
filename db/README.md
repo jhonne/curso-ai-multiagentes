@@ -5,6 +5,7 @@ Esta pasta contém todos os arquivos relacionados à migração dos dados do ban
 ## 📁 Estrutura dos Arquivos
 
 ### 🚀 Scripts de Migração
+
 - **`migrar_postgres_para_sqlite.py`** - Script principal de migração
 - **`configurar_migracao.py`** - Configurador interativo de credenciais PostgreSQL
 - **`testar_ambiente_migracao.py`** - Teste de ambiente e dependências
@@ -12,16 +13,20 @@ Esta pasta contém todos os arquivos relacionados à migração dos dados do ban
 - **`exemplo_uso_sqlite.py`** - Exemplos práticos de uso do banco
 
 ### 🗄️ Banco de Dados
+
 - **`curso.db`** - Banco SQLite com os dados migrados (81 KB)
 
 ### ⚙️ Configurações e Logs
+
 - **`config_migracao.json`** - Configurações de conexão PostgreSQL
 - **`migracao.log`** - Log detalhado da migração
 
 ### 📊 Dados Exportados
+
 - **`dados_curso_*.json`** - Exemplo de exportação dos dados para JSON
 
 ### 📚 Documentação
+
 - **`README_MIGRACAO.md`** - Guia completo de instalação e uso
 - **`MIGRACAO_CONCLUIDA.md`** - Resumo final da migração
 - **`README.md`** - Este arquivo (índice da pasta)
@@ -29,6 +34,7 @@ Esta pasta contém todos os arquivos relacionados à migração dos dados do ban
 ## 🚀 Como Usar
 
 ### Primeira Migração
+
 ```bash
 cd db
 
@@ -46,6 +52,7 @@ uv run python testar_sqlite.py
 ```
 
 ### Usar o Banco SQLite
+
 ```bash
 cd db
 
@@ -61,6 +68,7 @@ python
 ```
 
 ### Consulta Direta SQLite
+
 ```python
 import sqlite3
 
@@ -79,6 +87,7 @@ conn.close()
 ## 📊 Dados Disponíveis
 
 ### Tabelas Migradas
+
 - **ia_estabelecimento** (8 registros) - Estabelecimentos de saúde
 - **ia_queixa_principal** (141 registros) - Queixas principais
 - **ia_sintoma** (266 registros) - Sintomas médicos  
@@ -96,6 +105,7 @@ uv run python migrar_postgres_para_sqlite.py
 ```
 
 O script irá:
+
 - Conectar ao PostgreSQL
 - Recriar as tabelas no SQLite
 - Migrar todos os dados atualizados
@@ -104,6 +114,7 @@ O script irá:
 ## 📖 Documentação Completa
 
 Consulte os arquivos de documentação para informações detalhadas:
+
 - `README_MIGRACAO.md` - Guia técnico completo
 - `MIGRACAO_CONCLUIDA.md` - Resumo e estatísticas
 
