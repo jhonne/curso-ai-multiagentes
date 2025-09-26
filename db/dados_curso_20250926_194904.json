@@ -1,0 +1,268 @@
+{
+  "estabelecimentos": [
+    {
+      "cnes": "5828856",
+      "nome": "HOSPITAL DE URGENCIA DE TERESINA PROFESSOR ZENON ROCHA - HUT",
+      "endereco": "RUA DOUTOR OTTO TITO , 1820",
+      "fone": "8632294321",
+      "bairro": "REDENCAO",
+      "longitude": 0.0,
+      "latitude": 0.0
+    },
+    {
+      "cnes": "9131922",
+      "nome": "HOSPITAL E MATERNIDADE DO PROMORAR",
+      "endereco": "RUA DEP ULISSES GUIMARAES , S/N FONE: 86 3198-3688 (SAME)",
+      "fone": "8632117324",
+      "bairro": "PROMORAR",
+      "longitude": 0.0,
+      "latitude": 0.0
+    },
+    {
+      "cnes": "7823169",
+      "nome": "UNIDADE DE PRONTO ATENDIMENTO 24 HORAS - UPA RENASCENCA",
+      "endereco": "AV NOE MENDE , S/N",
+      "fone": "8631983741",
+      "bairro": "RENASCENCA III",
+      "longitude": null,
+      "latitude": null
+    },
+    {
+      "cnes": "2679663",
+      "nome": "UNIDADE DE PRONTO ATENDIMENTO 24 HORAS UPA PROMORAR",
+      "endereco": "RUA DEP ULISSES GUIMARAES , S/N",
+      "fone": "8632203536",
+      "bairro": "PROMORAR",
+      "longitude": 0.0,
+      "latitude": 0.0
+    },
+    {
+      "cnes": "2323354",
+      "nome": "UNIDADE INTEGRADA DE SAUDE PRIMAVERA",
+      "endereco": "AV DUQUE DE CAXIAS , 2661",
+      "fone": "8631983703",
+      "bairro": "PRIMAVERA",
+      "longitude": 0.0,
+      "latitude": 0.0
+    },
+    {
+      "cnes": "2679647",
+      "nome": "UNIDADE MISTA DE SAUDE D ANTONIO PEDREIRA DE A MARTINS - BUENOS AIRES",
+      "endereco": "AV JERUMENHA , S/N",
+      "fone": "8632257124",
+      "bairro": "BUENOS AIRES",
+      "longitude": -42.81451,
+      "latitude": -5.04202
+    },
+    {
+      "cnes": "5973457",
+      "nome": "UNIDADE MISTA DE SAUDE MARIANO GAYOSO CASTELO BRANCO",
+      "endereco": "ALAMEDA FRANCISCO NOGUEIRA",
+      "fone": "8632173267",
+      "bairro": "FRANCISCA TRINDAD",
+      "longitude": -42.83121,
+      "latitude": -4.99549
+    },
+    {
+      "cnes": "2727064",
+      "nome": "UNIDADE MISTA DE SAUDE PROFESSOR WALL FERRAZ CIAMCA",
+      "endereco": "PRACA DO TRABALHADOR , S/N",
+      "fone": "8632237010",
+      "bairro": "DIRCEU ARCOVERDE II",
+      "longitude": -42.75943,
+      "latitude": -5.10521
+    }
+  ],
+  "queixas_frequentes": [
+    {
+      "id": 40,
+      "nome": "PROBLEMAS EM EXTREMIDADES",
+      "total_atendimentos": 243,
+      "percentual": 15.39
+    },
+    {
+      "id": 58,
+      "nome": "DOR DE CABECA (CEFALEIA), TONTURA OU VERTIGEM",
+      "total_atendimentos": 213,
+      "percentual": 13.49
+    },
+    {
+      "id": 22,
+      "nome": "DOR DE GARGANTA",
+      "total_atendimentos": 189,
+      "percentual": 11.97
+    },
+    {
+      "id": 14,
+      "nome": "DIARREIA E/OU VOMITOS E/OU NAUSEAS",
+      "total_atendimentos": 169,
+      "percentual": 10.7
+    },
+    {
+      "id": 23,
+      "nome": "DOR LOMBAR/DORSO/COSTAS",
+      "total_atendimentos": 116,
+      "percentual": 7.35
+    },
+    {
+      "id": 19,
+      "nome": "DOR ABDOMINAL EM ADULTO",
+      "total_atendimentos": 90,
+      "percentual": 5.7
+    },
+    {
+      "id": 33,
+      "nome": "MAL ESTAR EM ADULTO",
+      "total_atendimentos": 60,
+      "percentual": 3.8
+    },
+    {
+      "id": 15,
+      "nome": "DISPNEIA EM ADULTO",
+      "total_atendimentos": 55,
+      "percentual": 3.48
+    },
+    {
+      "id": 42,
+      "nome": "PROBLEMAS EM OLHOS",
+      "total_atendimentos": 44,
+      "percentual": 2.79
+    },
+    {
+      "id": 60,
+      "nome": "FEBRE / SINAIS DE INFECCAO",
+      "total_atendimentos": 42,
+      "percentual": 2.66
+    },
+    {
+      "id": 44,
+      "nome": "PROBLEMAS URINARIOS",
+      "total_atendimentos": 40,
+      "percentual": 2.53
+    },
+    {
+      "id": 67,
+      "nome": "OBSTETRICIA - DOR ABDOMINAL / LOMBAR / CONTRACOES UTERINAS;",
+      "total_atendimentos": 34,
+      "percentual": 2.15
+    },
+    {
+      "id": 27,
+      "nome": "ERUPCAO CUTANEA",
+      "total_atendimentos": 29,
+      "percentual": 1.84
+    },
+    {
+      "id": 16,
+      "nome": "DISPNEIA EM CRIANCA",
+      "total_atendimentos": 26,
+      "percentual": 1.65
+    },
+    {
+      "id": 25,
+      "nome": "DOR TORACICA",
+      "total_atendimentos": 26,
+      "percentual": 1.65
+    },
+    {
+      "id": 29,
+      "nome": "FERIDAS",
+      "total_atendimentos": 24,
+      "percentual": 1.52
+    },
+    {
+      "id": 39,
+      "nome": "PROBLEMAS DENTARIOS",
+      "total_atendimentos": 24,
+      "percentual": 1.52
+    },
+    {
+      "id": 34,
+      "nome": "MAL ESTAR EM CRIANCA",
+      "total_atendimentos": 23,
+      "percentual": 1.46
+    },
+    {
+      "id": 43,
+      "nome": "PROBLEMAS EM OUVIDOS",
+      "total_atendimentos": 22,
+      "percentual": 1.39
+    },
+    {
+      "id": 20,
+      "nome": "DOR ABDOMINAL EM CRIANCA",
+      "total_atendimentos": 21,
+      "percentual": 1.33
+    }
+  ],
+  "estatisticas_estabelecimentos": [
+    {
+      "cnes": "7823169",
+      "nome": "UNIDADE DE PRONTO ATENDIMENTO 24 HORAS - UPA RENASCENCA",
+      "bairro": "RENASCENCA III",
+      "total_atendimentos": 1375,
+      "queixas_distintas": 35,
+      "sintomas_distintos": 54
+    },
+    {
+      "cnes": "2679647",
+      "nome": "UNIDADE MISTA DE SAUDE D ANTONIO PEDREIRA DE A MARTINS - BUENOS AIRES",
+      "bairro": "BUENOS AIRES",
+      "total_atendimentos": 103,
+      "queixas_distintas": 14,
+      "sintomas_distintos": 11
+    },
+    {
+      "cnes": "2727064",
+      "nome": "UNIDADE MISTA DE SAUDE PROFESSOR WALL FERRAZ CIAMCA",
+      "bairro": "DIRCEU ARCOVERDE II",
+      "total_atendimentos": 34,
+      "queixas_distintas": 5,
+      "sintomas_distintos": 8
+    },
+    {
+      "cnes": "9131922",
+      "nome": "HOSPITAL E MATERNIDADE DO PROMORAR",
+      "bairro": "PROMORAR",
+      "total_atendimentos": 29,
+      "queixas_distintas": 5,
+      "sintomas_distintos": 8
+    },
+    {
+      "cnes": "5828856",
+      "nome": "HOSPITAL DE URGENCIA DE TERESINA PROFESSOR ZENON ROCHA - HUT",
+      "bairro": "REDENCAO",
+      "total_atendimentos": 26,
+      "queixas_distintas": 5,
+      "sintomas_distintos": 9
+    },
+    {
+      "cnes": "2323354",
+      "nome": "UNIDADE INTEGRADA DE SAUDE PRIMAVERA",
+      "bairro": "PRIMAVERA",
+      "total_atendimentos": 8,
+      "queixas_distintas": 3,
+      "sintomas_distintos": 2
+    },
+    {
+      "cnes": "2679663",
+      "nome": "UNIDADE DE PRONTO ATENDIMENTO 24 HORAS UPA PROMORAR",
+      "bairro": "PROMORAR",
+      "total_atendimentos": 2,
+      "queixas_distintas": 1,
+      "sintomas_distintos": 1
+    },
+    {
+      "cnes": "5973457",
+      "nome": "UNIDADE MISTA DE SAUDE MARIANO GAYOSO CASTELO BRANCO",
+      "bairro": "FRANCISCA TRINDAD",
+      "total_atendimentos": 2,
+      "queixas_distintas": 1,
+      "sintomas_distintos": 1
+    }
+  ],
+  "metadados": {
+    "data_exportacao": "2025-09-26T19:49:04.304009",
+    "total_registros": 1579
+  }
+}
