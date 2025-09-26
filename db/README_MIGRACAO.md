@@ -5,13 +5,14 @@ Este script migra os dados do banco PostgreSQL 'curso' para um banco SQLite 'cur
 ## 📋 Tabelas Migradas
 
 - **ia_estabelecimento** - Estabelecimentos de saúde
-- **ia_queixa_principal** - Queixas principais 
+- **ia_queixa_principal** - Queixas principais
 - **ia_sintoma** - Sintomas médicos
 - **ia_historico_atendimento_sintoma** - Histórico de atendimento com sintomas
 
 ## 🔧 Pré-requisitos
 
 ### 1. Dependências Python
+
 ```bash
 # Instalar psycopg2 para conexão PostgreSQL
 uv add psycopg2-binary
@@ -20,6 +21,7 @@ uv add psycopg2-binary
 ```
 
 ### 2. Banco PostgreSQL
+
 - PostgreSQL rodando em localhost:5432
 - Banco 'curso' criado e populado com os dados
 - Usuário 'postgres' com acesso ao banco
@@ -28,22 +30,26 @@ uv add psycopg2-binary
 ## 🚀 Como Usar
 
 ### 1. Testar Ambiente (Recomendado)
+
 ```bash
 uv run testar_ambiente_migracao.py
 ```
 
 Este script verifica:
+
 - ✅ Dependências instaladas
 - ✅ Conexão com PostgreSQL
 - ✅ Existência das tabelas
 - ✅ Funcionalidade do SQLite
 
 ### 2. Executar Migração
+
 ```bash
 uv run migrar_postgres_para_sqlite.py
 ```
 
 O script irá:
+
 - 🔌 Conectar aos dois bancos
 - 📋 Criar estrutura das tabelas em SQLite
 - 📊 Migrar todos os dados
@@ -53,6 +59,7 @@ O script irá:
 ## ⚙️ Configurações
 
 ### PostgreSQL (migrar_postgres_para_sqlite.py, linha 25)
+
 ```python
 POSTGRES_CONFIG = {
     'host': 'localhost',
@@ -64,6 +71,7 @@ POSTGRES_CONFIG = {
 ```
 
 ### SQLite
+
 ```python
 SQLITE_DB = 'curso.db'  # Arquivo será criado na pasta atual
 ```
@@ -71,6 +79,7 @@ SQLITE_DB = 'curso.db'  # Arquivo será criado na pasta atual
 ## 📊 Estrutura das Tabelas SQLite
 
 ### ia_estabelecimento
+
 ```sql
 CREATE TABLE ia_estabelecimento (
     cnes TEXT PRIMARY KEY,     -- Código CNES
@@ -84,6 +93,7 @@ CREATE TABLE ia_estabelecimento (
 ```
 
 ### ia_queixa_principal  
+
 ```sql
 CREATE TABLE ia_queixa_principal (
     id INTEGER PRIMARY KEY,    -- ID da queixa
@@ -92,6 +102,7 @@ CREATE TABLE ia_queixa_principal (
 ```
 
 ### ia_sintoma
+
 ```sql
 CREATE TABLE ia_sintoma (
     id INTEGER PRIMARY KEY,    -- ID do sintoma
@@ -100,6 +111,7 @@ CREATE TABLE ia_sintoma (
 ```
 
 ### ia_historico_atendimento_sintoma
+
 ```sql
 CREATE TABLE ia_historico_atendimento_sintoma (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  -- ID auto incremento
@@ -115,6 +127,7 @@ CREATE TABLE ia_historico_atendimento_sintoma (
 ## 📈 Volume de Dados Esperado
 
 Baseado nos scripts SQL:
+
 - **ia_estabelecimento**: ~8 registros
 - **ia_queixa_principal**: ~148 registros  
 - **ia_sintoma**: ~266 registros
@@ -128,6 +141,7 @@ Baseado nos scripts SQL:
 ## 🔍 Validação
 
 O script inclui validação automática que compara:
+
 - Contagem de registros entre PostgreSQL e SQLite
 - Integridade referencial das chaves estrangeiras
 - Estrutura das tabelas criadas
@@ -146,27 +160,35 @@ O script inclui validação automática que compara:
 ## 🐛 Troubleshooting
 
 ### Erro de Conexão PostgreSQL
+
 ```
 ❌ Erro na conexão PostgreSQL: could not connect to server
 ```
+
 **Solução**: Verificar se PostgreSQL está rodando e configurações de conexão
 
 ### Dependência Não Encontrada  
+
 ```
 ❌ psycopg2 não encontrado
 ```
+
 **Solução**: `uv add psycopg2-binary`
 
 ### Tabela Não Existe
+
 ```  
 ❌ ia_estabelecimento: relation "ia_estabelecimento" does not exist
 ```
+
 **Solução**: Executar os scripts SQL da pasta `/sql` no PostgreSQL primeiro
 
 ### Permissão Negada
+
 ```
 ❌ permission denied for relation ia_estabelecimento
 ```
+
 **Solução**: Verificar permissões do usuário PostgreSQL
 
 ## 🎯 Exemplo de Uso

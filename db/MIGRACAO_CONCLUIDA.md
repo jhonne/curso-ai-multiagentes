@@ -1,4 +1,4 @@
-# 🎉 Migração PostgreSQL → SQLite Concluída com Sucesso!
+# 🎉 Migração PostgreSQL → SQLite Concluída com Sucesso
 
 ## 📊 Resumo da Migração
 
@@ -24,27 +24,32 @@ A migração dos dados do banco PostgreSQL 'curso' para SQLite foi **concluída 
 ## 📁 Arquivos Gerados
 
 ### 🗄️ Banco de Dados
+
 - **`curso.db`** (81 KB) - Banco SQLite com todos os dados migrados
 
 ### 🛠️ Scripts de Migração
+
 - **`migrar_postgres_para_sqlite.py`** - Script principal de migração
 - **`configurar_migracao.py`** - Configurador de credenciais PostgreSQL
 - **`testar_ambiente_migracao.py`** - Teste de ambiente e dependências
 
 ### 🧪 Scripts de Teste e Exemplos
+
 - **`testar_sqlite.py`** - Testes do banco SQLite migrado
 - **`exemplo_uso_sqlite.py`** - Exemplos práticos de uso do banco
 
 ### 📋 Logs e Configurações
+
 - **`migracao.log`** - Log detalhado da migração
 - **`config_migracao.json`** - Configurações de conexão PostgreSQL
 - **`dados_curso_20250926_194418.json`** - Exemplo de exportação JSON
 
 ### 📚 Documentação
+
 - **`README_MIGRACAO.md`** - Guia completo de uso
 - **`MIGRACAO_CONCLUIDA.md`** - Este arquivo de resumo
 
-## 🚀 Pronto para Usar!
+## 🚀 Pronto para Usar
 
 ### Conectar ao Banco SQLite
 
@@ -103,11 +108,13 @@ banco.desconectar()
 ## 📊 Estatísticas Interessantes Descobertas
 
 ### 🏥 Estabelecimentos Mais Ativos
+
 1. **UPA Renascença** - 1,375 atendimentos (87% do total)
 2. **UMS Buenos Aires** - 103 atendimentos  
 3. **UMS Wall Ferraz** - 34 atendimentos
 
 ### 🩺 Queixas Mais Frequentes
+
 1. **Problemas em Extremidades** - 243 casos (15.39%)
 2. **Cefaleia/Tontura** - 213 casos (13.49%)
 3. **Dor de Garganta** - 189 casos (11.97%)
@@ -115,6 +122,7 @@ banco.desconectar()
 5. **Dor Lombar** - 116 casos (7.35%)
 
 ### 💊 Sintomas Mais Comuns
+
 1. **Dor Leve (1-3/10)** - 666 ocorrências (42%)
 2. **Evento Recente** - 261 ocorrências (16%)
 3. **Dor Moderada (4-6/10)** - 130 ocorrências (8%)
@@ -122,24 +130,28 @@ banco.desconectar()
 ## 🎯 Casos de Uso Sugeridos
 
 ### 📈 Análise de Dados
+
 - Padrões de atendimento por estabelecimento
 - Sazonalidade de queixas e sintomas
 - Correlações entre sintomas e queixas
 - Mapeamento geográfico (longitude/latitude disponível)
 
 ### 🤖 Machine Learning
+
 - Predição de sintomas baseada em queixas
 - Classificação de severidade
 - Agrupamento de estabelecimentos similares
 - Análise de padrões temporais
 
 ### 🖥️ Aplicações Web
+
 - Dashboard de monitoramento
 - Sistema de busca de estabelecimentos
 - Relatórios automatizados
 - API REST para consulta de dados
 
 ### 📱 Apps Móveis
+
 - Localizador de unidades de saúde
 - Guia de sintomas e queixas
 - Histórico de atendimentos
@@ -148,12 +160,15 @@ banco.desconectar()
 ## 🔧 Manutenção
 
 ### Atualizar Dados
+
 Para atualizar os dados, execute novamente:
+
 ```bash
 uv run python migrar_postgres_para_sqlite.py
 ```
 
 ### Backup
+
 ```bash
 # Fazer backup do banco
 cp curso.db backup_curso_$(date +%Y%m%d).db
@@ -163,6 +178,7 @@ gzip backup_curso_$(date +%Y%m%d).db
 ```
 
 ### Verificar Integridade
+
 ```bash
 uv run python testar_sqlite.py
 ```
