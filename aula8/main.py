@@ -300,7 +300,7 @@ def criar_agente_saude():
                    Minha especialidade é interpretar dados de atendimento, identificar 
                    padrões em queixas e sintomas, e fornecer informações úteis sobre 
                    a rede de saúde de forma clara e acessível."""),
-        verbose=True,
+        verbose=False,
         llm=llm,
         tools=[ferramenta_saude]
     )
