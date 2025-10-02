@@ -492,7 +492,7 @@ def criar_agente_analisador():
                    
                    Minha função é analisar cuidadosamente cada pergunta do usuário, 
                    identificar o tipo de informação solicitada e recomendar qual 
-                   agente especializado está melhor preparado para responder.
+                   agente especializado está melhor preparado para responder. 
                    
                    Trabalho como o primeiro ponto de contato, garantindo que cada 
                    consulta seja direcionada ao especialista mais adequado, 
