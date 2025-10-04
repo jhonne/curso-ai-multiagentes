@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🎓 AULA 9: CrewAI + Múltiplos Agentes Especializados
+🎓 AULA 9: CrewAI + Múltiplos Agentes Especializados 
 =====================================================
 
 EVOLUÇÃO da Aula 8: Agora com múltiplos agentes trabalhando em equipe!
