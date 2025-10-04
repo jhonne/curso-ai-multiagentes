@@ -15,6 +15,7 @@ uv run aula9/exemplos/exemplo_agente_simples.py
 """
 
 import os
+import sqlite3
 from pathlib import Path
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process
@@ -30,41 +31,90 @@ print("🎓 EXEMPLO SIMPLES: Conceitos Básicos Multi-Agente")
 print("=" * 55)
 
 # =============================================================================
-# FERRAMENTA SIMPLES
+# FERRAMENTA COM BANCO DE DADOS
 # =============================================================================
 
 class FerramentaSimples(BaseTool):
-    """Ferramenta simplificada para demonstração"""
+    """Ferramenta que busca informações reais do banco de dados"""
     
     name: str = "ferramenta_simples"
-    description: str = "Ferramenta de exemplo que retorna informações básicas"
+    description: str = "Ferramenta que retorna informações do banco de dados"
+    
+    def _conectar_banco(self):
+        """Conecta ao banco de dados SQLite"""
+        return sqlite3.connect(DB_PATH)
     
     def _run(self, tipo_info: str = "geral") -> str:
-        """Retorna informação básica baseada no tipo"""
+        """Retorna informação do banco baseada no tipo"""
         
-        if tipo_info == "hospitais":
-            return """🏥 INFORMAÇÃO SOBRE HOSPITAIS:
+        try:
+            conn = self._conectar_banco()
+            cursor = conn.cursor()
             
-• Total estimado: 8 estabelecimentos hospitalares
-• Tipos: Hospitais gerais, especializados e de urgência
-• Distribuição: Concentrados em áreas urbanas
-• Funcionamento: 24 horas para emergências"""
+            if tipo_info == "hospitais":
+                # Buscar informações sobre estabelecimentos
+                cursor.execute("SELECT COUNT(*) FROM ia_estabelecimento")
+                total = cursor.fetchone()[0]
+                
+                cursor.execute("""
+                    SELECT nome, tipo_estabelecimento 
+                    FROM ia_estabelecimento 
+                    LIMIT 3
+                """)
+                exemplos = cursor.fetchall()
+                
+                resultado = f"""🏥 INFORMAÇÃO SOBRE HOSPITAIS (DADOS REAIS):
+                
+• Total de estabelecimentos: {total} unidades
+• Exemplos:
+"""
+                for nome, tipo in exemplos:
+                    resultado += f"  - {nome} ({tipo})\n"
+                
+                conn.close()
+                return resultado
 
-        elif tipo_info == "estatisticas":
-            return """📊 ESTATÍSTICAS BÁSICAS:
-            
-• Estabelecimentos: ~8 unidades principais
-• Queixas catalogadas: ~141 tipos diferentes  
-• Atendimentos registrados: ~1,579 casos
-• Bairros atendidos: Múltiplas regiões"""
+            elif tipo_info == "estatisticas":
+                # Buscar estatísticas reais
+                cursor.execute("SELECT COUNT(*) FROM ia_estabelecimento")
+                total_estab = cursor.fetchone()[0]
+                
+                cursor.execute("SELECT COUNT(*) FROM ia_queixa_principal")
+                total_queixas = cursor.fetchone()[0]
+                
+                cursor.execute("SELECT COUNT(*) FROM ia_historico_atendimento_sintoma")
+                total_atendimentos = cursor.fetchone()[0]
+                
+                resultado = f"""📊 ESTATÍSTICAS BÁSICAS (DADOS REAIS):
+                
+• Estabelecimentos: {total_estab} unidades
+• Queixas catalogadas: {total_queixas} tipos
+• Atendimentos registrados: {total_atendimentos} casos
+• Fonte: Banco de dados SQLite"""
+                
+                conn.close()
+                return resultado
 
-        else:
-            return """ℹ️ INFORMAÇÃO GERAL:
-            
-• Sistema de saúde com dados reais
-• Estabelecimentos: hospitais, UPAs, postos
-• Análises: estatísticas, geográficas, clínicas
-• Objetivo: Demonstrar multi-agentes CrewAI"""
+            else:
+                # Informação geral com dados do banco
+                cursor.execute("SELECT COUNT(*) FROM ia_estabelecimento")
+                total_estab = cursor.fetchone()[0]
+                
+                cursor.execute("SELECT COUNT(*) FROM ia_queixa_principal")
+                total_queixas = cursor.fetchone()[0]
+                
+                resultado = f"""ℹ️ INFORMAÇÃO GERAL (DADOS REAIS):
+                
+• Sistema de saúde com {total_estab} estabelecimentos
+• {total_queixas} tipos de queixas catalogadas
+• Banco de dados: SQLite
+• Objetivo: Demonstrar multi-agentes CrewAI com dados reais"""
+                
+                conn.close()
+                return resultado
+                
+        except Exception as e:
+            return f"❌ Erro ao acessar banco de dados: {str(e)}"
 
 
 # =============================================================================
