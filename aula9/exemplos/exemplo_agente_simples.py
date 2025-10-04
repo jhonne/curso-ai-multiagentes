@@ -183,8 +183,9 @@ def demonstracao_simples():
         resposta = executar_exemplo_multiagente(pergunta)
         print(resposta)
         
-        if i < len(exemplos):
-            input("\n⏸️ Pressione ENTER para continuar...")
+        # Comentado para execução automática
+        # if i < len(exemplos):
+        #     input("\n⏸️ Pressione ENTER para continuar...")
 
 
 def main():
