@@ -90,3 +90,9 @@ uv.lock
 # GitHub workflows e configurações
 .github/
 GEMINI.md
+# ChromaDB e CrewAI storage files
+.chromadb/
+.crewai_storage/
+**/chromadb-*.lock
+**/chroma.sqlite3
+/vendor
