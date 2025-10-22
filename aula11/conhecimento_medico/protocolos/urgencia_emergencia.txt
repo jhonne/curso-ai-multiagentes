@@ -1,0 +1,182 @@
+PROTOCOLO DE TRIAGEM - SISTEMA MANCHESTER
+
+CLASSIFICAÇÃO POR COR E TEMPO DE ESPERA
+
+🔴 VERMELHO - Emergência (ATENDIMENTO IMEDIATO)
+
+Condições que ameaçam a vida imediatamente:
+- Parada cardiorrespiratória
+- Obstrução de vias aéreas
+- Perda de consciência (Glasgow < 9)
+- Choque (hipovolêmico, cardiogênico, séptico)
+- Dor torácica com sinais de IAM (Infarto Agudo do Miocárdio)
+- AVC (Acidente Vascular Cerebral) com menos de 3 horas
+- Hemorragia grave não controlada
+- Convulsão em curso
+- Trauma grave com instabilidade hemodinâmica
+
+SINAIS CLÍNICOS VERMELHO:
+- Cianose central (lábios azulados)
+- Sudorese fria profusa
+- Pulso irregular ou ausente
+- Pressão arterial muito baixa (< 90/60)
+- Frequência respiratória < 10 ou > 30 ipm
+- Saturação O2 < 90%
+
+ENCAMINHAMENTO: Hospital com UTI disponível
+
+---
+
+🟠 LARANJA - Muito Urgente (ATENDIMENTO EM 10 MINUTOS)
+
+Condições com risco potencial de vida:
+- Dor torácica moderada a intensa sem sinais claros de IAM
+- Dispneia (falta de ar) severa
+- Alteração do nível de consciência (Glasgow 9-12)
+- Dor abdominal intensa
+- Sangramento moderado a grave
+- Febre alta (> 39°C) com rigidez de nuca
+- Dor de cabeça súbita e intensa (possível AVC ou meningite)
+- Fratura exposta
+- Queimadura de 2º ou 3º grau em área extensa
+
+SINAIS CLÍNICOS LARANJA:
+- Taquicardia (FC > 120 bpm)
+- Hipertensão severa (PA > 200/120)
+- Febre alta persistente
+- Dor escore 8-10 (escala 0-10)
+- Vômitos com sangue
+
+ENCAMINHAMENTO: Hospital ou UPA 24h
+
+---
+
+🟡 AMARELO - Urgente (ATENDIMENTO EM 60 MINUTOS)
+
+Condições que necessitam avaliação médica breve:
+- Dor moderada (escore 5-7)
+- Febre alta sem sinais de gravidade
+- Vômitos persistentes
+- Diarreia com sinais leves de desidratação
+- Trauma leve a moderado
+- Sangramento leve controlado
+- Infecção sem sinais de sepse
+- Crise hipertensiva sem sintomas neurológicos
+
+SINAIS CLÍNICOS AMARELO:
+- Febre 38°C - 39°C
+- Desidratação leve
+- Dor moderada em articulações
+- Sinais de infecção localizada
+
+ENCAMINHAMENTO: UPA ou Pronto Atendimento
+
+---
+
+🟢 VERDE - Pouco Urgente (ATENDIMENTO EM 120 MINUTOS)
+
+Condições não urgentes:
+- Sintomas leves e crônicos
+- Dor leve (escore 1-4)
+- Problemas dermatológicos
+- Sintomas de resfriado/gripe sem complicações
+- Problemas ortopédicos crônicos
+- Solicitação de exames de rotina
+
+SINAIS CLÍNICOS VERDE:
+- Febre baixa (< 38°C)
+- Tosse leve
+- Sintomas há vários dias sem piora
+- Condições crônicas estáveis
+
+ENCAMINHAMENTO: UBS ou Pronto Atendimento
+
+---
+
+🔵 AZUL - Não Urgente (ATENDIMENTO EM 240 MINUTOS)
+
+Problemas administrativos ou não médicos:
+- Renovação de receitas
+- Atestados e declarações
+- Resultados de exames
+- Orientações gerais
+- Problemas burocráticos
+
+ENCAMINHAMENTO: UBS (agendamento)
+
+================================================================================
+
+FATORES AGRAVANTES (Elevar classificação em 1 nível)
+
+IDADE:
+- < 2 anos (bebês e crianças pequenas)
+- > 60 anos (idosos)
+- > 75 anos (considerar +2 níveis)
+
+COMORBIDADES:
+- Diabetes mellitus
+- Hipertensão arterial
+- Cardiopatias (insuficiência cardíaca, arritmias)
+- Doença pulmonar crônica (DPOC, asma)
+- Imunossupressão (HIV, quimioterapia, corticoides)
+- Doença renal crônica
+- Doença hepática
+
+CONDIÇÕES ESPECIAIS:
+- Gestação (especialmente 3º trimestre)
+- Uso de anticoagulantes
+- Transplantados
+- Pacientes oncológicos
+
+SINAIS VITAIS ALTERADOS:
+- Febre em extremos de idade
+- Taquicardia ou bradicardia
+- Hipotensão (PA < 90/60)
+- Saturação O2 < 95%
+
+================================================================================
+
+PERGUNTAS ESSENCIAIS NA TRIAGEM
+
+1. SINTOMA PRINCIPAL:
+   "Qual é o principal problema que trouxe você aqui hoje?"
+
+2. TEMPO:
+   "Quando os sintomas começaram?"
+   "Houve piora recente?"
+
+3. INTENSIDADE:
+   "Em uma escala de 0 a 10, quanta dor/desconforto você sente?"
+
+4. HISTÓRICO:
+   "Você tem alguma doença crônica?"
+   "Usa algum medicamento regularmente?"
+   "Tem alergias?"
+
+5. SINAIS DE ALERTA:
+   "Teve perda de consciência?"
+   "Está com falta de ar?"
+   "Teve sangramento?"
+
+================================================================================
+
+ORIENTAÇÕES GERAIS
+
+SEMPRE:
+- Avaliar sinais vitais em casos LARANJA ou superior
+- Considerar idade e comorbidades
+- Em dúvida, classificar para nível superior de urgência
+- Documentar todos os sintomas relatados
+- Reavaliar periodicamente pacientes em espera
+
+NUNCA:
+- Subestimar sintomas em idosos (podem ter apresentação atípica)
+- Ignorar alterações de comportamento súbitas
+- Desvalorizar queixas em gestantes
+- Deixar de perguntar sobre medicamentos em uso
+
+ATENÇÃO ESPECIAL:
+- Dor torácica em qualquer intensidade → investigar sempre
+- Alteração neurológica súbita → priorizar
+- Dificuldade respiratória → avaliar saturação
+- Febre em < 3 meses → sempre urgente

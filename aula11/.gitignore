@@ -1,0 +1,26 @@
+# ChromaDB - arquivos devem estar apenas em .crewai_storage/
+chromadb*.lock
+*.sqlite3
+chroma.sqlite3
+
+# CrewAI Storage (contém ChromaDB e outros dados)
+.crewai_storage/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Ambiente
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
