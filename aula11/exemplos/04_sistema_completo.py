@@ -178,7 +178,7 @@ def sistema_triagem_completo():
         memory=True,  # 🧠 Memória entre agentes e sessões
         knowledge_sources=[conhecimento],  # 📚 Protocolos completos
         process=Process.sequential,
-        verbose=True  # Ver fluxo completo
+        verbose=False  # Ver fluxo completo
     )
     
     return crew
